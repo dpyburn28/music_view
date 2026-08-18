@@ -1,0 +1,118 @@
+{
+  "id": "projector",
+  "name": "Projector",
+  "description": "Digital cinema projector: soft focus, center hotspot, gentle vignette, dust speckles, and slight rainbow DLP fringe.",
+  "roles": [
+    "postprocess"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_softness",
+      "label": "Soft focus",
+      "type": "float",
+      "default": 0.45,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Lens",
+      "widget": "slider"
+    },
+    {
+      "name": "u_hotspot",
+      "label": "Hotspot",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Lens",
+      "widget": "slider"
+    },
+    {
+      "name": "u_vignette",
+      "label": "Vignette",
+      "type": "float",
+      "default": 0.45,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Lens",
+      "widget": "slider"
+    },
+    {
+      "name": "u_dust",
+      "label": "Dust",
+      "type": "float",
+      "default": 0.12,
+      "min": 0.0,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "FX",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_rainbow",
+      "label": "Rainbow fringe",
+      "type": "float",
+      "default": 0.08,
+      "min": 0.0,
+      "max": 0.4,
+      "step": 0.01,
+      "group": "FX",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_brightness",
+      "label": "Brightness",
+      "type": "float",
+      "default": 1.05,
+      "min": 0.4,
+      "max": 1.8,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 0.95,
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.01,
+      "group": "Color",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_tint",
+      "label": "Lamp tint",
+      "type": "color",
+      "default": [
+        1.0,
+        0.98,
+        0.94
+      ],
+      "group": "Color",
+      "advanced": true,
+      "widget": "color"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Effect mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "format": "percent",
+      "unit": "%",
+      "hint": "Blend of processed vs original",
+      "widget": "slider"
+    }
+  ]
+}

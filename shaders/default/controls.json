@@ -1,0 +1,23 @@
+{
+  "id": "default",
+  "name": "Color Wash",
+  "description": "Animated radial color pattern for container fills.",
+  "roles": [
+    "container"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "hint": "Animation speed for the color wash"
+    }
+  ]
+}

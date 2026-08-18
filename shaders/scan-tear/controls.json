@@ -1,0 +1,69 @@
+{
+  "id": "scan-tear",
+  "name": "Scan Tear",
+  "description": "Rolling horizontal tears with chroma desync. Stack after grade for broadcast glitch.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Distort",
+      "widget": "slider",
+      "hint": "Tear strength and how often bands engage"
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.2,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Distort",
+      "widget": "slider"
+    },
+    {
+      "name": "u_band",
+      "label": "Band height",
+      "type": "float",
+      "default": 0.08,
+      "min": 0.02,
+      "max": 0.35,
+      "step": 0.005,
+      "group": "Distort",
+      "widget": "slider",
+      "hint": "Relative height of each tear strip"
+    },
+    {
+      "name": "u_softness",
+      "label": "Softness",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Distort",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full effect"
+    }
+  ]
+}

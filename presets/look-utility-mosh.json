@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Utility Mosh",
+  "createdAt": "2026-08-13T20:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.643Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "datamosh",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.65,
+            "u_block": 20,
+            "u_threshold": 0.07,
+            "u_noise": 0.3,
+            "u_speed": 2.5,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "slice-warp",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.35,
+            "u_axis": 2,
+            "u_slices_h": 32,
+            "u_slices_v": 12,
+            "u_stretch": 0.4,
+            "u_chroma": 0.012,
+            "u_speed": 6,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "digital-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.25,
+            "u_pepper": 0.12,
+            "u_ringing": 0.4,
+            "u_size": 1,
+            "u_speed": 1.2,
+            "u_intensity": 0.65
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

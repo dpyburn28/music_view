@@ -1,0 +1,13 @@
+{
+  "id": "chromatic-noise",
+  "name": "Chromatic Noise",
+  "description": "Noise-driven RGB UV offsets. Organic chromatic aberration utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_amount", "label": "Amount", "type": "float", "default": 0.45, "min": 0.0, "max": 2.0, "step": 0.01, "group": "Optics", "widget": "slider" },
+    { "name": "u_scale", "label": "Scale", "type": "float", "default": 1.0, "min": 0.2, "max": 6.0, "step": 0.1, "group": "Optics", "widget": "slider" },
+    { "name": "u_speed", "label": "Speed", "type": "float", "default": 0.5, "min": 0.0, "max": 4.0, "step": 0.05, "group": "Optics", "widget": "slider" },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full effect" }
+  ]
+}

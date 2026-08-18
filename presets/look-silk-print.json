@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "name": "Silk Print",
+  "createdAt": "2026-08-13T22:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.640Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1.02,
+            "u_contrast": 1.12,
+            "u_saturation": 0.92,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "soft-pixel",
+          "enabled": true,
+          "uniforms": {
+            "u_size": 3,
+            "u_soft": 0.55,
+            "u_snap": 0,
+            "u_intensity": 0.45
+          }
+        },
+        {
+          "shaderId": "error-dither",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 7,
+            "u_strength": 0.95,
+            "u_pixelSize": 1,
+            "u_mono": 0.2,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "palette-map",
+          "enabled": true,
+          "uniforms": {
+            "u_c0": [
+              0.12,
+              0.1,
+              0.14
+            ],
+            "u_c1": [
+              0.45,
+              0.32,
+              0.38
+            ],
+            "u_c2": [
+              0.78,
+              0.62,
+              0.55
+            ],
+            "u_c3": [
+              0.96,
+              0.92,
+              0.88
+            ],
+            "u_contrast": 1.05,
+            "u_soft": 0.35,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.28,
+            "u_softness": 0.65,
+            "u_roundness": 0.9,
+            "u_invert": 0,
+            "u_intensity": 0.7
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

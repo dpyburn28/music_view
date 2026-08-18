@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Datamosh",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.631Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "block-corrupt",
+          "enabled": true,
+          "uniforms": {
+            "u_block": 28,
+            "u_density": 0.35,
+            "u_amount": 0.7,
+            "u_speed": 5,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "rgb-glitch",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_slices": 32,
+            "u_chroma": 0.016,
+            "u_speed": 7,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "pixelate",
+          "enabled": true,
+          "uniforms": {
+            "u_size": 4,
+            "u_intensity": 0.25
+          }
+        },
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1.05,
+            "u_contrast": 1.25,
+            "u_saturation": 1.3,
+            "u_intensity": 0.8
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

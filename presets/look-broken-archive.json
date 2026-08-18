@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "name": "Broken Archive",
+  "createdAt": "2026-08-13T22:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.628Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "filmic",
+          "enabled": true,
+          "uniforms": {
+            "u_exposure": 0.05,
+            "u_contrast": 1.1,
+            "u_saturation": 0.85,
+            "u_shoulder": 0.4,
+            "u_toe": 0.28,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "jpeg-blocks",
+          "enabled": true,
+          "uniforms": {
+            "u_block": 12,
+            "u_quality": 0.22,
+            "u_ringing": 0.55,
+            "u_chromaSub": 1,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "datamosh",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.55,
+            "u_block": 22,
+            "u_threshold": 0.06,
+            "u_noise": 0.35,
+            "u_speed": 2.2,
+            "u_intensity": 0.8
+          }
+        },
+        {
+          "shaderId": "row-shift",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.28,
+            "u_frequency": 100,
+            "u_speed": 3.5,
+            "u_smooth": 0,
+            "u_intensity": 0.65
+          }
+        },
+        {
+          "shaderId": "channel-delay",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_mix_r": 0.7,
+            "u_mix_g": 0.15,
+            "u_mix_b": 0.5,
+            "u_intensity": 0.6
+          }
+        },
+        {
+          "shaderId": "digital-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.22,
+            "u_pepper": 0.1,
+            "u_ringing": 0.4,
+            "u_size": 1,
+            "u_speed": 1.1,
+            "u_intensity": 0.6
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

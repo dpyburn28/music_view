@@ -1,0 +1,56 @@
+{
+  "id": "bleach-bypass",
+  "name": "Bleach Bypass",
+  "description": "Skip-bleach cinema look: silver retention, hard contrast, muted color.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.7,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.35,
+      "min": 0.5,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_brightness",
+      "label": "Brightness",
+      "type": "float",
+      "default": -0.05,
+      "min": -0.4,
+      "max": 0.4,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full bleach bypass"
+    }
+  ]
+}

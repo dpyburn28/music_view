@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Signal Tear",
+  "createdAt": "2026-08-13T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.639Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "jitter",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.25,
+            "u_speed": 3.5,
+            "u_roughness": 0.6,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "scan-tear",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.7,
+            "u_speed": 1.4,
+            "u_band": 0.09,
+            "u_softness": 0.3,
+            "u_intensity": 0.95
+          }
+        },
+        {
+          "shaderId": "rgb-glitch",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.35,
+            "u_slices": 18,
+            "u_chroma": 0.012,
+            "u_speed": 2,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "block-corrupt",
+          "enabled": true,
+          "uniforms": {
+            "u_block": 12,
+            "u_density": 0.12,
+            "u_amount": 0.4,
+            "u_intensity": 0.55
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

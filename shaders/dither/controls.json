@@ -1,0 +1,84 @@
+{
+  "id": "dither",
+  "name": "Advanced Retro Dither",
+  "description": "Bayer matrix dithering with custom palettes and spread controls.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_colorSteps",
+      "label": "Color Steps",
+      "type": "float",
+      "default": 8.0,
+      "min": 2.0,
+      "max": 64.0,
+      "step": 1.0,
+      "group": "Dither",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_pixelSize",
+      "label": "Pixel Size",
+      "type": "float",
+      "default": 2.0,
+      "min": 1.0,
+      "max": 100.0,
+      "step": 1.0,
+      "group": "Dither",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_spread",
+      "label": "Dither Spread",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.1,
+      "group": "Dither",
+      "widget": "slider",
+      "hint": "Amplitude multiplier for the matrix offset"
+    },
+    {
+      "name": "u_usePalette",
+      "label": "Enable Custom Palette",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Palette",
+      "widget": "toggle"
+    },
+    {
+      "name": "u_colorLight",
+      "label": "Light Color",
+      "type": "color",
+      "default": [0.61, 0.73, 0.06],
+      "group": "Palette",
+      "widget": "color",
+      "hint": "Highlight tone (defaults to Gameboy green)"
+    },
+    {
+      "name": "u_colorDark",
+      "label": "Dark Color",
+      "type": "color",
+      "default": [0.06, 0.22, 0.06],
+      "group": "Palette",
+      "widget": "color",
+      "hint": "Shadow tone"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent"
+    }
+  ]
+}

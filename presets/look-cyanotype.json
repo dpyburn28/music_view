@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "name": "Cyanotype",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.630Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "duotone",
+          "enabled": true,
+          "uniforms": {
+            "u_color_a": [
+              0.05,
+              0.12,
+              0.28
+            ],
+            "u_color_b": [
+              0.75,
+              0.9,
+              0.95
+            ],
+            "u_contrast": 1.25,
+            "u_smooth": 0.05,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "levels",
+          "enabled": true,
+          "uniforms": {
+            "u_lift": 0,
+            "u_gamma": 1.05,
+            "u_gain": 1.05,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.12
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_softness": 0.55,
+            "u_roundness": 1,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

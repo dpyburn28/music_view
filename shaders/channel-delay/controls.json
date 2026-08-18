@@ -1,0 +1,14 @@
+{
+  "id": "channel-delay",
+  "name": "Channel Delay",
+  "description": "Per-channel blend with previous frame (feedback). RGB trail separation utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_amount", "label": "Amount", "type": "float", "default": 0.55, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Temporal", "widget": "slider", "format": "percent" },
+    { "name": "u_mix_r", "label": "Delay R", "type": "float", "default": 0.8, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Temporal", "widget": "slider" },
+    { "name": "u_mix_g", "label": "Delay G", "type": "float", "default": 0.2, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Temporal", "widget": "slider" },
+    { "name": "u_mix_b", "label": "Delay B", "type": "float", "default": 0.55, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Temporal", "widget": "slider" },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full delay" }
+  ]
+}

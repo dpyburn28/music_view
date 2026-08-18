@@ -1,0 +1,147 @@
+{
+  "id": "led-matrix",
+  "name": "LED Matrix",
+  "description": "Coarse LED scoreboard: discrete dots or squares, pitch grid, glow, and limited brightness steps.",
+  "roles": [
+    "postprocess"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_pitch",
+      "label": "Pitch",
+      "type": "float",
+      "default": 8.0,
+      "min": 3.0,
+      "max": 28.0,
+      "step": 0.5,
+      "group": "Dots",
+      "widget": "slider",
+      "unit": "px",
+      "hint": "LED cell pitch in screen pixels"
+    },
+    {
+      "name": "u_dot_size",
+      "label": "Dot size",
+      "type": "float",
+      "default": 0.72,
+      "min": 0.2,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Dots",
+      "widget": "slider"
+    },
+    {
+      "name": "u_shape",
+      "label": "Shape",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Dots",
+      "widget": "segmented",
+      "options": [
+        {
+          "value": 0,
+          "label": "Round"
+        },
+        {
+          "value": 1,
+          "label": "Square"
+        }
+      ],
+      "hint": "LED cell shape"
+    },
+    {
+      "name": "u_glow",
+      "label": "Glow",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Dots",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_levels",
+      "label": "Brightness steps",
+      "type": "float",
+      "default": 6.0,
+      "min": 2.0,
+      "max": 16.0,
+      "step": 1.0,
+      "group": "Color",
+      "advanced": true,
+      "widget": "stepper",
+      "hint": "Quantized brightness levels"
+    },
+    {
+      "name": "u_gap",
+      "label": "Gap darkness",
+      "type": "float",
+      "default": 0.92,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Dots",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_brightness",
+      "label": "Brightness",
+      "type": "float",
+      "default": 1.2,
+      "min": 0.4,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_tint",
+      "label": "LED tint",
+      "type": "color",
+      "default": [
+        1.0,
+        0.95,
+        0.88
+      ],
+      "group": "Color",
+      "advanced": true,
+      "widget": "color",
+      "pairWith": "u_bg"
+    },
+    {
+      "name": "u_bg",
+      "label": "Board bg",
+      "type": "color",
+      "default": [
+        0.02,
+        0.02,
+        0.025
+      ],
+      "group": "Color",
+      "advanced": true,
+      "widget": "color",
+      "pairWith": "u_tint"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Effect mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "format": "percent",
+      "unit": "%",
+      "hint": "Blend of processed vs original",
+      "widget": "slider"
+    }
+  ]
+}

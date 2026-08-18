@@ -1,0 +1,15 @@
+{
+  "id": "ghosting",
+  "name": "Ghosting",
+  "description": "Spatial multi-echo ghosts along an angle. CRT / phosphor trail utility without temporal buffer.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_amount", "label": "Amount", "type": "float", "default": 0.45, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Optics", "widget": "slider" },
+    { "name": "u_distance", "label": "Distance", "type": "float", "default": 0.55, "min": 0.0, "max": 2.0, "step": 0.01, "group": "Optics", "widget": "slider" },
+    { "name": "u_angle", "label": "Angle", "type": "float", "default": 0.0, "min": -3.1416, "max": 3.1416, "step": 0.01, "group": "Optics", "widget": "slider" },
+    { "name": "u_echoes", "label": "Echoes", "type": "float", "default": 3.0, "min": 1.0, "max": 6.0, "step": 1.0, "group": "Optics", "widget": "stepper" },
+    { "name": "u_decay", "label": "Decay", "type": "float", "default": 0.55, "min": 0.15, "max": 0.9, "step": 0.01, "group": "Optics", "widget": "slider", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full ghosting" }
+  ]
+}

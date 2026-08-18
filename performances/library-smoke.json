@@ -1,0 +1,1837 @@
+{
+  "version": 1,
+  "name": "Library Smoke Showcase",
+  "createdAt": "2026-08-13T22:52:14.833Z",
+  "updatedAt": "2026-08-15T00:25:54.791Z",
+  "settings": {
+    "loop": false
+  },
+  "clips": [
+    {
+      "id": "clip_caroline",
+      "song": {
+        "relPath": "Caroline.mp3",
+        "title": "Caroline",
+        "artist": "Junior Mesa",
+        "duration": 170.95
+      },
+      "in": 8,
+      "out": 28,
+      "volume": 1,
+      "holdAfter": 0,
+      "loopUntilGo": false,
+      "audioTransition": {
+        "type": "crossfade",
+        "duration": 1.2,
+        "easing": "ease-in-out",
+        "offset": 0
+      },
+      "lookCues": [
+        {
+          "id": "look_caroline_0",
+          "offset": 0,
+          "lookMode": "snapshot",
+          "sourcePreset": "night-cinema",
+          "capturedAt": "2026-08-13T22:52:14.833Z",
+          "visualTransition": {
+            "type": "cut",
+            "duration": 0,
+            "easing": "ease-in-out",
+            "offset": 0,
+            "morphThreshold": 0.65,
+            "dipColor": "#000000"
+          },
+          "scene": {
+            "containers": [
+              {
+                "role": "song-cover",
+                "label": "Cover",
+                "labelCorner": "bottom-right",
+                "left": 227,
+                "top": 292,
+                "width": 626,
+                "height": 626,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 0,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "fill",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-cover_night"
+              },
+              {
+                "role": "song-info",
+                "label": "Track",
+                "labelCorner": "bottom-right",
+                "left": 440,
+                "top": 936,
+                "width": 200,
+                "height": 80,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 1,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-info_night"
+              },
+              {
+                "role": "song-lyrics",
+                "label": "Lyrics",
+                "labelCorner": "top-right",
+                "left": 350,
+                "top": 1032,
+                "width": 380,
+                "height": 160,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 2,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-lyrics_night"
+              },
+              {
+                "role": "song-progress",
+                "label": "Progress",
+                "labelCorner": "bottom-right",
+                "left": 340,
+                "top": 1398,
+                "width": 400,
+                "height": 24,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 3,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": "ends",
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-progress_night"
+              }
+            ],
+            "postprocess": {
+              "active": true,
+              "layers": [
+                {
+                  "shaderId": "oled",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_black": 0.72,
+                    "u_contrast": 1.35,
+                    "u_brightness": 0.95,
+                    "u_saturation": 1.05,
+                    "u_bloom": 0.22,
+                    "u_pixel": 0.06,
+                    "u_vignette": 0.32,
+                    "u_warmth": 0.08,
+                    "u_intensity": 1
+                  },
+                  "modulators": {
+                    "u_bloom": {
+                      "source": "sine",
+                      "offset": 0.22,
+                      "amp": 0.08,
+                      "rate": 0.22,
+                      "phase": 0
+                    },
+                    "u_vignette": {
+                      "source": "sine",
+                      "offset": 0.32,
+                      "amp": 0.06,
+                      "rate": 0.18,
+                      "phase": 1
+                    }
+                  }
+                },
+                {
+                  "shaderId": "grain",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_amount": 0.06
+                  }
+                }
+              ]
+            },
+            "bottomPanel": {
+              "color": "#2563eb",
+              "heightRatio": 0.25,
+              "includeInFloatArea": false
+            },
+            "layoutSpace": "design-1080x1920"
+          }
+        }
+      ]
+    },
+    {
+      "id": "clip_owl",
+      "song": {
+        "relPath": "One Lonely Owl.mp3",
+        "title": "One Lonely Owl",
+        "artist": "Milo",
+        "duration": 256.13
+      },
+      "in": 22,
+      "out": 52,
+      "volume": 1,
+      "holdAfter": 0.4,
+      "loopUntilGo": false,
+      "audioTransition": {
+        "type": "crossfade",
+        "duration": 2,
+        "easing": "ease-in-out",
+        "offset": 0
+      },
+      "lookCues": [
+        {
+          "id": "look_owl_0",
+          "offset": 0,
+          "lookMode": "snapshot",
+          "sourcePreset": "vhs-rental",
+          "capturedAt": "2026-08-13T22:52:14.833Z",
+          "visualTransition": {
+            "type": "auto",
+            "duration": 1.4,
+            "easing": "ease-in-out",
+            "offset": 0,
+            "morphThreshold": 0.65,
+            "dipColor": "#000000"
+          },
+          "scene": {
+            "containers": [
+              {
+                "role": "song-cover",
+                "label": "Cover",
+                "labelCorner": "bottom-right",
+                "left": 227,
+                "top": 292,
+                "width": 626,
+                "height": 626,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 0,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "fill",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-cover_vhs"
+              },
+              {
+                "role": "song-info",
+                "label": "Track",
+                "labelCorner": "bottom-right",
+                "left": 440,
+                "top": 936,
+                "width": 200,
+                "height": 80,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 1,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-info_vhs"
+              },
+              {
+                "role": "song-lyrics",
+                "label": "Lyrics",
+                "labelCorner": "top-right",
+                "left": 350,
+                "top": 1032,
+                "width": 380,
+                "height": 160,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 2,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-lyrics_vhs"
+              },
+              {
+                "role": "song-progress",
+                "label": "Progress",
+                "labelCorner": "bottom-right",
+                "left": 340,
+                "top": 1398,
+                "width": 400,
+                "height": 24,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 3,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": "ends",
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-progress_vhs"
+              }
+            ],
+            "postprocess": {
+              "active": true,
+              "layers": [
+                {
+                  "shaderId": "vhs",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_bleed": 0.01,
+                    "u_softness": 0.62,
+                    "u_wobble": 0.004,
+                    "u_noise": 0.18,
+                    "u_scanline": 0.32,
+                    "u_tracking": 0.22,
+                    "u_saturation": 1.25,
+                    "u_contrast": 1.12,
+                    "u_tint": [
+                      1.04,
+                      0.96,
+                      0.9
+                    ],
+                    "u_intensity": 1
+                  },
+                  "modulators": {
+                    "u_wobble": {
+                      "source": "noise",
+                      "offset": 0.004,
+                      "amp": 0.002,
+                      "rate": 0.8,
+                      "phase": 0
+                    },
+                    "u_tracking": {
+                      "source": "sine",
+                      "offset": 0.22,
+                      "amp": 0.08,
+                      "rate": 0.15,
+                      "phase": 0
+                    },
+                    "u_noise": {
+                      "source": "sine",
+                      "offset": 0.18,
+                      "amp": 0.05,
+                      "rate": 0.35,
+                      "phase": 1
+                    }
+                  }
+                },
+                {
+                  "shaderId": "grain",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_amount": 0.1
+                  },
+                  "modulators": {
+                    "u_amount": {
+                      "source": "noise",
+                      "offset": 0.1,
+                      "amp": 0.04,
+                      "rate": 1.2,
+                      "phase": 0
+                    }
+                  }
+                }
+              ]
+            },
+            "bottomPanel": {
+              "color": "#2563eb",
+              "heightRatio": 0.25,
+              "includeInFloatArea": false
+            },
+            "layoutSpace": "design-1080x1920"
+          }
+        },
+        {
+          "id": "look_owl_mid",
+          "offset": 15,
+          "lookMode": "snapshot",
+          "sourcePreset": "look-neon-bloom",
+          "capturedAt": "2026-08-13T22:52:14.833Z",
+          "visualTransition": {
+            "type": "auto",
+            "duration": 1.6,
+            "easing": "ease-in-out",
+            "offset": 0,
+            "morphThreshold": 0.65,
+            "dipColor": "#000000"
+          },
+          "scene": {
+            "containers": [
+              {
+                "role": "song-cover",
+                "label": "Cover",
+                "labelCorner": "bottom-right",
+                "left": 227,
+                "top": 292,
+                "width": 626,
+                "height": 626,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 0,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "fill",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-cover_neon"
+              },
+              {
+                "role": "song-info",
+                "label": "Track",
+                "labelCorner": "bottom-right",
+                "left": 440,
+                "top": 936,
+                "width": 200,
+                "height": 80,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 1,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-info_neon"
+              },
+              {
+                "role": "song-lyrics",
+                "label": "Lyrics",
+                "labelCorner": "top-right",
+                "left": 350,
+                "top": 1032,
+                "width": 380,
+                "height": 160,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 2,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-lyrics_neon"
+              },
+              {
+                "role": "song-progress",
+                "label": "Progress",
+                "labelCorner": "bottom-right",
+                "left": 340,
+                "top": 1398,
+                "width": 400,
+                "height": 24,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 3,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": "ends",
+                "style": {
+                  "border": {
+                    "color": "#2a2a32",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#555566",
+                    "lineWidth": 1,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "Georgia, \"Times New Roman\", serif",
+                    "fontSize": 20,
+                    "fontWeight": "500",
+                    "fontStyle": "italic",
+                    "color": "#e8e0d4",
+                    "background": "rgba(8,8,12,0.7)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-progress_neon"
+              }
+            ],
+            "postprocess": {
+              "active": true,
+              "layers": [
+                {
+                  "shaderId": "contrast-sat",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_brightness": 1.05,
+                    "u_contrast": 1.2,
+                    "u_saturation": 1.35,
+                    "u_intensity": 1
+                  }
+                },
+                {
+                  "shaderId": "bloom",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_threshold": 0.4,
+                    "u_radius": 4.5,
+                    "u_strength": 1.1,
+                    "u_iterations": 3,
+                    "u_intensity": 1
+                  }
+                },
+                {
+                  "shaderId": "chromatic",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_amount": 0.008,
+                    "u_intensity": 0.9
+                  }
+                },
+                {
+                  "shaderId": "clamp-tonemap",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_knee": 0.65,
+                    "u_strength": 0.75,
+                    "u_intensity": 1
+                  }
+                },
+                {
+                  "shaderId": "vignette",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_amount": 0.4,
+                    "u_softness": 0.5,
+                    "u_roundness": 1,
+                    "u_invert": 0,
+                    "u_intensity": 1
+                  }
+                }
+              ]
+            },
+            "bottomPanel": {
+              "color": "#2563eb",
+              "heightRatio": 0.25,
+              "includeInFloatArea": false
+            },
+            "layoutSpace": "design-1080x1920"
+          }
+        }
+      ]
+    },
+    {
+      "id": "clip_sureok",
+      "song": {
+        "relPath": "Sure, Ok.mp3",
+        "title": "Sure, Ok",
+        "artist": "First Day Back",
+        "duration": 141.4
+      },
+      "in": 6,
+      "out": 24,
+      "volume": 1,
+      "holdAfter": 0,
+      "loopUntilGo": false,
+      "audioTransition": {
+        "type": "dip-to-silence",
+        "duration": 1.6,
+        "easing": "ease-in-out",
+        "offset": 0
+      },
+      "lookCues": [
+        {
+          "id": "look_sure_0",
+          "offset": 0,
+          "lookMode": "snapshot",
+          "sourcePreset": "toolkit-liquid-stage",
+          "capturedAt": "2026-08-13T22:52:14.833Z",
+          "visualTransition": {
+            "type": "dip",
+            "duration": 1.4,
+            "easing": "ease-in-out",
+            "offset": 0,
+            "morphThreshold": 0.65,
+            "dipColor": "#000000"
+          },
+          "scene": {
+            "containers": [
+              {
+                "role": "song-cover",
+                "label": "Cover",
+                "labelCorner": "bottom-right",
+                "left": 281,
+                "top": 375,
+                "width": 518,
+                "height": 518,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 0,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "fill",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-cover_liquid"
+              },
+              {
+                "role": "song-info",
+                "label": "Track",
+                "labelCorner": "bottom-right",
+                "left": 460,
+                "top": 909,
+                "width": 160,
+                "height": 72,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 1,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-info_liquid"
+              },
+              {
+                "role": "song-lyrics",
+                "label": "Lyrics",
+                "labelCorner": "top-right",
+                "left": 360,
+                "top": 997,
+                "width": 360,
+                "height": 160,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 2,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-lyrics_liquid"
+              },
+              {
+                "role": "song-progress",
+                "label": "Progress",
+                "labelCorner": "bottom-right",
+                "left": 350,
+                "top": 1392,
+                "width": 380,
+                "height": 28,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 3,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": "ends",
+                "style": {
+                  "border": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-progress_liquid"
+              },
+              {
+                "role": "audio-scope",
+                "label": "Scope",
+                "labelCorner": "bottom-right",
+                "left": 12,
+                "top": 48,
+                "width": 200,
+                "height": 120,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 4,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": "audio-scope",
+                "shaderUniforms": {
+                  "u_signal": 0.55,
+                  "u_gain": 1,
+                  "u_freq": 2.5,
+                  "u_thickness": 0.018,
+                  "u_glow": 0.55,
+                  "u_intensity": 1
+                },
+                "shaderModulators": {
+                  "u_signal": {
+                    "source": "sine",
+                    "offset": 0.55,
+                    "amp": 0.4,
+                    "rate": 0.85,
+                    "phase": 0
+                  },
+                  "u_freq": {
+                    "source": "sine",
+                    "offset": 2.5,
+                    "amp": 0.9,
+                    "rate": 0.12,
+                    "phase": 0.3
+                  }
+                },
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#1a3a44",
+                    "lineWidth": 3,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#3d8f9a",
+                    "lineWidth": 2,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#8ef0ff",
+                    "background": "rgba(0,16,24,0.8)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#8ef0ff",
+                    "background": "rgba(0,16,24,0.8)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "relative": null,
+                "snapshotId": "snap_audio-scope_liquid"
+              },
+              {
+                "role": "audio-history",
+                "label": "History",
+                "labelCorner": "bottom-right",
+                "left": 12,
+                "top": 180,
+                "width": 200,
+                "height": 120,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 5,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": "audio-history",
+                "shaderUniforms": {
+                  "u_energy": 0.5,
+                  "u_window": 8,
+                  "u_scroll": 1,
+                  "u_contrast": 1.2,
+                  "u_intensity": 1
+                },
+                "shaderModulators": {
+                  "u_energy": {
+                    "source": "sine",
+                    "offset": 0.5,
+                    "amp": 0.42,
+                    "rate": 0.55,
+                    "phase": 1.1
+                  }
+                },
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#1a3a44",
+                    "lineWidth": 3,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#3d8f9a",
+                    "lineWidth": 2,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#8ef0ff",
+                    "background": "rgba(0,16,24,0.8)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#8ef0ff",
+                    "background": "rgba(0,16,24,0.8)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "relative": null,
+                "snapshotId": "snap_audio-history_liquid"
+              },
+              {
+                "role": "audio-beat",
+                "label": "Beat",
+                "labelCorner": "bottom-right",
+                "left": 12,
+                "top": 312,
+                "width": 140,
+                "height": 140,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 6,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": "audio-beat",
+                "shaderUniforms": {
+                  "u_beat": 0,
+                  "u_envelope": 0.4,
+                  "u_density": 18,
+                  "u_spread": 1,
+                  "u_ring": 0.7,
+                  "u_intensity": 1
+                },
+                "shaderModulators": {
+                  "u_beat": {
+                    "source": "square",
+                    "offset": 0.35,
+                    "amp": 0.55,
+                    "rate": 1.4,
+                    "phase": 0
+                  },
+                  "u_envelope": {
+                    "source": "sine",
+                    "offset": 0.45,
+                    "amp": 0.35,
+                    "rate": 0.7,
+                    "phase": 0.5
+                  }
+                },
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#1a3a44",
+                    "lineWidth": 3,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#3d8f9a",
+                    "lineWidth": 2,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#8ef0ff",
+                    "background": "rgba(0,16,24,0.8)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 18,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#8ef0ff",
+                    "background": "rgba(0,16,24,0.8)",
+                    "letterSpacing": 1,
+                    "opacity": 1
+                  }
+                },
+                "relative": null,
+                "snapshotId": "snap_audio-beat_liquid"
+              }
+            ],
+            "postprocess": {
+              "active": true,
+              "layers": [
+                {
+                  "shaderId": "warp-ripple",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_amplitude": 0.014,
+                    "u_frequency": 16,
+                    "u_speed": 3,
+                    "u_intensity": 0.85
+                  },
+                  "modulators": {
+                    "u_amplitude": {
+                      "source": "sine",
+                      "offset": 0.012,
+                      "amp": 0.008,
+                      "rate": 0.35,
+                      "phase": 0,
+                      "clock": "stack"
+                    }
+                  }
+                },
+                {
+                  "shaderId": "bloom",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_threshold": 0.48,
+                    "u_radius": 3.5,
+                    "u_strength": 0.8,
+                    "u_iterations": 2,
+                    "u_intensity": 1
+                  }
+                },
+                {
+                  "shaderId": "duotone",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_color_a": [
+                      0.04,
+                      0.06,
+                      0.14
+                    ],
+                    "u_color_b": [
+                      0.55,
+                      0.9,
+                      0.95
+                    ],
+                    "u_contrast": 1.2,
+                    "u_smooth": 0.05,
+                    "u_intensity": 0.7
+                  }
+                },
+                {
+                  "shaderId": "chromatic",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_amount": 0.004,
+                    "u_intensity": 0.75
+                  }
+                },
+                {
+                  "shaderId": "grain",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_amount": 0.09
+                  }
+                }
+              ]
+            },
+            "bottomPanel": {
+              "color": "#2563eb",
+              "heightRatio": 0.25,
+              "includeInFloatArea": false
+            },
+            "layoutSpace": "design-1080x1920"
+          }
+        }
+      ]
+    },
+    {
+      "id": "clip_tilapia",
+      "song": {
+        "relPath": "Tilapia.mp3",
+        "title": "Tilapia",
+        "artist": "Oxis",
+        "duration": 134.53
+      },
+      "in": 12,
+      "out": 32,
+      "volume": 1,
+      "holdAfter": 0,
+      "loopUntilGo": false,
+      "audioTransition": {
+        "type": "crossfade",
+        "duration": 1.3,
+        "easing": "linear",
+        "offset": -0.4
+      },
+      "lookCues": [
+        {
+          "id": "look_tilapia_0",
+          "offset": 0,
+          "lookMode": "snapshot",
+          "sourcePreset": "breathing-crt",
+          "capturedAt": "2026-08-13T22:52:14.833Z",
+          "visualTransition": {
+            "type": "morph",
+            "duration": 1.8,
+            "easing": "ease-in-out",
+            "offset": 0,
+            "morphThreshold": 0.65,
+            "dipColor": "#000000"
+          },
+          "scene": {
+            "containers": [
+              {
+                "role": "song-cover",
+                "label": "Cover",
+                "labelCorner": "bottom-right",
+                "left": 281,
+                "top": 375,
+                "width": 518,
+                "height": 518,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 0,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": "default",
+                "shaderUniforms": {
+                  "u_speed": 1
+                },
+                "shaderModulators": {
+                  "u_speed": {
+                    "source": "sine",
+                    "offset": 1,
+                    "amp": 0.35,
+                    "rate": 0.25,
+                    "phase": 0
+                  }
+                },
+                "imageMode": "fill",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-cover_crt"
+              },
+              {
+                "role": "song-info",
+                "label": "Track",
+                "labelCorner": "bottom-right",
+                "left": 460,
+                "top": 909,
+                "width": 160,
+                "height": 72,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 1,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-info_crt"
+              },
+              {
+                "role": "song-lyrics",
+                "label": "Lyrics",
+                "labelCorner": "top-right",
+                "left": 360,
+                "top": 997,
+                "width": 360,
+                "height": 160,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 2,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": null,
+                "style": {
+                  "border": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-lyrics_crt"
+              },
+              {
+                "role": "song-progress",
+                "label": "Progress",
+                "labelCorner": "bottom-right",
+                "left": 350,
+                "top": 1392,
+                "width": 380,
+                "height": 28,
+                "relative": null,
+                "wander": false,
+                "wanderAmplitude": 1,
+                "wanderFrequency": 12,
+                "layer": 3,
+                "distancing": 0,
+                "connect": false,
+                "anchorDistance": null,
+                "attachToRole": null,
+                "shaderId": null,
+                "shaderUniforms": {},
+                "imageMode": "scale",
+                "progressTimeMode": "ends",
+                "style": {
+                  "border": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "connect": {
+                    "color": "#000000",
+                    "lineWidth": 5,
+                    "dash": []
+                  },
+                  "label": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  },
+                  "text": {
+                    "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+                    "fontSize": 20,
+                    "fontWeight": "600",
+                    "fontStyle": "normal",
+                    "color": "#111111",
+                    "background": "transparent",
+                    "letterSpacing": 0,
+                    "opacity": 1
+                  }
+                },
+                "snapshotId": "snap_song-progress_crt"
+              }
+            ],
+            "postprocess": {
+              "active": true,
+              "layers": [
+                {
+                  "shaderId": "crt",
+                  "enabled": true,
+                  "uniforms": {
+                    "u_curvature": 0.12,
+                    "u_scanline": 0.55,
+                    "u_mask": 0.45,
+                    "u_mask_scale": 1,
+                    "u_bloom": 0.28,
+                    "u_brightness": 1.15,
+                    "u_contrast": 1.08,
+                    "u_vignette": 0.4,
+                    "u_jitter": 0.002,
+                    "u_aberration": 0.0015,
+                    "u_intensity": 1
+                  },
+                  "modulators": {
+                    "u_scanline": {
+                      "source": "sine",
+                      "offset": 0.55,
+                      "amp": 0.12,
+                      "rate": 0.35,
+                      "phase": 0
+                    },
+                    "u_mask": {
+                      "source": "sine",
+                      "offset": 0.45,
+                      "amp": 0.1,
+                      "rate": 0.28,
+                      "phase": 1.2
+                    },
+                    "u_bloom": {
+                      "source": "sine",
+                      "offset": 0.28,
+                      "amp": 0.12,
+                      "rate": 0.4,
+                      "phase": 2
+                    }
+                  }
+                }
+              ]
+            },
+            "bottomPanel": {
+              "color": "#2563eb",
+              "heightRatio": 0.25,
+              "includeInFloatArea": false
+            },
+            "layoutSpace": "design-1080x1920"
+          }
+        }
+      ]
+    }
+  ]
+}

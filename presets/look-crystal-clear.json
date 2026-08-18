@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Crystal Clear",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.630Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "levels",
+          "enabled": true,
+          "uniforms": {
+            "u_lift": 0,
+            "u_gamma": 1,
+            "u_gain": 1.05,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1.02,
+            "u_contrast": 1.1,
+            "u_saturation": 1.05,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "sharpen",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.65,
+            "u_radius": 0.9,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "clamp-tonemap",
+          "enabled": true,
+          "uniforms": {
+            "u_knee": 0.8,
+            "u_strength": 0.4,
+            "u_intensity": 0.7
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

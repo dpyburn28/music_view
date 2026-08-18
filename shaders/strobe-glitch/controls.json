@@ -1,0 +1,14 @@
+{
+  "id": "strobe-glitch",
+  "name": "Strobe Glitch",
+  "description": "Timed invert / white / black / noise strobe bursts. Performance and alarm utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_rate", "label": "Rate", "type": "float", "default": 4.0, "min": 0.2, "max": 16.0, "step": 0.1, "group": "Glitch", "widget": "slider", "hint": "Bursts per second" },
+    { "name": "u_duty", "label": "Duty", "type": "float", "default": 0.12, "min": 0.02, "max": 0.8, "step": 0.01, "group": "Glitch", "widget": "slider", "format": "percent", "hint": "Fraction of each cycle that is active" },
+    { "name": "u_mode", "label": "Mode", "type": "float", "default": 0.0, "min": 0.0, "max": 3.0, "step": 1.0, "group": "Glitch", "widget": "segmented", "options": [{ "value": 0, "label": "Inv" }, { "value": 1, "label": "Wht" }, { "value": 2, "label": "Blk" }, { "value": 3, "label": "Nse" }] },
+    { "name": "u_noise", "label": "Noise mix", "type": "float", "default": 0.7, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Glitch", "widget": "slider", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full strobe" }
+  ]
+}

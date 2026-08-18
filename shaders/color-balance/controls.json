@@ -1,0 +1,60 @@
+{
+  "id": "color-balance",
+  "name": "Color Balance",
+  "description": "Tint shadows, midtones, and highlights separately. Subtle grade without full LGG.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_shadows",
+      "label": "Shadows",
+      "type": "color",
+      "default": [0.5, 0.5, 0.55],
+      "group": "Color",
+      "widget": "color",
+      "hint": "Tint pulled toward this in darks (0.5 grey = neutral)"
+    },
+    {
+      "name": "u_mids",
+      "label": "Mids",
+      "type": "color",
+      "default": [0.5, 0.5, 0.5],
+      "group": "Color",
+      "widget": "color"
+    },
+    {
+      "name": "u_highs",
+      "label": "Highlights",
+      "type": "color",
+      "default": [0.55, 0.52, 0.48],
+      "group": "Color",
+      "widget": "color"
+    },
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "How strongly tints apply"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full balance"
+    }
+  ]
+}

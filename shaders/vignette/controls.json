@@ -1,0 +1,70 @@
+{
+  "id": "vignette",
+  "name": "Vignette",
+  "description": "Edge darken or brighten. Use alone for framing or after grade/bloom without relying on CRT vignette.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.45,
+      "min": 0.0,
+      "max": 1.5,
+      "step": 0.01,
+      "group": "Optics",
+      "widget": "slider",
+      "hint": "Strength of the vignette"
+    },
+    {
+      "name": "u_softness",
+      "label": "Softness",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.05,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Optics",
+      "widget": "slider",
+      "hint": "Falloff width of the edge"
+    },
+    {
+      "name": "u_roundness",
+      "label": "Roundness",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.2,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Optics",
+      "widget": "slider",
+      "hint": "1 = circular; lower = more rectangular"
+    },
+    {
+      "name": "u_invert",
+      "label": "Bright edges",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Optics",
+      "widget": "toggle",
+      "hint": "Off = dark vignette, On = edge glow"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full effect"
+    }
+  ]
+}

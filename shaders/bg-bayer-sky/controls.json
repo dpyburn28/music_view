@@ -1,0 +1,113 @@
+{
+  "id": "bg-bayer-sky",
+  "name": "Bayer Sky",
+  "description": "1-bit 8×8 ordered dither of a drifting cloud-and-hill landscape. Stage / panel fill.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_dither_scale",
+      "label": "Dither scale",
+      "type": "float",
+      "default": 1.0,
+      "min": 1.0,
+      "max": 10.0,
+      "step": 1.0,
+      "group": "Dither",
+      "widget": "stepper",
+      "order": 1,
+      "hint": "Screen-space Bayer cell size in pixels"
+    },
+    {
+      "name": "u_bias",
+      "label": "Exposure",
+      "type": "float",
+      "default": 0.08,
+      "min": -0.4,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Dither",
+      "widget": "slider",
+      "order": 2,
+      "hint": "Luminance offset before the 1-bit compare"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.15,
+      "min": 0.4,
+      "max": 2.2,
+      "step": 0.01,
+      "group": "Dither",
+      "widget": "slider",
+      "order": 3
+    },
+    {
+      "name": "u_cloud",
+      "label": "Clouds",
+      "type": "float",
+      "default": 0.85,
+      "min": 0.0,
+      "max": 1.5,
+      "step": 0.01,
+      "group": "Scene",
+      "widget": "slider",
+      "order": 10
+    },
+    {
+      "name": "u_horizon",
+      "label": "Horizon",
+      "type": "float",
+      "default": 0.38,
+      "min": 0.18,
+      "max": 0.58,
+      "step": 0.01,
+      "group": "Scene",
+      "widget": "slider",
+      "format": "percent",
+      "order": 11
+    },
+    {
+      "name": "u_audio_env",
+      "label": "Envelope",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "format": "percent",
+      "order": 20,
+      "hint": "Offsets luminance — flashes white / condenses the dither. Modulate or drive by hand."
+    },
+    {
+      "name": "u_env_amount",
+      "label": "Env amount",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "format": "percent",
+      "order": 21,
+      "advanced": true
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 30,
+      "hint": "Cloud drift. 0 freezes the still"
+    }
+  ]
+}

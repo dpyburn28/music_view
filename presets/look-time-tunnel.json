@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "name": "Time Tunnel",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.641Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "feedback-trail",
+          "enabled": true,
+          "uniforms": {
+            "u_decay": 0.91,
+            "u_zoom": 1.025,
+            "u_rotate": 0.012,
+            "u_mix": 0.62,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "barrel",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.18,
+            "u_zoom": 1.08,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "chromatic",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.007,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "hue-shift",
+          "enabled": true,
+          "uniforms": {
+            "u_hue": -25,
+            "u_saturation": 1.2,
+            "u_intensity": 0.4
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.55,
+            "u_softness": 0.45,
+            "u_roundness": 1,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

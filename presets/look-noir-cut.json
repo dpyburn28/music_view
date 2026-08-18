@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "name": "Noir Cut",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.638Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 0.95,
+            "u_contrast": 1.45,
+            "u_saturation": 0,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "levels",
+          "enabled": true,
+          "uniforms": {
+            "u_lift": -0.04,
+            "u_gamma": 0.9,
+            "u_gain": 1.15,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "sharpen",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.55,
+            "u_radius": 1.2,
+            "u_intensity": 0.8
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.55,
+            "u_softness": 0.45,
+            "u_roundness": 0.9,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.16
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

@@ -1,0 +1,705 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: system-ui, sans-serif;
+    background: linear-gradient(180deg, #111 0%, #1e1e1e 100%);
+    color: #fff;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-shell {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* Controlled from renderer: bottom strip size / color */
+    --bottom-height: 25%;
+    --bottom-color: #2563eb;
+}
+
+/* Workspace letterbox: stage is a 9:16 pane, not the OS window. */
+#stage-root .app-shell {
+    width: var(--stage-w, 100%);
+    height: var(--stage-h, 100%);
+}
+
+/* ── ARTEF4KT embed: on-screen info overlays (inside floating panel) ── */
+
+.floating-box.artef4kt-panel {
+    overflow: hidden;
+    background: #000;
+}
+
+.artef4kt-overlay-root {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    font-family: "JetBrains Mono", "Fira Mono", Consolas, ui-monospace, monospace;
+    font-size: 10px;
+    color: #bbbbbb;
+    overflow: hidden;
+}
+
+.artef4kt-ov-status {
+    position: absolute;
+    top: 0.6em;
+    left: 0.8em;
+    right: 0.8em;
+    font-size: 0.9em;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: 1.35;
+    text-align: left;
+    white-space: pre-wrap;
+    opacity: 0.9;
+}
+
+.artef4kt-ov-track-info {
+    position: absolute;
+    top: 0.8em;
+    right: 0.8em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4em;
+    max-width: 55%;
+}
+
+.artef4kt-ov-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.6em 1em;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+}
+
+.artef4kt-ov-track-name {
+    font-size: 1em;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.3;
+    max-width: 100%;
+    word-break: break-word;
+}
+
+.artef4kt-ov-freq {
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    display: flex;
+    gap: 0.8em;
+    padding: 0.4em;
+    pointer-events: none;
+}
+
+.artef4kt-ov-freq .freq-range-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.artef4kt-ov-freq .freq-bar-vertical {
+    width: 0.5em;
+    height: 5.6em;
+    background: rgba(187, 187, 187, 0.12);
+    border: 1px solid rgba(187, 187, 187, 0.28);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.artef4kt-ov-freq .freq-level-vertical {
+    width: 100%;
+    height: 0%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #bbbbbb;
+    border-radius: 2px;
+    transition: height 0.08s ease-out;
+}
+
+.artef4kt-ov-progress {
+    position: absolute;
+    bottom: 7.2em;
+    right: 1.2em;
+    width: 0.6em;
+    height: 4.8em;
+    pointer-events: none;
+}
+
+.artef4kt-ov-progress-bar {
+    width: 100%;
+    height: 100%;
+    background: rgba(187, 187, 187, 0.12);
+    border: 1px solid rgba(187, 187, 187, 0.28);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.artef4kt-ov-progress-fill {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(187, 187, 187, 0.55));
+    transition: height 0.15s ease;
+}
+
+.artef4kt-ov-logos {
+    position: absolute;
+    bottom: 1em;
+    right: 4.2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    pointer-events: none;
+}
+
+.artef4kt-ov-logo-mark {
+    width: 2.2em;
+    height: 2.2em;
+    color: #bbbbbb;
+    opacity: 0.85;
+}
+
+.artef4kt-ov-logo-mark svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.top-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    /* Default: stage above bottom strip. When float area includes bottom, height is 100%. */
+    height: calc(100% - var(--bottom-height));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    background: transparent;
+    color: black;
+    overflow: visible;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+/*
+ * Stage / doodle canvas fills the float host. Background is transparent so the
+ * blue bottom strip can show through when floats may enter that region; the
+ * stage fill lives on #bg-canvas (solid / shader / image / video + optional FX).
+ */
+#bg-canvas,
+#bg-postprocess-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: transparent;
+    pointer-events: none;
+    z-index: 0;
+}
+
+#bg-postprocess-canvas {
+    display: none;
+}
+
+#bg-postprocess-canvas.is-live {
+    display: block;
+}
+
+/* Live outgoing fill (shader/video keep playing) while the incoming fill fades in. */
+#bg-transition-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    z-index: 1;
+    display: none;
+}
+
+#bg-transition-overlay canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+
+.bg-video-el {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+#top-canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 0;
+    touch-action: none;
+}
+
+#overlay-canvas,
+#postprocess-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+#overlay-canvas {
+    background: transparent;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Final postprocess pass — opaque fullscreen output of the processed scene */
+#postprocess-canvas {
+    background: #000;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.bottom-panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--bottom-height);
+    background: var(--bottom-color);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+/* When bottom height is 0, hide the strip entirely */
+.bottom-panel.is-collapsed {
+    display: none;
+    height: 0;
+    padding: 0;
+}
+
+/* Float host covers full shell so containers can sit over the blue strip */
+.app-shell.float-includes-bottom .top-panel {
+    height: 100%;
+}
+
+/* Bottom strip stays under floats when they may occupy that region */
+.app-shell.float-includes-bottom .bottom-panel {
+    z-index: 1;
+}
+
+.app-shell:not(.float-includes-bottom) .bottom-panel:not(.is-collapsed) {
+    z-index: 1;
+}
+
+.floating-box {
+    position: absolute;
+    box-sizing: border-box;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    /* Padding is controlled via style.padding (default 0); do not hard-code here */
+    padding: 0;
+    color: #000;
+    z-index: 2;
+    display: flex;
+    /* Geometric center on both axes (not flex baseline alignment) */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    user-select: none;
+    cursor: grab;
+    touch-action: none; /* allow pointer capture drag without scroll gestures */
+}
+
+.floating-box.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.floating-box.is-dragging {
+    cursor: grabbing;
+    opacity: 0.96;
+    z-index: 40;
+}
+
+.floating-box.is-resizing {
+    z-index: 40;
+}
+
+/* Subtle edge affordance while hovering a resize hit zone */
+.floating-box.is-resize-hover.is-selected {
+    outline-color: #7aa2ff;
+}
+
+/* Click-to-select highlight (UI only; not part of presets / canvas border) */
+.floating-box.is-selected {
+    outline: 2px solid #5b8cff;
+    outline-offset: 3px;
+    box-shadow:
+        0 0 0 1px rgba(91, 140, 255, 0.45),
+        0 0 12px rgba(91, 140, 255, 0.25);
+}
+
+/* Inner canvas always fills the box; must not steal resize/move hit-testing */
+.floating-box > canvas {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+/* Per-container postprocess output (above content, under selection outline) */
+.floating-box > canvas.container-postprocess-canvas {
+    z-index: 4;
+    display: none;
+    /* WebGL drawing buffer is sized by the stack; CSS fills the box */
+    background: transparent;
+}
+
+.floating-box.has-container-postprocess > canvas.container-postprocess-canvas {
+    display: block;
+}
+
+/* Raw DOM text is still painted into the PP capture; hide it when FX output covers */
+.floating-box.has-container-postprocess .song-info-block,
+.floating-box.has-container-postprocess .song-lyrics-viewport,
+.floating-box.has-container-postprocess .song-lyrics-block,
+.floating-box.has-container-postprocess .floating-text {
+    visibility: hidden;
+}
+
+/* In-container text content (centered over image/shader) */
+.floating-text {
+    position: relative;
+    z-index: 1;
+    pointer-events: none;
+    /* Full width so text-align (left/right/justify/center) applies within the box */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #111;
+    /* Horizontal alignment via text-align; vertical center is the parent flex box */
+    display: block;
+    text-align: center;
+    text-shadow:
+        0 0 4px #fff,
+        0 0 8px #fff,
+        0 1px 0 #fff;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-line;
+}
+
+/* Song title / artist / album — stacked lines, box fits content */
+.song-info-panel {
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+}
+
+.song-info-panel .floating-text {
+    display: none !important;
+}
+
+.song-info-panel > canvas {
+    z-index: 0;
+    opacity: 0; /* text-only panel: hide empty canvas */
+    pointer-events: none;
+}
+
+.song-info-block {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25em;
+    text-align: center;
+    width: max-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.song-info-title,
+.song-info-artist,
+.song-info-album {
+    display: block;
+    width: 100%;
+    text-align: inherit;
+    white-space: nowrap;
+}
+
+.song-info-title {
+    font-size: 1.15em;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #111;
+}
+
+.song-info-artist {
+    font-size: 0.95em;
+    font-weight: 500;
+    line-height: 1.3;
+    color: #333;
+}
+
+.song-info-album {
+    font-size: 0.88em;
+    font-weight: 400;
+    line-height: 1.3;
+    color: #555;
+    font-style: italic;
+}
+
+.song-cover-panel {
+    padding: 0;
+    overflow: hidden;
+}
+
+.song-cover-panel .floating-text {
+    text-shadow: none;
+    opacity: 0.55;
+}
+
+/* Lyrics panel — full line list with smooth vertical scroll to active line */
+.song-lyrics-panel {
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.song-lyrics-panel .floating-text {
+    display: none !important;
+}
+
+.song-lyrics-panel > canvas {
+    z-index: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.song-lyrics-viewport,
+.song-lyrics-block.song-lyrics-viewport {
+    /* Fill the panel so height tracks container resize (flex % height is unreliable) */
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    pointer-events: none;
+    padding: inherit;
+    /* Base metrics driven by container text style (see applyContainerBoxStyle) */
+    --lyrics-size: 12px;
+    --lyrics-active-size: 18px;
+    --lyrics-weight: 500;
+    --lyrics-active-weight: 700;
+    --lyrics-line-height: 1.35;
+    --lyrics-active-line-height: 1.3;
+    --lyrics-letter-spacing: 0px;
+    --lyrics-font-style: normal;
+    --lyrics-font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.song-lyrics-track {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    will-change: transform;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* While measuring/centering, freeze layout + motion so geometry is final */
+.song-lyrics-track.is-measuring {
+    transition: none !important;
+}
+
+.song-lyrics-track.is-measuring .song-lyrics-line {
+    transition: none !important;
+}
+
+.song-lyrics-line {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: inherit;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow: visible;
+    font-family: var(--lyrics-font-family);
+    font-size: var(--lyrics-size);
+    font-weight: var(--lyrics-weight);
+    font-style: var(--lyrics-font-style);
+    letter-spacing: var(--lyrics-letter-spacing);
+    line-height: var(--lyrics-line-height);
+    color: #888;
+    opacity: 0.4;
+    min-height: calc(var(--lyrics-size) * var(--lyrics-line-height));
+    padding: var(--lyrics-pad-y, 4px) var(--lyrics-pad-x, 2px);
+    flex-shrink: 0;
+    /* Only non-layout props animate — size/wrap must be final for vertical centering */
+    transition:
+        opacity 0.35s ease,
+        color 0.35s ease;
+}
+
+.song-lyrics-line.near {
+    opacity: 0.6;
+    color: #666;
+}
+
+.song-lyrics-line.active {
+    font-size: var(--lyrics-active-size);
+    font-weight: var(--lyrics-active-weight);
+    line-height: var(--lyrics-active-line-height);
+    color: #111;
+    opacity: 1;
+    min-height: calc(var(--lyrics-active-size) * var(--lyrics-active-line-height));
+    padding: var(--lyrics-active-pad-y, 6px) var(--lyrics-pad-x, 2px);
+}
+
+.song-lyrics-line.empty {
+    opacity: 0.22;
+}
+
+.song-lyrics-line.active.empty {
+    opacity: 0.35;
+}
+
+.song-lyrics-line.placeholder {
+    font-size: var(--lyrics-active-size);
+    font-weight: 500;
+    color: #555;
+    opacity: 0.85;
+    white-space: normal;
+}
+
+/* Empty-lyrics glitch: monospace scramble lines */
+.song-lyrics-panel.is-empty-glitch .song-lyrics-line.empty-glitch {
+    font-family: "SF Mono", "Menlo", "Consolas", "Courier New", monospace;
+    letter-spacing: 0.12em;
+    white-space: pre;
+    text-overflow: clip;
+    overflow: hidden;
+    color: #3a3a42;
+    opacity: 0.55;
+    font-variant-numeric: tabular-nums;
+}
+
+.song-lyrics-panel.is-empty-glitch .song-lyrics-line.empty-glitch.near {
+    opacity: 0.7;
+    color: #555;
+}
+
+.song-lyrics-panel.is-empty-glitch .song-lyrics-line.empty-glitch.active {
+    font-size: var(--lyrics-active-size);
+    font-weight: 600;
+    color: #1a1a22;
+    opacity: 0.92;
+    text-shadow: 0 0 8px rgba(90, 100, 140, 0.25);
+}
+
+.song-info-panel.is-text-glitch .song-info-title,
+.song-info-panel.is-text-glitch .song-info-artist,
+.song-info-panel.is-text-glitch .song-info-album {
+    font-family: "SF Mono", "Menlo", "Consolas", "Courier New", monospace;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+}
+
+.song-lyrics-panel.is-lyrics-decode .song-lyrics-line {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Playback progress — full-bleed canvas; dual-tone times painted on the fill */
+.show-progress-panel,
+.song-progress-panel {
+    padding: 0;
+    overflow: hidden;
+    background: #ffffff;
+    align-items: stretch;
+    justify-content: flex-start;
+    box-sizing: border-box;
+}
+
+.show-progress-panel .floating-text,
+.song-progress-panel .floating-text {
+    display: none !important;
+}
+
+.show-progress-panel > canvas,
+.show-progress-panel .song-progress-canvas,
+.song-progress-panel > canvas,
+.song-progress-panel .song-progress-canvas {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    z-index: 1;
+    opacity: 1;
+    pointer-events: none;
+}
+
+/* Legacy DOM time chrome (times are painted on canvas now) */
+.song-progress-ui,
+.song-progress-ends,
+.song-progress-center,
+.song-progress-current,
+.song-progress-total {
+    display: none !important;
+}
+
+

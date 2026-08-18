@@ -1,0 +1,1142 @@
+<!doctype html>
+<html lang="en" class="workspace">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>music_view</title>
+    <link rel="stylesheet" href="./main.css" />
+    <link rel="stylesheet" href="./music.css" />
+    <link rel="stylesheet" href="./controls.css" />
+    <link rel="stylesheet" href="./performance.css" />
+    <link rel="stylesheet" href="./workspace.css" />
+</head>
+
+<body class="workspace is-booting">
+    <div id="app-load" class="app-load" role="progressbar" aria-busy="true"
+        aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Loading">
+        <div class="app-load-card">
+            <div class="app-load-wordmark">music_view</div>
+            <div class="app-load-label">Starting…</div>
+            <div class="app-load-bar"><div class="app-load-fill"></div></div>
+            <div class="app-load-pct">0%</div>
+        </div>
+    </div>
+    <script src="./workspace-load.js"></script>
+    <header id="app-toolbar">
+        <span class="app-wordmark">music_view</span>
+        <nav class="toolbar-docks" aria-label="Panels">
+            <button type="button" data-panel="look">Look</button>
+            <button type="button" data-panel="object">Object</button>
+            <button type="button" data-panel="music">Music</button>
+            <button type="button" data-panel="show">Show</button>
+        </nav>
+        <div class="toolbar-mode">
+            <button type="button" id="btn-present" title="Present Stage (hide chrome)">Present</button>
+            <button type="button" id="btn-fullscreen" title="Fullscreen Stage">Fullscreen</button>
+        </div>
+    </header>
+    <div id="workspace-grid">
+        <aside id="dock-music">
+            <header class="music-header">
+                <div class="header-text">
+                    <h1>Music</h1>
+                    <p class="subtitle" id="songs-dir" title="">Loading…</p>
+                </div>
+                <button type="button" id="music-btn-refresh" class="btn ghost" title="Refresh library">↻</button>
+            </header>
+            <div id="show-driving-bar" class="show-driving hidden">
+                <span>Performance driving playback</span>
+                <button type="button" id="btn-takeover" class="btn">Take over</button>
+            </div>
+
+            <main class="music-main">
+                <section class="panel player-panel" aria-label="Transport">
+                    <div class="now-row">
+                        <div id="cover-wrap" class="cover-wrap empty" title="Album cover">
+                            <img id="cover-art" class="cover-art hidden" alt="" />
+                            <div id="cover-placeholder" class="cover-placeholder">♪</div>
+                        </div>
+                        <div class="now-text">
+                            <p id="now-title" class="now-title">No song selected</p>
+                            <p id="now-meta" class="hint now-meta"></p>
+                        </div>
+                        <div class="transport">
+                            <button type="button" id="music-btn-play" class="btn primary" disabled title="Play / Pause">▶</button>
+                            <button type="button" id="music-btn-stop" class="btn" disabled title="Stop">■</button>
+                        </div>
+                    </div>
+
+                    <audio id="audio-a" preload="metadata"></audio>
+                    <audio id="audio-b" preload="metadata"></audio>
+
+                    <div class="scrub">
+                        <span id="time-cur" class="time">0:00</span>
+                        <input type="range" id="seek" min="0" max="0" step="0.01" value="0" disabled />
+                        <span id="time-dur" class="time">0:00</span>
+                    </div>
+
+                    <div class="controls-row">
+                        <label class="vol-label" for="volume" title="Volume">Vol</label>
+                        <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+                        <span id="player-status" class="status"></span>
+                    </div>
+                </section>
+
+                <nav class="tab-bar" role="tablist" aria-label="Music panels">
+                    <button type="button" class="tab active" role="tab" id="tab-lib" data-tab="lib"
+                        aria-selected="true" aria-controls="panel-lib">Library</button>
+                    <button type="button" class="tab" role="tab" id="tab-lyrics" data-tab="lyrics"
+                        aria-selected="false" aria-controls="panel-lyrics">Lyrics</button>
+                    <button type="button" class="tab" role="tab" id="tab-analysis" data-tab="analysis"
+                        aria-selected="false" aria-controls="panel-analysis">Analysis</button>
+                    <button type="button" class="tab" role="tab" id="tab-fx" data-tab="fx"
+                        aria-selected="false" aria-controls="panel-fx">FX</button>
+                </nav>
+
+                <div class="tab-panels">
+                    <section class="panel tab-panel active" id="panel-lib" role="tabpanel" aria-labelledby="tab-lib">
+                        <div class="section-head tight">
+                            <h2>Library</h2>
+                            <input type="search" id="song-filter" class="filter" placeholder="Filter…" />
+                        </div>
+                        <form id="spotify-import" class="spotify-import" autocomplete="off">
+                            <input type="text" id="spotify-url" class="filter" spellcheck="false" inputmode="url"
+                                placeholder="Paste Spotify track link…"
+                                title="Import audio + lyrics from a Spotify song URL" />
+                            <button type="submit" id="btn-spotify-import" class="btn primary tiny">Import</button>
+                        </form>
+                        <p id="spotify-import-status" class="hint spotify-import-status" hidden></p>
+                        <ul id="song-list" class="song-list" tabindex="0"></ul>
+                        <p id="library-empty" class="hint hidden">No audio files found.</p>
+                    </section>
+
+                    <section class="panel tab-panel" id="panel-lyrics" role="tabpanel" aria-labelledby="tab-lyrics" hidden>
+                        <div class="section-head tight">
+                            <h2>Lyrics</h2>
+                            <p id="lyrics-status" class="hint lyrics-status-inline">No song</p>
+                        </div>
+                        <div id="lyrics-meta" class="lyrics-meta hidden"></div>
+                        <div id="lyrics-view" class="lyrics-view"></div>
+                    </section>
+
+                    <section class="panel tab-panel analysis-panel" id="panel-analysis" role="tabpanel"
+                        aria-labelledby="tab-analysis" hidden>
+                        <div class="analysis-toolbar">
+                            <label class="check-row tight" for="viz-enabled" title="Stream analysis to display shaders">
+                                <input type="checkbox" id="viz-enabled" checked />
+                                <span>To display</span>
+                            </label>
+                            <label class="check-row tight" for="viz-local-preview" title="Draw local scope / spectrum">
+                                <input type="checkbox" id="viz-local-preview" checked />
+                                <span>Preview</span>
+                            </label>
+                            <span id="viz-status" class="pill" title="Analysis state">Idle</span>
+                            <button type="button" id="viz-reset" class="btn ghost tiny" title="Reset detectors & AGC">Reset</button>
+                        </div>
+
+                        <div class="analysis-canvases">
+                            <div class="canvas-block">
+                                <div class="canvas-label">
+                                    <span>Scope</span>
+                                    <span id="viz-scope-hint" class="canvas-hint">waveform</span>
+                                </div>
+                                <canvas id="viz-scope" class="viz-canvas" width="360" height="72"></canvas>
+                            </div>
+                            <div class="canvas-block">
+                                <div class="canvas-label">
+                                    <span>Spectrum</span>
+                                    <span id="viz-spec-hint" class="canvas-hint">FFT</span>
+                                </div>
+                                <canvas id="viz-spectrum" class="viz-canvas" width="360" height="72"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="beat-row">
+                            <div id="viz-beat-lamp" class="beat-lamp" title="Beat pulse"></div>
+                            <div class="beat-meta">
+                                <span class="beat-meta-label">Beat</span>
+                                <span id="viz-beat-val" class="beat-meta-val">0.00</span>
+                            </div>
+                            <div class="beat-meta">
+                                <span class="beat-meta-label">Env</span>
+                                <span id="viz-env-val" class="beat-meta-val">0.00</span>
+                            </div>
+                            <div class="beat-meta">
+                                <span class="beat-meta-label">Thr</span>
+                                <span id="viz-thr-val" class="beat-meta-val">—</span>
+                            </div>
+                            <div class="beat-meta">
+                                <span class="beat-meta-label">AGC</span>
+                                <span id="viz-agc-val" class="beat-meta-val">—</span>
+                            </div>
+                        </div>
+
+                        <div class="ctrl-group-label">Bands &amp; features</div>
+                        <div class="meter-grid meter-grid-dense" id="viz-meter-grid" aria-label="Analysis meters"></div>
+
+                        <div class="analysis-controls">
+                            <div class="ctrl-group-label">Beat detection</div>
+                            <div class="ctrl-grid">
+                                <label class="field" for="viz-sensitivity">
+                                    <span class="field-label">Sensitivity <span id="viz-sens-val" class="field-val">1.45</span></span>
+                                    <input type="range" id="viz-sensitivity" min="0.5" max="2.5" step="0.05" value="1.45"
+                                        title="Higher = easier onsets (lower σ threshold)" />
+                                </label>
+                                <label class="field" for="viz-gain">
+                                    <span class="field-label">Input gain <span id="viz-gain-val" class="field-val">1.00</span></span>
+                                    <input type="range" id="viz-gain" min="0.4" max="2.5" step="0.05" value="1" />
+                                </label>
+                                <label class="field" for="viz-refractory">
+                                    <span class="field-label">Refractory <span id="viz-ref-val" class="field-val">150ms</span></span>
+                                    <input type="range" id="viz-refractory" min="60" max="500" step="10" value="150"
+                                        title="Minimum time between beats" />
+                                </label>
+                                <label class="field" for="viz-pulse">
+                                    <span class="field-label">Pulse decay <span id="viz-pulse-val" class="field-val">130ms</span></span>
+                                    <input type="range" id="viz-pulse" min="40" max="500" step="10" value="130" />
+                                </label>
+                                <label class="field" for="viz-smoothing">
+                                    <span class="field-label">FFT smooth <span id="viz-smooth-val" class="field-val">0.20</span></span>
+                                    <input type="range" id="viz-smoothing" min="0" max="0.9" step="0.05" value="0.2"
+                                        title="Lower = sharper onsets (recommended 0.1–0.3)" />
+                                </label>
+                                <label class="field" for="viz-rate">
+                                    <span class="field-label">Send rate <span id="viz-rate-val" class="field-val">50 Hz</span></span>
+                                    <input type="range" id="viz-rate" min="15" max="60" step="1" value="50" />
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="panel tab-panel" id="panel-fx" role="tabpanel" aria-labelledby="tab-fx" hidden>
+                        <div class="section-head tight">
+                            <h2>Empty lyrics FX</h2>
+                            <p class="hint lyrics-status-inline">Display panel</p>
+                        </div>
+                        <p class="hint empty-fx-blurb">
+                            When a track has no .lrc, the display lyrics box scrambles characters instead of “No lyrics”.
+                        </p>
+                        <label class="check-row" for="elfx-enabled">
+                            <input type="checkbox" id="elfx-enabled" checked />
+                            <span>Enable glitch effect</span>
+                        </label>
+                        <div class="ctrl-grid">
+                            <label class="field" for="elfx-charset">
+                                <span class="field-label">Charset</span>
+                                <select id="elfx-charset">
+                                    <option value="mixed" selected>Mixed</option>
+                                    <option value="special">Specials</option>
+                                    <option value="ascii">ASCII</option>
+                                    <option value="symbols">Symbols</option>
+                                    <option value="blocks">Blocks</option>
+                                    <option value="matrix">Matrix</option>
+                                    <option value="hex">Hex</option>
+                                    <option value="binary">Binary</option>
+                                </select>
+                            </label>
+                            <label class="field" for="elfx-length">
+                                <span class="field-label">Length <span id="elfx-length-val" class="field-val">18</span></span>
+                                <input type="range" id="elfx-length" min="4" max="48" step="1" value="18" />
+                            </label>
+                            <label class="field" for="elfx-lines">
+                                <span class="field-label">Lines <span id="elfx-lines-val" class="field-val">3</span></span>
+                                <input type="range" id="elfx-lines" min="1" max="5" step="1" value="3" />
+                            </label>
+                            <label class="field" for="elfx-rate">
+                                <span class="field-label">Rate Hz <span id="elfx-rate-val" class="field-val">14</span></span>
+                                <input type="range" id="elfx-rate" min="0.5" max="40" step="0.5" value="14" />
+                            </label>
+                            <label class="field" for="elfx-change">
+                                <span class="field-label">Glitch % <span id="elfx-change-val" class="field-val">38</span></span>
+                                <input type="range" id="elfx-change" min="0.05" max="1" step="0.01" value="0.38" />
+                            </label>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        </aside>
+        <div id="split-left" class="dock-split dock-split-v" data-side="left" title="Drag to resize · double-click resets"></div>
+        <div id="stage-slot">
+            <div id="stage-root">
+                <div class="app-shell">
+                    <div class="top-panel">
+                        <canvas id="bg-canvas"></canvas>
+                        <canvas id="bg-postprocess-canvas"></canvas>
+                        <canvas id="top-canvas"></canvas>
+                    </div>
+                    <video id="bg-video" class="bg-video-el" playsinline muted loop preload="auto"></video>
+                    <div class="bottom-panel"></div>
+                    <canvas id="overlay-canvas"></canvas>
+                    <canvas id="postprocess-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+        <div id="split-right" class="dock-split dock-split-v" data-side="right" title="Drag to resize · double-click resets"></div>
+        <aside id="dock-controls" tabindex="-1">
+            <header class="controls-header">
+                    <h1>Controls</h1>
+                    <div class="header-actions">
+                        <span id="status" class="status"></span>
+                        <button type="button" id="ctrl-btn-refresh" class="btn ghost" title="Refresh state from display">↻</button>
+                    </div>
+                </header>
+
+                <nav class="tab-bar" role="tablist" aria-label="Controls sections">
+                    <button type="button" class="tab-btn is-active" role="tab" id="tab-btn-look" data-tab="look"
+                        aria-selected="true" aria-controls="tab-look">Look</button>
+                    <button type="button" class="tab-btn" role="tab" id="tab-btn-object" data-tab="object"
+                        aria-selected="false" aria-controls="tab-object">Object</button>
+                </nav>
+
+                <main class="controls-main">
+                    <!-- ── Look: presets + postprocess ─────────────────────────── -->
+                    <div id="tab-look" class="tab-panel is-active" role="tabpanel" aria-labelledby="tab-btn-look">
+                        <section class="panel preset-panel" title="Visual layout, postprocess stack, and styles. Does not include songs or playback.">
+                            <div class="section-head">
+                                <h2>Presets</h2>
+                                <span id="preset-active" class="hint inline-status"></span>
+                            </div>
+
+                            <div class="preset-browser">
+                                <div class="preset-toolbar">
+                                    <div class="preset-search-wrap grow">
+                                        <input type="search" id="preset-search" class="grow" placeholder="Search name, id, or FX…"
+                                            spellcheck="false" autocomplete="off"
+                                            title="Multi-word search: name, id, category, or shader. Press / to focus." />
+                                        <button type="button" id="preset-search-clear" class="btn icon-btn preset-search-clear hidden"
+                                            title="Clear search">×</button>
+                                    </div>
+                                    <select id="preset-sort" class="preset-sort" title="Sort order">
+                                        <option value="category">Category</option>
+                                        <option value="name">A–Z</option>
+                                        <option value="recent">File date</option>
+                                        <option value="used">Last used</option>
+                                        <option value="favorites">★ First</option>
+                                    </select>
+                                    <button type="button" id="preset-refresh" class="btn icon-btn" title="Refresh preset list">↻</button>
+                                </div>
+
+                                <div id="preset-cat-bar" class="preset-cat-bar" role="tablist" aria-label="Preset categories">
+                                    <button type="button" class="preset-cat-btn is-active" data-cat="all" role="tab" aria-selected="true">All</button>
+                                    <button type="button" class="preset-cat-btn" data-cat="favorites" role="tab" aria-selected="false" title="Starred presets">★</button>
+                                    <button type="button" class="preset-cat-btn" data-cat="looks" role="tab" aria-selected="false">Looks</button>
+                                    <button type="button" class="preset-cat-btn" data-cat="recipes" role="tab" aria-selected="false">Recipes</button>
+                                    <button type="button" class="preset-cat-btn" data-cat="classic" role="tab" aria-selected="false">Classic</button>
+                                    <button type="button" class="preset-cat-btn" data-cat="saved" role="tab" aria-selected="false">Saved</button>
+                                </div>
+
+                                <div class="preset-filter-bar" role="group" aria-label="Type filters">
+                                    <button type="button" class="preset-filter-btn is-active" data-type="all" title="Show all types">Any</button>
+                                    <button type="button" class="preset-filter-btn" data-type="fx" title="FX-only looks (keep current layout)">FX only</button>
+                                    <button type="button" class="preset-filter-btn" data-type="layout" title="Full scene layouts">Layout</button>
+                                    <button type="button" id="preset-jump-active" class="btn ghost tight preset-jump-active"
+                                        title="Select the currently active preset">Active</button>
+                                </div>
+
+                                <div id="ctrl-preset-list" class="preset-list" role="listbox" aria-label="Presets"
+                                    tabindex="0" title="Click to select · star to favorite · double-click or Enter to load · ↑↓ navigate"></div>
+
+                                <div class="preset-toolbar preset-actions">
+                                    <button type="button" id="preset-prev" class="btn icon-btn" title="Previous in filtered list (↑)">↑</button>
+                                    <button type="button" id="preset-next" class="btn icon-btn" title="Next in filtered list (↓)">↓</button>
+                                    <label class="check tight preset-instant" title="Load as soon as you select a preset (debounced while arrowing)">
+                                        <input type="checkbox" id="preset-instant-load" />
+                                        Instant
+                                    </label>
+                                    <button type="button" id="preset-load" class="btn primary grow" title="Load selected preset onto the display (Enter)">Load</button>
+                                </div>
+
+                                <p id="preset-meta" class="hint preset-meta"></p>
+                                <p id="preset-shaders" class="hint preset-shaders"></p>
+
+                                <!-- Hidden select keeps older code paths / keyboard fallback in sync -->
+                                <select id="preset-select" class="visually-hidden" tabindex="-1" aria-hidden="true"></select>
+                            </div>
+
+                            <div class="preset-toolbar preset-save-row">
+                                <input type="text" id="preset-name" class="grow" placeholder="save as name"
+                                    spellcheck="false" title="Letters, numbers, dash, underscore" />
+                                <div class="btn-menu-wrap">
+                                    <button type="button" id="preset-save" class="btn primary" title="Save current look as this name">Save</button>
+                                    <button type="button" id="preset-save-menu-btn" class="btn btn-menu-caret"
+                                        title="More save options" aria-haspopup="true" aria-expanded="false"
+                                        aria-controls="preset-save-menu">▾</button>
+                                    <div id="preset-save-menu" class="btn-menu hidden" role="menu">
+                                        <button type="button" id="preset-save-default" class="btn-menu-item" role="menuitem"
+                                            title="Overwrite the startup default preset">Save as default</button>
+                                        <button type="button" id="preset-delete" class="btn-menu-item danger" role="menuitem"
+                                            title="Delete selected preset (not default)">Delete selected</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="panel" title="How often the stage, shaders, and Look FX draw.">
+                            <div class="section-head">
+                                <h2>Render</h2>
+                            </div>
+                            <div class="field">
+                                <label for="render-fps">Frame rate</label>
+                                <select id="render-fps" title="Cap stage and shader playback. Native follows the display.">
+                                    <option value="0">Native</option>
+                                    <option value="60">60 fps</option>
+                                    <option value="50">50 fps</option>
+                                    <option value="30">30 fps</option>
+                                    <option value="24">24 fps</option>
+                                    <option value="15">15 fps</option>
+                                    <option value="12">12 fps</option>
+                                </select>
+                            </div>
+                            <p class="hint">Applies to background shaders, panel shaders, and Look FX. Not saved in presets.</p>
+                        </section>
+
+                        <section class="panel" title="Stage fill behind floating panels. Default is a blank white solid.">
+                            <div class="section-head">
+                                <h2>Background</h2>
+                            </div>
+                            <div class="segment-bar" role="tablist" aria-label="Background source">
+                                <button type="button" class="segment-btn is-active" data-bg-mode="solid" id="bg-mode-btn-solid">Solid</button>
+                                <button type="button" class="segment-btn" data-bg-mode="shader" id="bg-mode-btn-shader">Shader</button>
+                                <button type="button" class="segment-btn" data-bg-mode="image" id="bg-mode-btn-image">Image</button>
+                                <button type="button" class="segment-btn" data-bg-mode="video" id="bg-mode-btn-video">Video</button>
+                            </div>
+
+                            <div id="bg-mode-solid" class="bg-mode-pane">
+                                <div class="field">
+                                    <label for="bg-color">Color</label>
+                                    <input type="color" id="bg-color" value="#ffffff"
+                                        title="Solid stage fill. Default is blank white." />
+                                </div>
+                                <p class="hint">Blank white is the default stage. Color only applies in Solid mode.</p>
+                            </div>
+
+                            <div id="bg-mode-shader" class="bg-mode-pane hidden">
+                                <p id="bg-shader-status" class="hint">No shader</p>
+                                <div class="field">
+                                    <label for="bg-shader">Package</label>
+                                    <select id="bg-shader" title="Container-role shader drawn as the stage fill"></select>
+                                </div>
+                                <p id="bg-shader-desc" class="hint"></p>
+                                <div class="row actions">
+                                    <button type="button" id="bg-shader-apply" class="btn primary grow">Apply shader</button>
+                                    <button type="button" id="bg-shader-clear" class="btn danger">Clear</button>
+                                </div>
+                                <div id="bg-uniforms" class="uniform-controls"></div>
+                            </div>
+
+                            <div id="bg-mode-image" class="bg-mode-pane hidden">
+                                <p id="bg-image-status" class="hint">No image</p>
+                                <div class="row actions">
+                                    <button type="button" id="bg-image-pick" class="btn primary grow">Choose image…</button>
+                                    <button type="button" id="bg-image-clear" class="btn danger">Clear</button>
+                                </div>
+                                <div class="field" style="margin-top:8px;">
+                                    <label for="bg-image-mode">Fit</label>
+                                    <select id="bg-image-mode" title="How the image covers the stage">
+                                        <option value="fill" selected>Fill</option>
+                                        <option value="scale">Fit</option>
+                                        <option value="tile">Tile</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="bg-mode-video" class="bg-mode-pane hidden">
+                                <p id="bg-video-status" class="hint">No video</p>
+                                <div class="row actions">
+                                    <button type="button" id="bg-video-pick" class="btn primary grow">Choose video…</button>
+                                    <button type="button" id="bg-video-clear" class="btn danger">Clear</button>
+                                </div>
+                                <div class="grid-2" style="margin-top:8px;">
+                                    <div class="field">
+                                        <label for="bg-video-mode">Fit</label>
+                                        <select id="bg-video-mode" title="How the video covers the stage">
+                                            <option value="fill" selected>Fill</option>
+                                            <option value="scale">Fit</option>
+                                        </select>
+                                    </div>
+                                    <label class="check tight" title="Restart the clip when it ends">
+                                        <input type="checkbox" id="bg-video-loop" checked />
+                                        Loop
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="section-head tight" style="margin-top:12px;">
+                                <h3 class="obj-subhead">Background FX</h3>
+                                <label class="check tight" title="Enable or disable the background effect stack">
+                                    <input type="checkbox" id="bpp-active" />
+                                    On
+                                </label>
+                            </div>
+                            <p class="hint">Processes only the stage fill (solid, shader, image, or video). Global Look FX still runs after containers.</p>
+
+                            <div id="bpp-layer-list" class="pp-layer-list" aria-label="Background effect layers"></div>
+
+                            <div class="row actions pp-add-row">
+                                <select id="bpp-add-shader" class="grow" title="Effect package to add"></select>
+                                <button type="button" id="bpp-add-layer" class="btn primary" title="Append effect to the background">+ Add</button>
+                            </div>
+
+                            <div id="bpp-layer-editor" class="pp-layer-editor hidden">
+                                <div class="section-head tight pp-layer-head">
+                                    <h3 id="bpp-layer-title">Layer</h3>
+                                    <span id="bpp-layer-index" class="hint inline-status"></span>
+                                    <div class="pp-layer-toolbar">
+                                        <button type="button" id="bpp-reset-defaults" class="btn btn-compact"
+                                            title="Restore this layer to package default parameters">↻ Defaults</button>
+                                    </div>
+                                </div>
+                                <div class="field pp-package-field">
+                                    <label for="bpp-shader">Package</label>
+                                    <select id="bpp-shader" title="Effect package for this layer"></select>
+                                </div>
+                                <p id="bpp-shader-desc" class="hint pp-shader-desc-one-line" title=""></p>
+                                <input type="checkbox" id="bpp-layer-enabled" class="visually-hidden" checked tabindex="-1" aria-hidden="true" />
+                                <div id="bpp-uniforms" class="uniform-controls"></div>
+                                <div class="row actions">
+                                    <button type="button" id="bpp-layer-up" class="btn" title="Move layer earlier">↑</button>
+                                    <button type="button" id="bpp-layer-down" class="btn" title="Move layer later">↓</button>
+                                    <button type="button" id="bpp-layer-remove" class="btn danger grow">Remove</button>
+                                </div>
+                            </div>
+                            <p id="bpp-layer-empty-hint" class="hint pp-empty-hint">Add a postprocess package to stack effects on the background.</p>
+                        </section>
+
+                        <section class="panel" title="Blue bottom strip under the white stage">
+                            <div class="section-head">
+                                <h2>Bottom strip</h2>
+                            </div>
+                            <div class="grid-2">
+                                <div class="field">
+                                    <label for="bp-color">Color</label>
+                                    <input type="color" id="bp-color" value="#2563eb"
+                                        title="Background color of the bottom strip" />
+                                </div>
+                                <div class="field">
+                                    <label for="bp-height">Height <span id="bp-height-val" class="hint inline-status">25%</span></label>
+                                    <input type="range" id="bp-height" min="0" max="100" step="1" value="25"
+                                        title="Strip height as % of the display. 0 = hidden (top is fullscreen)" />
+                                </div>
+                            </div>
+                            <label class="check" title="When on, floating panels may be moved and sized into the bottom strip area. When off, they stay on the white stage only.">
+                                <input type="checkbox" id="bp-include-float" />
+                                Float area includes bottom
+                            </label>
+                            <p class="hint" style="margin-top:6px;">Height 0 hides the strip so the white stage fills the window. Enabling float inclusion lets panels sit over the blue region.</p>
+                        </section>
+
+                        <section class="panel" title="Effect layers run top → bottom. Each pass feeds the next. Drag to reorder.">
+                            <div class="section-head">
+                                <h2>FX stack</h2>
+                                <label class="check tight" title="Enable or disable the entire postprocess stack">
+                                    <input type="checkbox" id="pp-active" checked />
+                                    On
+                                </label>
+                            </div>
+
+                            <div id="pp-layer-list" class="pp-layer-list" aria-label="Effect layers"></div>
+
+                            <div class="row actions pp-add-row">
+                                <select id="pp-add-shader" class="grow" title="Effect package to add"></select>
+                                <button type="button" id="pp-add-layer" class="btn primary" title="Append effect to stack">+ Add</button>
+                            </div>
+
+                            <!-- Params drawer for selected layer (ids stable for controls.js) -->
+                            <div id="pp-layer-editor" class="pp-layer-editor hidden">
+                                <div class="section-head tight pp-layer-head">
+                                    <h3 id="pp-layer-title">Layer</h3>
+                                    <span id="pp-layer-index" class="hint inline-status"></span>
+                                    <div class="pp-layer-toolbar">
+                                        <button type="button" id="pp-reset-defaults" class="btn btn-compact"
+                                            title="Restore this layer to package default parameters">↻ Defaults</button>
+                                    </div>
+                                </div>
+                                <div class="field pp-package-field">
+                                    <label for="pp-shader">Package</label>
+                                    <select id="pp-shader" title="Effect package for this layer"></select>
+                                </div>
+                                <p id="pp-shader-desc" class="hint pp-shader-desc-one-line" title=""></p>
+                                <!-- Hidden enable checkbox kept for programmatic sync / a11y fallback -->
+                                <input type="checkbox" id="pp-layer-enabled" class="visually-hidden" checked tabindex="-1" aria-hidden="true" />
+                                <div id="pp-uniforms" class="uniform-controls"></div>
+                                <!-- Legacy buttons kept hidden for any external refs; actions live on layer rows -->
+                                <div class="row actions hidden" aria-hidden="true">
+                                    <button type="button" id="pp-layer-up" class="btn">↑</button>
+                                    <button type="button" id="pp-layer-down" class="btn">↓</button>
+                                    <button type="button" id="pp-layer-remove" class="btn danger grow">Remove layer</button>
+                                </div>
+                            </div>
+                            <p id="pp-layer-empty-hint" class="hint pp-empty-hint hidden">Select a layer to edit parameters.</p>
+                        </section>
+                    </div>
+
+                    <!-- ── Object: floating containers ──────────────────────────── -->
+                    <div id="tab-object" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-object" hidden>
+                        <section class="panel">
+                            <div class="section-head">
+                                <h2>Panels</h2>
+                                <div class="obj-toolbar">
+                                    <div class="btn-menu-wrap">
+                                        <button type="button" id="container-add" class="btn" title="Add a floating panel">+ Add</button>
+                                        <div id="container-add-menu" class="btn-menu hidden" role="menu"></div>
+                                    </div>
+                                    <button type="button" id="container-dup" class="btn" title="Duplicate as generic">Dup</button>
+                                    <button type="button" id="container-del" class="btn danger" title="Delete panel">Del</button>
+                                </div>
+                            </div>
+                            <div id="container-list" class="container-list" role="listbox" aria-label="Floating panels"></div>
+                            <p id="container-list-empty" class="hint hidden">No panels — Add one.</p>
+
+                            <div id="container-editor" class="container-editor hidden">
+                                <div class="obj-role-badge" id="c-role-badge" hidden></div>
+                                <div class="field" id="c-role-wrap">
+                                    <label for="c-role">Role</label>
+                                    <select id="c-role" title="Named roles are unique (one Cover, one Lyrics, …)"></select>
+                                </div>
+
+                                <div class="segment-bar" role="tablist" aria-label="Panel property groups">
+                                    <button type="button" class="segment-btn is-active" data-segment="transform" id="seg-btn-transform">Transform</button>
+                                    <button type="button" class="segment-btn" data-segment="style" id="seg-btn-style">Style</button>
+                                    <button type="button" class="segment-btn" data-segment="motion" id="seg-btn-motion">Motion</button>
+                                    <button type="button" class="segment-btn" data-segment="shader" id="seg-btn-shader">Shader</button>
+                                    <button type="button" class="segment-btn obj-field-hidden" data-segment="audio" id="seg-btn-audio"
+                                        title="Which analysis channel drives this panel">Audio</button>
+                                    <button type="button" class="segment-btn obj-field-hidden" data-segment="artef4kt" id="seg-btn-artef4kt"
+                                        title="ARTEF4KT engine look">Engine</button>
+                                    <button type="button" class="segment-btn" data-segment="fx" id="seg-btn-fx"
+                                        title="Per-panel postprocess effect stack">FX</button>
+                                </div>
+
+                                <!-- Transform -->
+                                <div class="obj-segment is-active" data-segment="transform" id="seg-transform">
+                                    <div class="field" id="c-text-wrap">
+                                        <label for="c-text">Text</label>
+                                        <input type="text" id="c-text" placeholder="Inside container" />
+                                    </div>
+
+                                    <div class="grid-2" id="c-label-row">
+                                        <div class="field">
+                                            <label for="c-label">Label</label>
+                                            <input type="text" id="c-label" placeholder="Outside" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-label-corner">Corner</label>
+                                            <select id="c-label-corner">
+                                                <option value="bottom-right">BR</option>
+                                                <option value="bottom-left">BL</option>
+                                                <option value="top-right">TR</option>
+                                                <option value="top-left">TL</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <label class="check tight" title="Show or hide the floating panel label outside the container.">
+                                        <input type="checkbox" id="c-label-enabled" checked />
+                                        Show label
+                                    </label>
+
+                                    <div id="c-progress-time-wrap" class="field hidden">
+                                        <label for="c-progress-time-mode">Progress time layout</label>
+                                        <select id="c-progress-time-mode" title="How current/total times are shown on the progress bar">
+                                            <option value="ends" selected>End caps (cur left · total right on bar)</option>
+                                            <option value="center">Center stamp (cur / total on bar)</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="grid-2">
+                                        <div class="field">
+                                            <label for="c-left">X</label>
+                                            <input type="number" id="c-left" step="1" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-top">Y</label>
+                                            <input type="number" id="c-top" step="1" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-width">W</label>
+                                            <input type="number" id="c-width" min="20" step="1" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-height">H</label>
+                                            <input type="number" id="c-height" min="20" step="1" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-layer">Layer</label>
+                                            <input type="number" id="c-layer" step="1" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-distancing">Dist</label>
+                                            <input type="number" id="c-distancing" min="0" step="1" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Style -->
+                                <div class="obj-segment" data-segment="style" id="seg-style" hidden>
+                                    <div class="grid-2">
+                                        <div class="field">
+                                            <label for="c-text-align">Text align</label>
+                                            <select id="c-text-align" title="Horizontal alignment of in-box text content">
+                                                <option value="center" selected>Center</option>
+                                                <option value="left">Left</option>
+                                                <option value="right">Right</option>
+                                                <option value="justify">Justified</option>
+                                            </select>
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-padding">Padding</label>
+                                            <input type="number" id="c-padding" min="0" step="1" value="0"
+                                                title="Inner padding (px) on all sides; default 0" />
+                                        </div>
+                                    </div>
+                                    <div class="grid-2" style="margin-top:8px;">
+                                        <div class="field">
+                                            <label for="c-label-font">Font</label>
+                                            <select id="c-label-font">
+                                                <option value='system-ui, -apple-system, "Segoe UI", sans-serif'>System</option>
+                                                <option value="Georgia, 'Times New Roman', serif">Georgia</option>
+                                                <option value="'Courier New', Courier, monospace">Mono</option>
+                                                <option value="Arial, Helvetica, sans-serif">Arial</option>
+                                                <option value="Helvetica, Arial, sans-serif">Helvetica</option>
+                                                <option value="'Times New Roman', Times, serif">Times</option>
+                                                <option value="Verdana, Geneva, sans-serif">Verdana</option>
+                                                <option value="'Trebuchet MS', sans-serif">Trebuchet</option>
+                                                <option value="Impact, Haettenschweiler, sans-serif">Impact</option>
+                                            </select>
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-label-size">Size</label>
+                                            <input type="number" id="c-label-size" min="6" max="96" step="1" value="12" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-label-weight">Weight</label>
+                                            <select id="c-label-weight">
+                                                <option value="300">300</option>
+                                                <option value="400">400</option>
+                                                <option value="500">500</option>
+                                                <option value="600">600</option>
+                                                <option value="700">700</option>
+                                                <option value="800">800</option>
+                                            </select>
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-label-style">Style</label>
+                                            <select id="c-label-style">
+                                                <option value="normal">Normal</option>
+                                                <option value="italic">Italic</option>
+                                            </select>
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-label-color">Color</label>
+                                            <input type="color" id="c-label-color" value="#111111" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-label-bg">BG</label>
+                                            <input type="color" id="c-label-bg" value="#ffffff" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-label-tracking">Track</label>
+                                            <input type="number" id="c-label-tracking" min="-2" max="20" step="0.5" value="0" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-label-opacity">Opacity</label>
+                                            <input type="number" id="c-label-opacity" min="0" max="1" step="0.05" value="1" />
+                                        </div>
+                                    </div>
+                                    <label class="check tight">
+                                        <input type="checkbox" id="c-label-bg-on" />
+                                        Label background
+                                    </label>
+                                    <div class="grid-2" style="margin-top:8px;">
+                                        <div class="field">
+                                            <label for="c-border-color">Border</label>
+                                            <input type="color" id="c-border-color" value="#000000" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-border-width">B width</label>
+                                            <input type="number" id="c-border-width" min="0" step="1" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-connect-color">Line</label>
+                                            <input type="color" id="c-connect-color" value="#000000" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-connect-width">L width</label>
+                                            <input type="number" id="c-connect-width" min="0" step="1" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Motion -->
+                                <div class="obj-segment" data-segment="motion" id="seg-motion" hidden>
+                                    <div class="row checks">
+                                        <label class="check tight">
+                                            <input type="checkbox" id="c-wander" />
+                                            Wander
+                                        </label>
+                                        <label class="check tight">
+                                            <input type="checkbox" id="c-connect" />
+                                            Connect
+                                        </label>
+                                    </div>
+                                    <div class="grid-2">
+                                        <div class="field">
+                                            <label for="c-amp">Amp</label>
+                                            <input type="number" id="c-amp" min="0" step="0.1" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-freq">Freq</label>
+                                            <input type="number" id="c-freq" min="0.1" step="0.5" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-anchor">Anchor</label>
+                                            <input type="number" id="c-anchor" min="0" step="1" placeholder="—" />
+                                        </div>
+                                        <div class="field">
+                                            <label for="c-attach">Attach</label>
+                                            <select id="c-attach"></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Shader (container fill packages) -->
+                                <div class="obj-segment" data-segment="shader" id="seg-shader" hidden>
+                                    <p id="c-shader-status" class="hint">No shader</p>
+                                    <div class="field">
+                                        <label for="c-shader">Package</label>
+                                        <select id="c-shader"></select>
+                                    </div>
+                                    <p id="c-shader-desc" class="hint"></p>
+                                    <div class="row actions">
+                                        <button type="button" id="c-shader-apply" class="btn primary grow">Apply shader</button>
+                                        <button type="button" id="c-shader-clear" class="btn danger">Clear</button>
+                                    </div>
+                                    <div id="c-uniforms" class="uniform-controls"></div>
+                                </div>
+
+                                <div class="obj-segment" data-segment="audio" id="seg-audio" hidden>
+                                    <p class="hint" id="c-audio-hint">This panel listens to Music analysis. Pick the channel(s) it reacts to.</p>
+                                    <div class="grid-2">
+                                        <div class="field" id="c-audio-source-wrap">
+                                            <label for="c-audio-source" id="c-audio-source-label">Source</label>
+                                            <select id="c-audio-source" title="Analysis channel for this panel"></select>
+                                        </div>
+                                        <div class="field" id="c-audio-gain-wrap">
+                                            <label for="c-audio-gain">Gain <span id="c-audio-gain-val" class="field-val">1.00</span></label>
+                                            <input type="range" id="c-audio-gain" min="0" max="2.5" step="0.05" value="1"
+                                                title="Scale the selected channel(s) for this panel only" />
+                                        </div>
+                                    </div>
+                                    <div class="grid-2" id="c-audio-extra">
+                                        <div class="field obj-field-hidden" id="c-audio-envelope-wrap">
+                                            <label for="c-audio-envelope">Envelope</label>
+                                            <select id="c-audio-envelope" title="Continuous energy follower"></select>
+                                        </div>
+                                        <div class="field obj-field-hidden" id="c-audio-bass-wrap">
+                                            <label for="c-audio-bass">Bass</label>
+                                            <select id="c-audio-bass" title="Low-band drive"></select>
+                                        </div>
+                                        <div class="field obj-field-hidden" id="c-audio-mid-wrap">
+                                            <label for="c-audio-mid">Mid</label>
+                                            <select id="c-audio-mid" title="Mid-band drive"></select>
+                                        </div>
+                                        <div class="field obj-field-hidden" id="c-audio-high-wrap">
+                                            <label for="c-audio-high">High</label>
+                                            <select id="c-audio-high" title="High-band drive"></select>
+                                        </div>
+                                    </div>
+                                    <label class="check tight" id="c-audio-continuous-wrap" title="Follow the audible mix across fades instead of jumping to the next track">
+                                        <input type="checkbox" id="c-audio-continuous" checked />
+                                        Continuous audio
+                                    </label>
+                                    <p class="hint" id="c-audio-note">On: stay on the live mix (including crossfades) and keep history. Off: jump to the incoming track and reset.</p>
+                                </div>
+
+                                <!-- ARTEF4KT engine (Three.js embed) — no track picker; Music owns the song -->
+                                <div class="obj-segment" data-segment="artef4kt" id="seg-artef4kt" hidden>
+                                    <p class="hint">Look controls for the ARTEF4KT embed. Playback and track selection stay in the Music window.</p>
+                                    <div class="field">
+                                        <label for="artef4kt-preset">Look preset</label>
+                                        <select id="artef4kt-preset" title="ARTEF4KT settings pack (not music_view visual presets)"></select>
+                                    </div>
+                                    <div class="row actions">
+                                        <button type="button" id="artef4kt-preset-load" class="btn primary grow">Load look</button>
+                                        <button type="button" id="artef4kt-refresh" class="btn" title="Re-read live settings from Display">↻</button>
+                                        <button type="button" id="artef4kt-camera-reset" class="btn"
+                                            title="Reset camera distance / angles to default view">Reset cam</button>
+                                    </div>
+                                    <p id="artef4kt-status" class="hint">Select the ARTEF4KT panel to edit engine knobs.</p>
+                                    <div id="artef4kt-controls" class="uniform-controls artef4kt-controls"></div>
+                                </div>
+
+                                <!-- Per-panel postprocess FX stack (postprocess-role packages) -->
+                                <div class="obj-segment" data-segment="fx" id="seg-fx" hidden>
+                                    <div class="section-head tight">
+                                        <h3 class="obj-subhead">Panel FX</h3>
+                                        <label class="check tight" title="Enable or disable this panel's effect stack">
+                                            <input type="checkbox" id="cpp-active" />
+                                            On
+                                        </label>
+                                    </div>
+                                    <p class="hint">Effects process only this panel (content + text), then the global Look stack can process the full scene.</p>
+
+                                    <div id="cpp-layer-list" class="pp-layer-list" aria-label="Panel effect layers"></div>
+
+                                    <div class="row actions pp-add-row">
+                                        <select id="cpp-add-shader" class="grow" title="Effect package to add"></select>
+                                        <button type="button" id="cpp-add-layer" class="btn primary" title="Append effect to this panel">+ Add</button>
+                                    </div>
+
+                                    <div id="cpp-layer-editor" class="pp-layer-editor hidden">
+                                        <div class="section-head tight pp-layer-head">
+                                            <h3 id="cpp-layer-title">Layer</h3>
+                                            <span id="cpp-layer-index" class="hint inline-status"></span>
+                                            <div class="pp-layer-toolbar">
+                                                <button type="button" id="cpp-reset-defaults" class="btn btn-compact"
+                                                    title="Restore this layer to package default parameters">↻ Defaults</button>
+                                            </div>
+                                        </div>
+                                        <div class="field pp-package-field">
+                                            <label for="cpp-shader">Package</label>
+                                            <select id="cpp-shader" title="Effect package for this layer"></select>
+                                        </div>
+                                        <p id="cpp-shader-desc" class="hint pp-shader-desc-one-line" title=""></p>
+                                        <input type="checkbox" id="cpp-layer-enabled" class="visually-hidden" checked tabindex="-1" aria-hidden="true" />
+                                        <div id="cpp-uniforms" class="uniform-controls"></div>
+                                        <div class="row actions">
+                                            <button type="button" id="cpp-layer-up" class="btn" title="Move layer earlier">↑</button>
+                                            <button type="button" id="cpp-layer-down" class="btn" title="Move layer later">↓</button>
+                                            <button type="button" id="cpp-layer-remove" class="btn danger grow">Remove</button>
+                                        </div>
+                                    </div>
+                                    <p id="cpp-layer-empty-hint" class="hint pp-empty-hint">Add a postprocess package to stack effects on this panel.</p>
+                                </div>
+
+                                <!-- Legacy Apply kept for full manual commit / tests; live apply is primary -->
+                                <div class="row actions sticky-actions">
+                                    <button type="button" id="c-apply" class="btn grow" title="Force-apply all visible fields">Apply now</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </main>
+        </aside>
+        <div id="split-bottom" class="dock-split dock-split-h" data-side="bottom" title="Drag to resize · double-click resets"></div>
+        <footer id="dock-show" class="is-collapsed" tabindex="-1">
+            <header class="perf-header">
+                    <div class="header-text">
+                        <h1 id="perf-title">Untitled</h1>
+                        <p class="subtitle" id="perf-stem">unsaved</p>
+                    </div>
+                    <span id="dirty-dot" class="dirty-dot hidden" title="Unsaved changes">●</span>
+                </header>
+
+                <section class="panel transport-panel" aria-label="Transport">
+                    <div class="transport-row">
+                        <button type="button" id="perf-btn-play" class="btn primary" title="Play / Pause show (Space)">▶</button>
+                        <button type="button" id="perf-btn-stop" class="btn" title="Stop">■</button>
+                        <button type="button" id="btn-go" class="btn accent" title="Go next clip (G)">Go</button>
+                        <button type="button" id="btn-skip" class="btn" title="Skip (cut) to next clip">Skip</button>
+                        <button type="button" id="btn-prev" class="btn" title="Previous clip">⟨</button>
+                        <span class="transport-sep" aria-hidden="true"></span>
+                        <button type="button" id="btn-new" class="btn">New</button>
+                        <button type="button" id="btn-open" class="btn">Open</button>
+                        <button type="button" id="btn-save" class="btn">Save</button>
+                        <button type="button" id="btn-save-as" class="btn">Save As</button>
+                        <button type="button" id="btn-delete" class="btn danger">Delete</button>
+                    </div>
+                    <div class="clock-row">
+                        <span id="show-clock" class="time">0:00</span>
+                        <span id="clip-meta" class="hint">No clip</span>
+                        <span id="show-status" class="status-pill">idle</span>
+                    </div>
+                </section>
+
+                <section class="panel doc-panel" aria-label="Document">
+                    <label class="check-row">
+                        <input type="checkbox" id="opt-loop" />
+                        Loop show
+                    </label>
+                    <div class="showfx-block">
+                        <div class="section-head">
+                            <h2>Show FX</h2>
+                            <label class="check-row tight">
+                                <input type="checkbox" id="showfx-active" />
+                                On all clips
+                            </label>
+                        </div>
+                        <p class="hint">Runs on top of each section’s own stack.</p>
+                        <ul id="showfx-list" class="showfx-list"></ul>
+                        <p id="showfx-empty" class="hint">No show-wide layers.</p>
+                        <div class="doc-row wrap">
+                            <button type="button" id="btn-showfx-add" class="btn">Add FX preset</button>
+                            <button type="button" id="btn-showfx-capture" class="btn">Capture live FX</button>
+                            <button type="button" id="btn-showfx-clear" class="btn">Clear</button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="split">
+                    <section class="panel cue-panel" aria-label="Cue list">
+                        <div class="section-head">
+                            <h2>Cues</h2>
+                            <button type="button" id="btn-add-clip" class="btn" title="Add clip">+</button>
+                        </div>
+                        <ul id="cue-list" class="cue-list"></ul>
+                        <p id="cue-empty" class="hint">Add a clip to start a show.</p>
+                    </section>
+
+                    <section class="panel inspector-panel" aria-label="Inspector">
+                        <h2>Inspector</h2>
+                        <div id="inspector-empty" class="hint">Select a clip.</div>
+                        <form id="inspector" class="inspector hidden" autocomplete="off">
+                            <label>Song
+                                <select id="insp-song"></select>
+                            </label>
+                            <div class="pair">
+                                <label>In
+                                    <input type="number" id="insp-in" min="0" step="0.01" />
+                                </label>
+                                <label>Out
+                                    <input type="number" id="insp-out" min="0" step="0.01" />
+                                </label>
+                            </div>
+                            <div class="pair">
+                                <label>Volume
+                                    <input type="number" id="insp-vol" min="0" max="1" step="0.05" />
+                                </label>
+                                <label>Hold after
+                                    <input type="number" id="insp-hold" min="0" step="0.1" />
+                                </label>
+                            </div>
+                            <label class="check-row">
+                                <input type="checkbox" id="insp-loop-go" />
+                                Loop until Go
+                            </label>
+
+                            <h3>Audio arrival</h3>
+                            <div class="pair">
+                                <label>Type
+                                    <select id="insp-audio-type">
+                                        <option value="cut">cut</option>
+                                        <option value="crossfade">crossfade</option>
+                                        <option value="dip-to-silence">dip-to-silence</option>
+                                    </select>
+                                </label>
+                                <label>Duration
+                                    <input type="number" id="insp-audio-dur" min="0" max="60" step="0.1" />
+                                </label>
+                            </div>
+                            <div class="pair">
+                                <label>Easing
+                                    <select id="insp-audio-ease">
+                                        <option value="linear">linear</option>
+                                        <option value="ease-in-out">ease-in-out</option>
+                                    </select>
+                                </label>
+                                <label>Offset
+                                    <input type="number" id="insp-audio-off" min="-30" max="30" step="0.1" />
+                                </label>
+                            </div>
+
+                            <h3>Look</h3>
+                            <p id="insp-look-info" class="hint"></p>
+                            <div class="doc-row wrap">
+                                <button type="button" id="btn-capture" class="btn">Capture current</button>
+                                <button type="button" id="btn-import-look" class="btn">Import preset</button>
+                                <button type="button" id="btn-inherit" class="btn">Inherit</button>
+                                <button type="button" id="btn-preview" class="btn">Preview</button>
+                                <button type="button" id="btn-add-look" class="btn">+ mid look</button>
+                            </div>
+                            <label>Look cue
+                                <select id="insp-look-sel"></select>
+                            </label>
+                            <label>Look offset
+                                <input type="number" id="insp-look-off" min="0" step="0.1" />
+                            </label>
+                            <h3>Visual arrival</h3>
+                            <div class="pair">
+                                <label>Type
+                                    <select id="insp-vis-type">
+                                        <option value="auto">auto</option>
+                                        <option value="morph">morph</option>
+                                        <option value="crossfade">crossfade</option>
+                                        <option value="cut">cut</option>
+                                        <option value="dip">dip</option>
+                                    </select>
+                                </label>
+                                <label>Duration
+                                    <input type="number" id="insp-vis-dur" min="0" max="60" step="0.1" />
+                                </label>
+                            </div>
+                            <div class="pair">
+                                <label>Easing
+                                    <select id="insp-vis-ease">
+                                        <option value="linear">linear</option>
+                                        <option value="ease-in-out">ease-in-out</option>
+                                    </select>
+                                </label>
+                                <label>Offset
+                                    <input type="number" id="insp-vis-off" min="-30" max="30" step="0.1" />
+                                </label>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+
+                <footer class="status-line" id="status-line">Ready</footer>
+
+                <dialog id="open-dialog">
+                    <form method="dialog" class="dialog-form">
+                        <h2>Open performance</h2>
+                        <select id="open-list" size="8"></select>
+                        <div class="doc-row">
+                            <button type="submit" value="cancel" class="btn">Cancel</button>
+                            <button type="submit" value="open" class="btn primary">Open</button>
+                        </div>
+                    </form>
+                </dialog>
+
+                <dialog id="preset-dialog">
+                    <form method="dialog" class="dialog-form">
+                        <h2 id="preset-dialog-title">Import look preset</h2>
+                        <select id="perf-preset-list" size="10"></select>
+                        <div class="doc-row">
+                            <button type="submit" value="cancel" class="btn">Cancel</button>
+                            <button type="submit" value="import" class="btn primary">Import</button>
+                        </div>
+                    </form>
+                </dialog>
+        </footer>
+    </div>
+    <script src="./workspace-bus.js"></script>
+    <script>
+        (function () {
+            const ipc = window.musicView;
+            window.__musicViewIpc = ipc;
+            window.__musicViewBus = createWorkspaceBus(ipc, {
+                role: 'workspace',
+                inProcessDisplay: true,
+                inProcessMusic: true,
+                inProcessAudio: true,
+                inProcessState: true,
+                inProcessPerfFanout: true,
+            });
+        })();
+    </script>
+    <script src="./param-mod.js"></script>
+    <script src="./shaders.js"></script>
+    <script src="./artef4kt-host.js"></script>
+    <script src="./scene-match.js"></script>
+    <script src="./layout-space.js"></script>
+    <script src="./audio-input.js"></script>
+    <script src="./renderer.js"></script>
+    <script src="./audio-analysis.js"></script>
+    <script src="./music.js"></script>
+    <script src="./controls.js"></script>
+    <script src="./performance.js"></script>
+    <script src="./workspace-hotkeys.js"></script>
+    <script src="./workspace.js"></script>
+</body>
+
+</html>

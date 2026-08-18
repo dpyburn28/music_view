@@ -1,0 +1,58 @@
+{
+  "id": "levels",
+  "name": "Levels (LGG)",
+  "description": "Lift–gamma–gain foundation grade. Near-identity defaults; stack before optics for clean polish.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_lift",
+      "label": "Lift",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.5,
+      "max": 0.5,
+      "step": 0.005,
+      "group": "Levels",
+      "widget": "slider",
+      "hint": "Shadows offset (0 = unchanged)"
+    },
+    {
+      "name": "u_gamma",
+      "label": "Gamma",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.2,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Levels",
+      "widget": "slider",
+      "hint": "Midtone curve (1 = unchanged)"
+    },
+    {
+      "name": "u_gain",
+      "label": "Gain",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Levels",
+      "widget": "slider",
+      "hint": "Highlight scale (1 = unchanged)"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full effect"
+    }
+  ]
+}

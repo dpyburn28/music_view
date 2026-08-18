@@ -1,0 +1,180 @@
+{
+  "id": "audio-beat-2",
+  "name": "Audio Beat Ripple 2",
+  "description": "Kaleidoscopic liquid SDF ripple with procedural cosine colors.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_symmetry",
+      "label": "Symmetry Folds",
+      "type": "float",
+      "default": 6.0,
+      "min": 1.0,
+      "max": 16.0,
+      "step": 1.0,
+      "group": "Geometry",
+      "widget": "stepper",
+      "order": 1,
+      "hint": "Number of kaleidoscopic slices"
+    },
+    {
+      "name": "u_smin_k",
+      "label": "Liquid Merge",
+      "type": "float",
+      "default": 0.12,
+      "min": 0.01,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Geometry",
+      "widget": "slider",
+      "order": 2,
+      "hint": "Smoothness of the SDF blending"
+    },
+    {
+      "name": "u_density",
+      "label": "Grid Density",
+      "type": "float",
+      "default": 12.0,
+      "min": 2.0,
+      "max": 32.0,
+      "step": 1.0,
+      "group": "Geometry",
+      "widget": "slider",
+      "order": 3
+    },
+    {
+      "name": "u_particle_size",
+      "label": "Blob Size",
+      "type": "float",
+      "default": 0.4,
+      "min": 0.1,
+      "max": 1.5,
+      "step": 0.05,
+      "group": "Geometry",
+      "widget": "slider",
+      "order": 4
+    },
+    {
+      "name": "u_spread",
+      "label": "Spread",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.25,
+      "max": 2.5,
+      "step": 0.05,
+      "group": "Geometry",
+      "widget": "slider",
+      "order": 5
+    },
+    {
+      "name": "u_pal_base",
+      "label": "Palette Base (A)",
+      "type": "color",
+      "default": [0.5, 0.5, 0.5],
+      "group": "Color",
+      "widget": "color",
+      "order": 10
+    },
+    {
+      "name": "u_pal_amp",
+      "label": "Palette Amp (B)",
+      "type": "color",
+      "default": [0.5, 0.5, 0.5],
+      "group": "Color",
+      "widget": "color",
+      "order": 11
+    },
+    {
+      "name": "u_pal_freq",
+      "label": "Palette Freq (C)",
+      "type": "color",
+      "default": [1.0, 1.0, 1.0],
+      "group": "Color",
+      "widget": "color",
+      "order": 12
+    },
+    {
+      "name": "u_pal_phase",
+      "label": "Palette Phase (D)",
+      "type": "color",
+      "default": [0.0, 0.33, 0.67],
+      "group": "Color",
+      "widget": "color",
+      "order": 13
+    },
+    {
+      "name": "u_bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": [0.015, 0.015, 0.03],
+      "group": "Color",
+      "widget": "color",
+      "order": 14
+    },
+    {
+      "name": "u_intensity",
+      "label": "Intensity",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "format": "percent",
+      "order": 15
+    },
+    {
+      "name": "u_beat",
+      "label": "Beat",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "format": "percent",
+      "advanced": true
+    },
+    {
+      "name": "u_envelope",
+      "label": "Envelope",
+      "type": "float",
+      "default": 0.4,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "format": "percent",
+      "advanced": true
+    },
+    {
+      "name": "u_beat_phase",
+      "label": "Beat phase",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 10000.0,
+      "step": 1.0,
+      "group": "Audio",
+      "widget": "number",
+      "advanced": true
+    },
+    {
+      "name": "u_bass",
+      "label": "Bass",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "format": "percent",
+      "advanced": true
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "crop-zoom",
+  "name": "Crop Zoom",
+  "description": "Zoom and pan the frame before later FX. Useful for reframing without moving containers.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_zoom",
+      "label": "Zoom",
+      "type": "float",
+      "default": 1.15,
+      "min": 1.0,
+      "max": 3.0,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider",
+      "hint": "1 = full frame, higher = tighter crop"
+    },
+    {
+      "name": "u_pan_x",
+      "label": "Pan X",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.5,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider"
+    },
+    {
+      "name": "u_pan_y",
+      "label": "Pan Y",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.5,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full crop/zoom"
+    }
+  ]
+}

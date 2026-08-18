@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "toolkit-print",
+  "createdAt": "2026-08-13T00:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.649Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1.05,
+            "u_contrast": 1.2,
+            "u_saturation": 0.85,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "halftone",
+          "enabled": true,
+          "uniforms": {
+            "u_scale": 5.5,
+            "u_angle": 25,
+            "u_contrast": 1.25,
+            "u_color_ink": [
+              0.1,
+              0.1,
+              0.12
+            ],
+            "u_color_paper": [
+              0.96,
+              0.94,
+              0.88
+            ],
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "dither",
+          "enabled": true,
+          "uniforms": {
+            "u_intensity": 0.25
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

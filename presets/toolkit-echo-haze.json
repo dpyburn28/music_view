@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "toolkit-echo-haze",
+  "createdAt": "2026-08-13T00:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.648Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "echo-smear",
+          "enabled": true,
+          "uniforms": {
+            "u_decay": 0.93,
+            "u_drift": 0.01,
+            "u_angle": 100,
+            "u_mix": 0.7,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "warp-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_scale": 3.5,
+            "u_strength": 0.015,
+            "u_speed": 0.35,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.45,
+            "u_radius": 3,
+            "u_strength": 0.7,
+            "u_iterations": 2,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "clamp-tonemap",
+          "enabled": true,
+          "uniforms": {
+            "u_knee": 0.7,
+            "u_strength": 0.7,
+            "u_intensity": 1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

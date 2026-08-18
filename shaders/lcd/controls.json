@@ -1,0 +1,290 @@
+{
+  "id": "lcd",
+  "name": "LCD Screen",
+  "description": "Emulates a pixel LCD panel: RGB subpixels, grid gaps, soft backlight bloom, scanlines, curvature, and color tuning.",
+  "roles": [
+    "postprocess"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_pixel_size",
+      "label": "Pixel size",
+      "type": "float",
+      "default": 3.0,
+      "min": 1.0,
+      "max": 16.0,
+      "step": 0.5,
+      "group": "Pixels",
+      "widget": "slider",
+      "unit": "px",
+      "hint": "LCD pixel size in screen pixels"
+    },
+    {
+      "name": "u_pixel_aspect",
+      "label": "Pixel aspect",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.5,
+      "max": 2.0,
+      "step": 0.05,
+      "group": "Pixels",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_grid_gap",
+      "label": "Grid gap",
+      "type": "float",
+      "default": 0.22,
+      "min": 0.0,
+      "max": 0.6,
+      "step": 0.01,
+      "group": "Pixels",
+      "widget": "slider"
+    },
+    {
+      "name": "u_subpixel",
+      "label": "Subpixel strength",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Pixels",
+      "widget": "slider"
+    },
+    {
+      "name": "u_subpixel_mode",
+      "label": "Subpixel layout",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 1.0,
+      "group": "Pixels",
+      "advanced": true,
+      "widget": "segmented",
+      "options": [
+        {
+          "value": 0,
+          "label": "RGB"
+        },
+        {
+          "value": 1,
+          "label": "BGR"
+        },
+        {
+          "value": 2,
+          "label": "V-RGB"
+        }
+      ],
+      "hint": "Physical subpixel order of the emulated panel"
+    },
+    {
+      "name": "u_scanline",
+      "label": "Scanlines",
+      "type": "float",
+      "default": 0.18,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Screen",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_scanline_soft",
+      "label": "Scanline soft",
+      "type": "float",
+      "default": 0.45,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Screen",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_brightness",
+      "label": "Brightness",
+      "type": "float",
+      "default": 1.08,
+      "min": 0.3,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.05,
+      "min": 0.5,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_saturation",
+      "label": "Saturation",
+      "type": "float",
+      "default": 1.12,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Color",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_backlight",
+      "label": "Backlight bleed",
+      "type": "float",
+      "default": 0.12,
+      "min": 0.0,
+      "max": 0.6,
+      "step": 0.01,
+      "group": "Color",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_bloom",
+      "label": "Bloom",
+      "type": "float",
+      "default": 0.15,
+      "min": 0.0,
+      "max": 0.8,
+      "step": 0.01,
+      "group": "Color",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_bleed",
+      "label": "Color bleed",
+      "type": "float",
+      "default": 0.08,
+      "min": 0.0,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Color",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_curvature",
+      "label": "Curvature",
+      "type": "float",
+      "default": 0.06,
+      "min": 0.0,
+      "max": 0.4,
+      "step": 0.005,
+      "group": "Screen",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_vignette",
+      "label": "Vignette",
+      "type": "float",
+      "default": 0.22,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Screen",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_edge_mask",
+      "label": "Edge mask",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Screen",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_sharpness",
+      "label": "Sharpness",
+      "type": "float",
+      "default": 0.85,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Pixels",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_flicker",
+      "label": "Flicker",
+      "type": "float",
+      "default": 0.02,
+      "min": 0.0,
+      "max": 0.15,
+      "step": 0.005,
+      "group": "Noise",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_noise",
+      "label": "Noise",
+      "type": "float",
+      "default": 0.03,
+      "min": 0.0,
+      "max": 0.2,
+      "step": 0.005,
+      "group": "Noise",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_tint",
+      "label": "Panel tint",
+      "type": "color",
+      "default": [
+        0.96,
+        0.98,
+        1.0
+      ],
+      "group": "Color",
+      "advanced": true,
+      "widget": "color"
+    },
+    {
+      "name": "u_black_level",
+      "label": "Black level",
+      "type": "float",
+      "default": 0.03,
+      "min": 0.0,
+      "max": 0.2,
+      "step": 0.005,
+      "group": "Color",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Effect mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "format": "percent",
+      "unit": "%",
+      "hint": "Blend of processed vs original",
+      "widget": "slider"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "bitplane",
+  "name": "Bit Plane",
+  "description": "Extract or mask a digital bit plane. Structural / data-mosh adjacent utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_bit", "label": "Bit", "type": "float", "default": 4.0, "min": 0.0, "max": 7.0, "step": 1.0, "group": "Utility", "widget": "stepper", "hint": "0 = LSB-ish, 7 = coarse" },
+    { "name": "u_mode", "label": "Mode", "type": "float", "default": 0.0, "min": 0.0, "max": 2.0, "step": 1.0, "group": "Utility", "widget": "segmented", "options": [{ "value": 0, "label": "Plane" }, { "value": 1, "label": "Mask" }, { "value": 2, "label": "XOR" }] },
+    { "name": "u_mono", "label": "Luma only", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 1.0, "group": "Utility", "widget": "toggle" },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full bit plane" }
+  ]
+}

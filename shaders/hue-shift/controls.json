@@ -1,0 +1,46 @@
+{
+  "id": "hue-shift",
+  "name": "Hue Shift",
+  "description": "Rotate hue in HSV and optionally adjust saturation. Quick palette pivots without a full grade.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_hue",
+      "label": "Hue",
+      "type": "float",
+      "default": 0.0,
+      "min": -180.0,
+      "max": 180.0,
+      "step": 1.0,
+      "group": "Color",
+      "widget": "slider",
+      "hint": "Hue rotation in degrees (0 = unchanged)"
+    },
+    {
+      "name": "u_saturation",
+      "label": "Saturation",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "hint": "1 = original saturation after hue rotate"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full effect"
+    }
+  ]
+}

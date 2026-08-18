@@ -1,0 +1,14 @@
+{
+  "id": "jpeg-blocks",
+  "name": "JPEG Blocks",
+  "description": "Fake macroblock quantize + edge ringing. Compression artifact utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_block", "label": "Block size", "type": "float", "default": 8.0, "min": 4.0, "max": 32.0, "step": 1.0, "group": "Utility", "widget": "stepper", "unit": "px" },
+    { "name": "u_quality", "label": "Quality", "type": "float", "default": 0.35, "min": 0.05, "max": 1.0, "step": 0.01, "group": "Utility", "widget": "slider", "hint": "Lower = harsher quantize" },
+    { "name": "u_ringing", "label": "Ringing", "type": "float", "default": 0.4, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Utility", "widget": "slider" },
+    { "name": "u_chromaSub", "label": "Chroma sub", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 1.0, "group": "Utility", "widget": "toggle", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full JPEG look" }
+  ]
+}

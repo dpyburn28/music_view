@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "toolkit-broken-broadcast",
+  "createdAt": "2026-08-13T00:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.648Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "rgb-glitch",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.45,
+            "u_slices": 28,
+            "u_chroma": 0.014,
+            "u_speed": 8,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "vhs",
+          "enabled": true,
+          "uniforms": {}
+        },
+        {
+          "shaderId": "pixelate",
+          "enabled": true,
+          "uniforms": {
+            "u_size": 3,
+            "u_intensity": 0.35
+          }
+        },
+        {
+          "shaderId": "dither",
+          "enabled": true,
+          "uniforms": {
+            "u_intensity": 0.4
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

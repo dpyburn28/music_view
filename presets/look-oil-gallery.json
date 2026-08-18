@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "Oil Gallery",
+  "createdAt": "2026-08-13T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.638Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "oil-paint",
+          "enabled": true,
+          "uniforms": {
+            "u_radius": 2.8,
+            "u_levels": 10,
+            "u_smooth": 0.4,
+            "u_intensity": 0.95
+          }
+        },
+        {
+          "shaderId": "split-tone",
+          "enabled": true,
+          "uniforms": {
+            "u_shadows": [
+              0.35,
+              0.28,
+              0.55
+            ],
+            "u_highlights": [
+              1,
+              0.88,
+              0.65
+            ],
+            "u_balance": 0.5,
+            "u_amount": 0.4,
+            "u_softness": 0.22,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_softness": 0.6,
+            "u_roundness": 1,
+            "u_invert": 0,
+            "u_intensity": 0.75
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

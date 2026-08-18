@@ -1,0 +1,23 @@
+{
+  "id": "grain",
+  "name": "Film Grain",
+  "description": "Postprocess pass that adds animated film grain over the full scene.",
+  "roles": [
+    "postprocess"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.14,
+      "min": 0.0,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Grain",
+      "widget": "slider",
+      "hint": "Film grain strength"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>music_view — Music</title>
+    <link rel="stylesheet" href="./music.css" />
+</head>
+
+<body>
+    <!-- Compact chrome -->
+    <header class="music-header">
+        <div class="header-text">
+            <h1>Music</h1>
+            <p class="subtitle" id="songs-dir" title="">Loading…</p>
+        </div>
+        <button type="button" id="music-btn-refresh" class="btn ghost" title="Refresh library">↻</button>
+    </header>
+    <div id="show-driving-bar" class="show-driving hidden">
+        <span>Performance driving playback</span>
+        <button type="button" id="btn-takeover" class="btn">Take over</button>
+    </div>
+
+    <main class="music-main">
+        <!-- Always-visible transport -->
+        <section class="panel player-panel" aria-label="Transport">
+            <div class="now-row">
+                <div id="cover-wrap" class="cover-wrap empty" title="Album cover">
+                    <img id="cover-art" class="cover-art hidden" alt="" />
+                    <div id="cover-placeholder" class="cover-placeholder">♪</div>
+                </div>
+                <div class="now-text">
+                    <p id="now-title" class="now-title">No song selected</p>
+                    <p id="now-meta" class="hint now-meta"></p>
+                </div>
+                <div class="transport">
+                    <button type="button" id="music-btn-play" class="btn primary" disabled title="Play / Pause">▶</button>
+                    <button type="button" id="music-btn-stop" class="btn" disabled title="Stop">■</button>
+                </div>
+            </div>
+
+            <audio id="audio-a" preload="metadata"></audio>
+            <audio id="audio-b" preload="metadata"></audio>
+
+            <div class="scrub">
+                <span id="time-cur" class="time">0:00</span>
+                <input type="range" id="seek" min="0" max="0" step="0.01" value="0" disabled />
+                <span id="time-dur" class="time">0:00</span>
+            </div>
+
+            <div class="controls-row">
+                <label class="vol-label" for="volume" title="Volume">Vol</label>
+                <input type="range" id="volume" min="0" max="1" step="0.01" value="1" />
+                <span id="player-status" class="status"></span>
+            </div>
+        </section>
+
+        <!-- Tabbed workspace: one panel owns the remaining height -->
+        <nav class="tab-bar" role="tablist" aria-label="Music panels">
+            <button type="button" class="tab active" role="tab" id="tab-lib" data-tab="lib"
+                aria-selected="true" aria-controls="panel-lib">Library</button>
+            <button type="button" class="tab" role="tab" id="tab-lyrics" data-tab="lyrics"
+                aria-selected="false" aria-controls="panel-lyrics">Lyrics</button>
+            <button type="button" class="tab" role="tab" id="tab-analysis" data-tab="analysis"
+                aria-selected="false" aria-controls="panel-analysis">Analysis</button>
+            <button type="button" class="tab" role="tab" id="tab-fx" data-tab="fx"
+                aria-selected="false" aria-controls="panel-fx">FX</button>
+        </nav>
+
+        <div class="tab-panels">
+            <!-- Library -->
+            <section class="panel tab-panel active" id="panel-lib" role="tabpanel" aria-labelledby="tab-lib">
+                <div class="section-head tight">
+                    <h2>Library</h2>
+                    <input type="search" id="song-filter" class="filter" placeholder="Filter…" />
+                </div>
+                <form id="spotify-import" class="spotify-import" autocomplete="off">
+                    <input type="text" id="spotify-url" class="filter" spellcheck="false" inputmode="url"
+                        placeholder="Paste Spotify track link…"
+                        title="Import audio + lyrics from a Spotify song URL" />
+                    <button type="submit" id="btn-spotify-import" class="btn primary tiny">Import</button>
+                </form>
+                <p id="spotify-import-status" class="hint spotify-import-status" hidden></p>
+                <ul id="song-list" class="song-list" tabindex="0"></ul>
+                <p id="library-empty" class="hint hidden">No audio files found.</p>
+            </section>
+
+            <!-- Lyrics -->
+            <section class="panel tab-panel" id="panel-lyrics" role="tabpanel" aria-labelledby="tab-lyrics" hidden>
+                <div class="section-head tight">
+                    <h2>Lyrics</h2>
+                    <p id="lyrics-status" class="hint lyrics-status-inline">No song</p>
+                </div>
+                <div id="lyrics-meta" class="lyrics-meta hidden"></div>
+                <div id="lyrics-view" class="lyrics-view"></div>
+            </section>
+
+            <!-- Analysis (primary viz workspace) -->
+            <section class="panel tab-panel analysis-panel" id="panel-analysis" role="tabpanel"
+                aria-labelledby="tab-analysis" hidden>
+                <div class="analysis-toolbar">
+                    <label class="check-row tight" for="viz-enabled" title="Stream analysis to display shaders">
+                        <input type="checkbox" id="viz-enabled" checked />
+                        <span>To display</span>
+                    </label>
+                    <label class="check-row tight" for="viz-local-preview" title="Draw local scope / spectrum">
+                        <input type="checkbox" id="viz-local-preview" checked />
+                        <span>Preview</span>
+                    </label>
+                    <span id="viz-status" class="pill" title="Analysis state">Idle</span>
+                    <button type="button" id="viz-reset" class="btn ghost tiny" title="Reset detectors & AGC">Reset</button>
+                </div>
+
+                <div class="analysis-canvases">
+                    <div class="canvas-block">
+                        <div class="canvas-label">
+                            <span>Scope</span>
+                            <span id="viz-scope-hint" class="canvas-hint">waveform</span>
+                        </div>
+                        <canvas id="viz-scope" class="viz-canvas" width="360" height="72"></canvas>
+                    </div>
+                    <div class="canvas-block">
+                        <div class="canvas-label">
+                            <span>Spectrum</span>
+                            <span id="viz-spec-hint" class="canvas-hint">FFT</span>
+                        </div>
+                        <canvas id="viz-spectrum" class="viz-canvas" width="360" height="72"></canvas>
+                    </div>
+                </div>
+
+                <div class="beat-row">
+                    <div id="viz-beat-lamp" class="beat-lamp" title="Beat pulse"></div>
+                    <div class="beat-meta">
+                        <span class="beat-meta-label">Beat</span>
+                        <span id="viz-beat-val" class="beat-meta-val">0.00</span>
+                    </div>
+                    <div class="beat-meta">
+                        <span class="beat-meta-label">Env</span>
+                        <span id="viz-env-val" class="beat-meta-val">0.00</span>
+                    </div>
+                    <div class="beat-meta">
+                        <span class="beat-meta-label">Thr</span>
+                        <span id="viz-thr-val" class="beat-meta-val">—</span>
+                    </div>
+                    <div class="beat-meta">
+                        <span class="beat-meta-label">AGC</span>
+                        <span id="viz-agc-val" class="beat-meta-val">—</span>
+                    </div>
+                </div>
+
+                <div class="ctrl-group-label">Bands &amp; features</div>
+                <div class="meter-grid meter-grid-dense" id="viz-meter-grid" aria-label="Analysis meters">
+                    <!-- filled by music.js from AudioAnalysis.CHANNELS -->
+                </div>
+
+                <div class="analysis-controls">
+                    <div class="ctrl-group-label">Beat detection</div>
+                    <div class="ctrl-grid">
+                        <label class="field" for="viz-sensitivity">
+                            <span class="field-label">Sensitivity <span id="viz-sens-val" class="field-val">1.45</span></span>
+                            <input type="range" id="viz-sensitivity" min="0.5" max="2.5" step="0.05" value="1.45"
+                                title="Higher = easier onsets (lower σ threshold)" />
+                        </label>
+                        <label class="field" for="viz-gain">
+                            <span class="field-label">Input gain <span id="viz-gain-val" class="field-val">1.00</span></span>
+                            <input type="range" id="viz-gain" min="0.4" max="2.5" step="0.05" value="1" />
+                        </label>
+                        <label class="field" for="viz-refractory">
+                            <span class="field-label">Refractory <span id="viz-ref-val" class="field-val">150ms</span></span>
+                            <input type="range" id="viz-refractory" min="60" max="500" step="10" value="150"
+                                title="Minimum time between beats" />
+                        </label>
+                        <label class="field" for="viz-pulse">
+                            <span class="field-label">Pulse decay <span id="viz-pulse-val" class="field-val">130ms</span></span>
+                            <input type="range" id="viz-pulse" min="40" max="500" step="10" value="130" />
+                        </label>
+                        <label class="field" for="viz-smoothing">
+                            <span class="field-label">FFT smooth <span id="viz-smooth-val" class="field-val">0.20</span></span>
+                            <input type="range" id="viz-smoothing" min="0" max="0.9" step="0.05" value="0.2"
+                                title="Lower = sharper onsets (recommended 0.1–0.3)" />
+                        </label>
+                        <label class="field" for="viz-rate">
+                            <span class="field-label">Send rate <span id="viz-rate-val" class="field-val">50 Hz</span></span>
+                            <input type="range" id="viz-rate" min="15" max="60" step="1" value="50" />
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Empty lyrics FX (secondary) -->
+            <section class="panel tab-panel" id="panel-fx" role="tabpanel" aria-labelledby="tab-fx" hidden>
+                <div class="section-head tight">
+                    <h2>Empty lyrics FX</h2>
+                    <p class="hint lyrics-status-inline">Display panel</p>
+                </div>
+                <p class="hint empty-fx-blurb">
+                    When a track has no .lrc, the display lyrics box scrambles characters instead of “No lyrics”.
+                </p>
+                <label class="check-row" for="elfx-enabled">
+                    <input type="checkbox" id="elfx-enabled" checked />
+                    <span>Enable glitch effect</span>
+                </label>
+                <div class="ctrl-grid">
+                    <label class="field" for="elfx-charset">
+                        <span class="field-label">Charset</span>
+                        <select id="elfx-charset">
+                            <option value="mixed" selected>Mixed</option>
+                            <option value="special">Specials</option>
+                            <option value="ascii">ASCII</option>
+                            <option value="symbols">Symbols</option>
+                            <option value="blocks">Blocks</option>
+                            <option value="matrix">Matrix</option>
+                            <option value="hex">Hex</option>
+                            <option value="binary">Binary</option>
+                        </select>
+                    </label>
+                    <label class="field" for="elfx-length">
+                        <span class="field-label">Length <span id="elfx-length-val" class="field-val">18</span></span>
+                        <input type="range" id="elfx-length" min="4" max="48" step="1" value="18" />
+                    </label>
+                    <label class="field" for="elfx-lines">
+                        <span class="field-label">Lines <span id="elfx-lines-val" class="field-val">3</span></span>
+                        <input type="range" id="elfx-lines" min="1" max="5" step="1" value="3" />
+                    </label>
+                    <label class="field" for="elfx-rate">
+                        <span class="field-label">Rate Hz <span id="elfx-rate-val" class="field-val">14</span></span>
+                        <input type="range" id="elfx-rate" min="0.5" max="40" step="0.5" value="14" />
+                    </label>
+                    <label class="field" for="elfx-change">
+                        <span class="field-label">Glitch % <span id="elfx-change-val" class="field-val">38</span></span>
+                        <input type="range" id="elfx-change" min="0.05" max="1" step="0.01" value="0.38" />
+                    </label>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="./audio-analysis.js"></script>
+    <script src="./music.js"></script>
+</body>
+
+</html>

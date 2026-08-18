@@ -1,0 +1,76 @@
+{
+  "id": "edge-glow",
+  "name": "Edge Glow",
+  "description": "Sobel edges with colored glow. Neon outlines without a full multi-layer stack.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_threshold",
+      "label": "Threshold",
+      "type": "float",
+      "default": 0.06,
+      "min": 0.0,
+      "max": 0.4,
+      "step": 0.005,
+      "group": "Style",
+      "widget": "slider"
+    },
+    {
+      "name": "u_strength",
+      "label": "Strength",
+      "type": "float",
+      "default": 1.4,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Style",
+      "widget": "slider"
+    },
+    {
+      "name": "u_spread",
+      "label": "Spread",
+      "type": "float",
+      "default": 1.2,
+      "min": 0.5,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Style",
+      "widget": "slider",
+      "hint": "Edge sample distance in pixels scale"
+    },
+    {
+      "name": "u_color",
+      "label": "Glow color",
+      "type": "color",
+      "default": [0.35, 0.9, 1.0],
+      "group": "Style",
+      "widget": "color"
+    },
+    {
+      "name": "u_keep_image",
+      "label": "Keep image",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Style",
+      "widget": "slider",
+      "hint": "0 = pure neon edges on black, 1 = full original under glow"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full edge glow"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "filmic",
+  "name": "Filmic",
+  "description": "Filmic tone curve with exposure, contrast, and saturation. Cinema grade foundation.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_exposure",
+      "label": "Exposure",
+      "type": "float",
+      "default": 0.15,
+      "min": -1.5,
+      "max": 1.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "unit": "EV",
+      "hint": "Stops of exposure before the curve"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.1,
+      "min": 0.4,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_saturation",
+      "label": "Saturation",
+      "type": "float",
+      "default": 0.95,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_shoulder",
+      "label": "Shoulder",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "advanced": true,
+      "hint": "Highlight roll-off"
+    },
+    {
+      "name": "u_toe",
+      "label": "Toe",
+      "type": "float",
+      "default": 0.25,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "advanced": true,
+      "hint": "Shadow lift / crush"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full grade"
+    }
+  ]
+}

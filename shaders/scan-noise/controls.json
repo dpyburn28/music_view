@@ -1,0 +1,14 @@
+{
+  "id": "scan-noise",
+  "name": "Scan Noise",
+  "description": "Scanline-locked noise with optional roll. Broadcast / VHS hiss utility without full VHS pack.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_amount", "label": "Amount", "type": "float", "default": 0.28, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Noise", "widget": "slider" },
+    { "name": "u_lineDensity", "label": "Line height", "type": "float", "default": 1.0, "min": 1.0, "max": 8.0, "step": 1.0, "group": "Noise", "widget": "stepper", "unit": "px" },
+    { "name": "u_rolling", "label": "Roll", "type": "float", "default": 0.15, "min": 0.0, "max": 2.0, "step": 0.05, "group": "Noise", "widget": "slider" },
+    { "name": "u_mono", "label": "Mono", "type": "float", "default": 0.85, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Noise", "widget": "slider", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full scan noise" }
+  ]
+}

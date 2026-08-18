@@ -1,0 +1,298 @@
+{
+  "version": 1,
+  "name": "LED Marquee",
+  "createdAt": "2026-08-08T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.626Z",
+  "scene": {
+    "containers": [
+      {
+        "role": "song-cover",
+        "label": "Cover",
+        "labelCorner": "bottom-right",
+        "left": 227,
+        "top": 493,
+        "width": 626,
+        "height": 626,
+        "relative": {
+          "widthOfMin": 0.58,
+          "centerX": true,
+          "centerYOffset": -0.08
+        },
+        "wander": true,
+        "wanderAmplitude": 0.6,
+        "wanderFrequency": 4,
+        "layer": 0,
+        "distancing": 0,
+        "connect": true,
+        "anchorDistance": 220,
+        "attachToRole": "song-info",
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "fill",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#1a1208",
+            "lineWidth": 3,
+            "dash": []
+          },
+          "connect": {
+            "color": "#ff8844",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Arial Black\", \"Helvetica Neue\", sans-serif",
+            "fontSize": 11,
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "color": "#ffcc88",
+            "background": "rgba(0,0,0,0.8)",
+            "letterSpacing": 1.2,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Arial Black\", \"Helvetica Neue\", sans-serif",
+            "fontSize": 11,
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "color": "#ffcc88",
+            "background": "rgba(0,0,0,0.8)",
+            "letterSpacing": 1.2,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-info",
+        "label": "Track",
+        "labelCorner": "bottom-right",
+        "left": 450,
+        "top": 1137,
+        "width": 180,
+        "height": 70,
+        "relative": {
+          "centerX": true,
+          "belowRole": "song-cover",
+          "gap": 18
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 1,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#1a1208",
+            "lineWidth": 3,
+            "dash": []
+          },
+          "connect": {
+            "color": "#ff8844",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Arial Black\", \"Helvetica Neue\", sans-serif",
+            "fontSize": 11,
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "color": "#ffcc88",
+            "background": "rgba(0,0,0,0.8)",
+            "letterSpacing": 1.2,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Arial Black\", \"Helvetica Neue\", sans-serif",
+            "fontSize": 11,
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "color": "#ffcc88",
+            "background": "rgba(0,0,0,0.8)",
+            "letterSpacing": 1.2,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-lyrics",
+        "label": "Lyrics",
+        "labelCorner": "top-right",
+        "left": 350,
+        "top": 1223,
+        "width": 380,
+        "height": 110,
+        "relative": {
+          "widthOfPanel": 0.82,
+          "maxWidth": 380,
+          "centerX": true,
+          "belowRole": "song-info",
+          "gap": 16
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 2,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#1a1208",
+            "lineWidth": 3,
+            "dash": []
+          },
+          "connect": {
+            "color": "#ff8844",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Arial Black\", \"Helvetica Neue\", sans-serif",
+            "fontSize": 11,
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "color": "#ffcc88",
+            "background": "rgba(0,0,0,0.8)",
+            "letterSpacing": 1.2,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Arial Black\", \"Helvetica Neue\", sans-serif",
+            "fontSize": 11,
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "color": "#ffcc88",
+            "background": "rgba(0,0,0,0.8)",
+            "letterSpacing": 1.2,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-progress",
+        "label": "Progress",
+        "labelCorner": "bottom-right",
+        "left": 340,
+        "top": 1870,
+        "width": 400,
+        "height": 32,
+        "relative": {
+          "widthOfPanel": 0.88,
+          "maxWidth": 400,
+          "centerX": true,
+          "bottomInset": 18
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 3,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": "center",
+        "style": {
+          "border": {
+            "color": "#1a1208",
+            "lineWidth": 3,
+            "dash": []
+          },
+          "connect": {
+            "color": "#ff8844",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Arial Black\", \"Helvetica Neue\", sans-serif",
+            "fontSize": 11,
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "color": "#ffcc88",
+            "background": "rgba(0,0,0,0.8)",
+            "letterSpacing": 1.2,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Arial Black\", \"Helvetica Neue\", sans-serif",
+            "fontSize": 11,
+            "fontWeight": "800",
+            "fontStyle": "normal",
+            "color": "#ffcc88",
+            "background": "rgba(0,0,0,0.8)",
+            "letterSpacing": 1.2,
+            "opacity": 1
+          }
+        }
+      }
+    ],
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "led-matrix",
+          "enabled": true,
+          "uniforms": {
+            "u_pitch": 7,
+            "u_dot_size": 0.78,
+            "u_shape": 0,
+            "u_glow": 0.48,
+            "u_levels": 8,
+            "u_gap": 0.88,
+            "u_brightness": 1.35,
+            "u_tint": [
+              1,
+              0.72,
+              0.35
+            ],
+            "u_bg": [
+              0.01,
+              0.01,
+              0.02
+            ],
+            "u_intensity": 1
+          },
+          "modulators": {
+            "u_glow": {
+              "source": "sine",
+              "offset": 0.48,
+              "amp": 0.15,
+              "rate": 0.55,
+              "phase": 0
+            },
+            "u_brightness": {
+              "source": "sine",
+              "offset": 1.35,
+              "amp": 0.12,
+              "rate": 0.4,
+              "phase": 2
+            },
+            "u_pitch": {
+              "source": "triangle",
+              "offset": 7,
+              "amp": 0.6,
+              "rate": 0.08,
+              "phase": 0
+            }
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

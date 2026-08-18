@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "toolkit-sketch",
+  "createdAt": "2026-08-13T00:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.649Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1.05,
+            "u_contrast": 1.25,
+            "u_saturation": 0,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "crosshatch",
+          "enabled": true,
+          "uniforms": {
+            "u_density": 7,
+            "u_thickness": 0.4,
+            "u_contrast": 1.2,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "outline",
+          "enabled": true,
+          "uniforms": {
+            "u_strength": 0.9,
+            "u_threshold": 0.1,
+            "u_color": [
+              0.12,
+              0.12,
+              0.14
+            ],
+            "u_invert_bg": 0,
+            "u_intensity": 0.55
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

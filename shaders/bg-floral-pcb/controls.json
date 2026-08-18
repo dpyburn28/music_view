@@ -1,0 +1,78 @@
+{
+  "id": "bg-floral-pcb",
+  "name": "Floral PCB",
+  "description": "Stylized green board, spinning platter, and swaying wildflowers. Stage / panel fill.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_bloom",
+      "label": "Flowers",
+      "type": "float",
+      "default": 0.85,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Look",
+      "widget": "slider",
+      "format": "percent",
+      "order": 1
+    },
+    {
+      "name": "u_trace_glow",
+      "label": "Trace glow",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Look",
+      "widget": "slider",
+      "format": "percent",
+      "order": 2
+    },
+    {
+      "name": "u_spin",
+      "label": "Platter spin",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 3
+    },
+    {
+      "name": "u_board",
+      "label": "Board",
+      "type": "color",
+      "default": [0.18, 0.42, 0.28],
+      "group": "Color",
+      "widget": "color",
+      "order": 4
+    },
+    {
+      "name": "u_trace",
+      "label": "Traces",
+      "type": "color",
+      "default": [0.42, 0.72, 0.48],
+      "group": "Color",
+      "widget": "color",
+      "order": 5
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 10,
+      "hint": "0 freezes the still"
+    }
+  ]
+}

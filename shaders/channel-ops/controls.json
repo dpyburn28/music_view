@@ -1,0 +1,130 @@
+{
+  "id": "channel-ops",
+  "name": "Channel Ops",
+  "description": "RGB shift, swap, isolate, and per-channel gain. Foundational utility for glitch and grade stacks.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_shift_r",
+      "label": "Shift R",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.08,
+      "max": 0.08,
+      "step": 0.001,
+      "group": "Channels",
+      "widget": "slider",
+      "pairWith": "u_shift_g"
+    },
+    {
+      "name": "u_shift_g",
+      "label": "Shift G",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.08,
+      "max": 0.08,
+      "step": 0.001,
+      "group": "Channels",
+      "widget": "slider"
+    },
+    {
+      "name": "u_shift_b",
+      "label": "Shift B",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.08,
+      "max": 0.08,
+      "step": 0.001,
+      "group": "Channels",
+      "widget": "slider"
+    },
+    {
+      "name": "u_swap",
+      "label": "Swap",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 5.0,
+      "step": 1.0,
+      "group": "Channels",
+      "widget": "select",
+      "options": [
+        { "value": 0, "label": "None" },
+        { "value": 1, "label": "R↔G" },
+        { "value": 2, "label": "G↔B" },
+        { "value": 3, "label": "R↔B" },
+        { "value": 4, "label": "R→G→B" },
+        { "value": 5, "label": "R→B→G" }
+      ]
+    },
+    {
+      "name": "u_isolate",
+      "label": "Isolate",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 1.0,
+      "group": "Channels",
+      "widget": "select",
+      "options": [
+        { "value": 0, "label": "None" },
+        { "value": 1, "label": "Red" },
+        { "value": 2, "label": "Green" },
+        { "value": 3, "label": "Blue" },
+        { "value": 4, "label": "Luma" }
+      ]
+    },
+    {
+      "name": "u_gain_r",
+      "label": "Gain R",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Gain",
+      "widget": "slider",
+      "advanced": true,
+      "pairWith": "u_gain_g"
+    },
+    {
+      "name": "u_gain_g",
+      "label": "Gain G",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Gain",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_gain_b",
+      "label": "Gain B",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Gain",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full channel ops"
+    }
+  ]
+}

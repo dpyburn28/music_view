@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>music_view — Performance</title>
+    <link rel="stylesheet" href="./performance.css" />
+</head>
+
+<body>
+    <header class="perf-header">
+        <div class="header-text">
+            <h1 id="perf-title">Untitled</h1>
+            <p class="subtitle" id="perf-stem">unsaved</p>
+        </div>
+        <span id="dirty-dot" class="dirty-dot hidden" title="Unsaved changes">●</span>
+    </header>
+
+    <section class="panel transport-panel" aria-label="Transport">
+        <div class="transport-row">
+            <button type="button" id="perf-btn-play" class="btn primary" title="Play / Pause show (Space)">▶</button>
+            <button type="button" id="perf-btn-stop" class="btn" title="Stop">■</button>
+            <button type="button" id="btn-go" class="btn accent" title="Go next clip (G)">Go</button>
+            <button type="button" id="btn-skip" class="btn" title="Skip (cut) to next clip">Skip</button>
+            <button type="button" id="btn-prev" class="btn" title="Previous clip">⟨</button>
+            <span class="transport-sep" aria-hidden="true"></span>
+            <button type="button" id="btn-new" class="btn">New</button>
+            <button type="button" id="btn-open" class="btn">Open</button>
+            <button type="button" id="btn-save" class="btn">Save</button>
+            <button type="button" id="btn-save-as" class="btn">Save As</button>
+            <button type="button" id="btn-delete" class="btn danger">Delete</button>
+        </div>
+        <div class="clock-row">
+            <span id="show-clock" class="time">0:00</span>
+            <span id="clip-meta" class="hint">No clip</span>
+            <span id="show-status" class="status-pill">idle</span>
+        </div>
+    </section>
+
+    <section class="panel doc-panel" aria-label="Document">
+        <label class="check-row">
+            <input type="checkbox" id="opt-loop" />
+            Loop show
+        </label>
+        <div class="showfx-block">
+            <div class="section-head">
+                <h2>Show FX</h2>
+                <label class="check-row tight">
+                    <input type="checkbox" id="showfx-active" />
+                    On all clips
+                </label>
+            </div>
+            <p class="hint">Runs on top of each section’s own stack.</p>
+            <ul id="showfx-list" class="showfx-list"></ul>
+            <p id="showfx-empty" class="hint">No show-wide layers.</p>
+            <div class="doc-row wrap">
+                <button type="button" id="btn-showfx-add" class="btn">Add FX preset</button>
+                <button type="button" id="btn-showfx-capture" class="btn">Capture live FX</button>
+                <button type="button" id="btn-showfx-clear" class="btn">Clear</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="split">
+        <section class="panel cue-panel" aria-label="Cue list">
+            <div class="section-head">
+                <h2>Cues</h2>
+                <button type="button" id="btn-add-clip" class="btn" title="Add clip">+</button>
+            </div>
+            <ul id="cue-list" class="cue-list"></ul>
+            <p id="cue-empty" class="hint">Add a clip to start a show.</p>
+        </section>
+
+        <section class="panel inspector-panel" aria-label="Inspector">
+            <h2>Inspector</h2>
+            <div id="inspector-empty" class="hint">Select a clip.</div>
+            <form id="inspector" class="inspector hidden" autocomplete="off">
+                <label>Song
+                    <select id="insp-song"></select>
+                </label>
+                <div class="pair">
+                    <label>In
+                        <input type="number" id="insp-in" min="0" step="0.01" />
+                    </label>
+                    <label>Out
+                        <input type="number" id="insp-out" min="0" step="0.01" />
+                    </label>
+                </div>
+                <div class="pair">
+                    <label>Volume
+                        <input type="number" id="insp-vol" min="0" max="1" step="0.05" />
+                    </label>
+                    <label>Hold after
+                        <input type="number" id="insp-hold" min="0" step="0.1" />
+                    </label>
+                </div>
+                <label class="check-row">
+                    <input type="checkbox" id="insp-loop-go" />
+                    Loop until Go
+                </label>
+
+                <h3>Audio arrival</h3>
+                <div class="pair">
+                    <label>Type
+                        <select id="insp-audio-type">
+                            <option value="cut">cut</option>
+                            <option value="crossfade">crossfade</option>
+                            <option value="dip-to-silence">dip-to-silence</option>
+                        </select>
+                    </label>
+                    <label>Duration
+                        <input type="number" id="insp-audio-dur" min="0" max="60" step="0.1" />
+                    </label>
+                </div>
+                <div class="pair">
+                    <label>Easing
+                        <select id="insp-audio-ease">
+                            <option value="linear">linear</option>
+                            <option value="ease-in-out">ease-in-out</option>
+                        </select>
+                    </label>
+                    <label>Offset
+                        <input type="number" id="insp-audio-off" min="-30" max="30" step="0.1" />
+                    </label>
+                </div>
+
+                <h3>Look</h3>
+                <p id="insp-look-info" class="hint"></p>
+                <div class="doc-row wrap">
+                    <button type="button" id="btn-capture" class="btn">Capture current</button>
+                    <button type="button" id="btn-import-look" class="btn">Import preset</button>
+                    <button type="button" id="btn-inherit" class="btn">Inherit</button>
+                    <button type="button" id="btn-preview" class="btn">Preview</button>
+                    <button type="button" id="btn-add-look" class="btn">+ mid look</button>
+                </div>
+                <label>Look cue
+                    <select id="insp-look-sel"></select>
+                </label>
+                <label>Look offset
+                    <input type="number" id="insp-look-off" min="0" step="0.1" />
+                </label>
+                <h3>Visual arrival</h3>
+                <div class="pair">
+                    <label>Type
+                        <select id="insp-vis-type">
+                            <option value="auto">auto</option>
+                            <option value="morph">morph</option>
+                            <option value="crossfade">crossfade</option>
+                            <option value="cut">cut</option>
+                            <option value="dip">dip</option>
+                        </select>
+                    </label>
+                    <label>Duration
+                        <input type="number" id="insp-vis-dur" min="0" max="60" step="0.1" />
+                    </label>
+                </div>
+                <div class="pair">
+                    <label>Easing
+                        <select id="insp-vis-ease">
+                            <option value="linear">linear</option>
+                            <option value="ease-in-out">ease-in-out</option>
+                        </select>
+                    </label>
+                    <label>Offset
+                        <input type="number" id="insp-vis-off" min="-30" max="30" step="0.1" />
+                    </label>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <footer class="status-line" id="status-line">Ready</footer>
+
+    <dialog id="open-dialog">
+        <form method="dialog" class="dialog-form">
+            <h2>Open performance</h2>
+            <select id="open-list" size="8"></select>
+            <div class="doc-row">
+                <button type="submit" value="cancel" class="btn">Cancel</button>
+                <button type="submit" value="open" class="btn primary">Open</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog id="preset-dialog">
+        <form method="dialog" class="dialog-form">
+            <h2 id="preset-dialog-title">Import look preset</h2>
+            <select id="perf-preset-list" size="10"></select>
+            <div class="doc-row">
+                <button type="submit" value="cancel" class="btn">Cancel</button>
+                <button type="submit" value="import" class="btn primary">Import</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="./performance.js"></script>
+</body>
+
+</html>

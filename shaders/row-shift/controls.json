@@ -1,0 +1,14 @@
+{
+  "id": "row-shift",
+  "name": "Row Shift",
+  "description": "Per-scanline horizontal offsets. Minimal, versatile glitch building block.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_amount", "label": "Amount", "type": "float", "default": 0.4, "min": 0.0, "max": 1.5, "step": 0.01, "group": "Glitch", "widget": "slider" },
+    { "name": "u_frequency", "label": "Rows", "type": "float", "default": 90.0, "min": 8.0, "max": 240.0, "step": 1.0, "group": "Glitch", "widget": "stepper", "hint": "Virtual row count" },
+    { "name": "u_speed", "label": "Speed", "type": "float", "default": 3.0, "min": 0.0, "max": 20.0, "step": 0.5, "group": "Glitch", "widget": "slider" },
+    { "name": "u_smooth", "label": "Smooth rows", "type": "float", "default": 0.0, "min": 0.0, "max": 1.0, "step": 1.0, "group": "Glitch", "widget": "toggle", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full shift" }
+  ]
+}

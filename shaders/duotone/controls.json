@@ -1,0 +1,65 @@
+{
+  "id": "duotone",
+  "name": "Duotone",
+  "description": "Map luminance to two colors. Strong single-look grade for posters and liquid stages.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_color_a",
+      "label": "Shadows",
+      "type": "color",
+      "default": [0.05, 0.08, 0.18],
+      "group": "Color",
+      "widget": "color",
+      "hint": "Mapped to dark tones"
+    },
+    {
+      "name": "u_color_b",
+      "label": "Highlights",
+      "type": "color",
+      "default": [0.95, 0.55, 0.35],
+      "group": "Color",
+      "widget": "color",
+      "hint": "Mapped to bright tones"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.15,
+      "min": 0.2,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "hint": "Luma contrast before mapping"
+    },
+    {
+      "name": "u_smooth",
+      "label": "Smooth",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 0.4,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "advanced": true,
+      "hint": "Softens the luma ramp (0 = hard map)"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full duotone"
+    }
+  ]
+}

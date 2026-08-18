@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Lo-Fi Pixel",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.635Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "pixelate",
+          "enabled": true,
+          "uniforms": {
+            "u_size": 10,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "posterize",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 5,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "dither",
+          "enabled": true,
+          "uniforms": {
+            "u_colorSteps": 6,
+            "u_pixelSize": 2,
+            "u_spread": 1,
+            "u_usePalette": 0,
+            "u_intensity": 0.5
+          }
+        },
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1.05,
+            "u_contrast": 1.15,
+            "u_saturation": 1.2,
+            "u_intensity": 0.7
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

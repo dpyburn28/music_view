@@ -1,0 +1,16 @@
+{
+  "id": "palette-map",
+  "name": "Palette Map",
+  "description": "Map luma to a 4-color palette. Pair after dither/bitcrush for Game Boy / CGA / custom looks.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_c0", "label": "Stop 0", "type": "color", "default": [0.06, 0.08, 0.1], "group": "Palette", "widget": "color" },
+    { "name": "u_c1", "label": "Stop 1", "type": "color", "default": [0.2, 0.35, 0.25], "group": "Palette", "widget": "color" },
+    { "name": "u_c2", "label": "Stop 2", "type": "color", "default": [0.55, 0.75, 0.35], "group": "Palette", "widget": "color" },
+    { "name": "u_c3", "label": "Stop 3", "type": "color", "default": [0.9, 0.95, 0.7], "group": "Palette", "widget": "color" },
+    { "name": "u_contrast", "label": "Contrast", "type": "float", "default": 1.1, "min": 0.4, "max": 2.5, "step": 0.01, "group": "Palette", "widget": "slider" },
+    { "name": "u_soft", "label": "Soft blend", "type": "float", "default": 0.15, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Palette", "widget": "slider", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full palette" }
+  ]
+}

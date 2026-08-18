@@ -1,0 +1,56 @@
+{
+  "id": "mirror",
+  "name": "Mirror",
+  "description": "Flip horizontal / vertical, or mirror into quadrants (kaleido-2).",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_flip_h",
+      "label": "Flip H",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Utility",
+      "widget": "toggle"
+    },
+    {
+      "name": "u_flip_v",
+      "label": "Flip V",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Utility",
+      "widget": "toggle"
+    },
+    {
+      "name": "u_quad",
+      "label": "Quadrant mirror",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Utility",
+      "widget": "toggle",
+      "hint": "Mirror UV into four symmetric quadrants"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full mirror"
+    }
+  ]
+}

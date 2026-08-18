@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "name": "Golden Hour",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.633Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "hue-shift",
+          "enabled": true,
+          "uniforms": {
+            "u_hue": 18,
+            "u_saturation": 1.15,
+            "u_intensity": 0.45
+          }
+        },
+        {
+          "shaderId": "levels",
+          "enabled": true,
+          "uniforms": {
+            "u_lift": 0.03,
+            "u_gamma": 1.1,
+            "u_gain": 1.05,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.55,
+            "u_radius": 3.5,
+            "u_strength": 0.55,
+            "u_iterations": 2,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.3,
+            "u_softness": 0.65,
+            "u_roundness": 1.1,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.07
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

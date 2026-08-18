@@ -1,0 +1,15 @@
+{
+  "id": "cell-noise",
+  "name": "Cell Noise",
+  "description": "Worley cellular noise overlay (add/mul/mask). Organic texture utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_amount", "label": "Amount", "type": "float", "default": 0.4, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Noise", "widget": "slider" },
+    { "name": "u_scale", "label": "Scale", "type": "float", "default": 10.0, "min": 2.0, "max": 40.0, "step": 0.5, "group": "Noise", "widget": "slider" },
+    { "name": "u_edge", "label": "Edge", "type": "float", "default": 0.35, "min": 0.05, "max": 1.0, "step": 0.01, "group": "Noise", "widget": "slider" },
+    { "name": "u_mode", "label": "Mode", "type": "float", "default": 0.0, "min": 0.0, "max": 2.0, "step": 1.0, "group": "Noise", "widget": "segmented", "options": [{ "value": 0, "label": "Add" }, { "value": 1, "label": "Mul" }, { "value": 2, "label": "Mask" }] },
+    { "name": "u_speed", "label": "Animate", "type": "float", "default": 0.3, "min": 0.0, "max": 3.0, "step": 0.05, "group": "Noise", "widget": "slider", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full cell noise" }
+  ]
+}

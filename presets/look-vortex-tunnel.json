@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "name": "Vortex Tunnel",
+  "createdAt": "2026-08-13T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.645Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "swirl",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 3.2,
+            "u_radius": 0.7,
+            "u_spin": 0.35,
+            "u_center_x": 0.5,
+            "u_center_y": 0.5,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "radial-blur",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.55,
+            "u_spin": 0.15,
+            "u_samples": 7,
+            "u_center_x": 0.5,
+            "u_center_y": 0.5,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "feedback-trail",
+          "enabled": true,
+          "uniforms": {
+            "u_decay": 0.88,
+            "u_zoom": 1.02,
+            "u_rotate": 0.01,
+            "u_mix": 0.55,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "chromatic",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.01,
+            "u_intensity": 0.8
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

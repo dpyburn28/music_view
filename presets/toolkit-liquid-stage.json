@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "name": "toolkit-liquid-stage",
+  "createdAt": "2026-08-13T00:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.649Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "warp-ripple",
+          "enabled": true,
+          "uniforms": {
+            "u_amplitude": 0.014,
+            "u_frequency": 16,
+            "u_speed": 3,
+            "u_intensity": 0.85
+          },
+          "modulators": {
+            "u_amplitude": {
+              "source": "sine",
+              "offset": 0.012,
+              "amp": 0.008,
+              "rate": 0.35,
+              "phase": 0,
+              "clock": "stack"
+            }
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.48,
+            "u_radius": 3.5,
+            "u_strength": 0.8,
+            "u_iterations": 2,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "duotone",
+          "enabled": true,
+          "uniforms": {
+            "u_color_a": [
+              0.04,
+              0.06,
+              0.14
+            ],
+            "u_color_b": [
+              0.55,
+              0.9,
+              0.95
+            ],
+            "u_contrast": 1.2,
+            "u_smooth": 0.05,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "chromatic",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.004,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.09
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

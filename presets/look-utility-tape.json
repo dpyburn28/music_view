@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "Utility Tape",
+  "createdAt": "2026-08-13T21:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.644Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "channel-delay",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.5,
+            "u_mix_r": 0.75,
+            "u_mix_g": 0.15,
+            "u_mix_b": 0.55,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "scan-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.22,
+            "u_lineDensity": 1,
+            "u_rolling": 0.2,
+            "u_mono": 0.9,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "tape-hiss",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_dropout": 0.3,
+            "u_warmth": 0.5,
+            "u_speed": 1,
+            "u_intensity": 0.8
+          }
+        },
+        {
+          "shaderId": "ghosting",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.3,
+            "u_distance": 0.4,
+            "u_angle": 0,
+            "u_echoes": 2,
+            "u_decay": 0.5,
+            "u_intensity": 0.55
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

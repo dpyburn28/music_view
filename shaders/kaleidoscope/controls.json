@@ -1,0 +1,70 @@
+{
+  "id": "kaleidoscope",
+  "name": "Kaleidoscope",
+  "description": "Multi-sector polar mirror. Strong stylize — often pair with soft mix or after mild grade.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_segments",
+      "label": "Segments",
+      "type": "float",
+      "default": 6.0,
+      "min": 2.0,
+      "max": 16.0,
+      "step": 1.0,
+      "group": "Distort",
+      "widget": "stepper",
+      "hint": "Number of mirrored pie slices"
+    },
+    {
+      "name": "u_angle",
+      "label": "Angle",
+      "type": "float",
+      "default": 0.0,
+      "min": -3.1416,
+      "max": 3.1416,
+      "step": 0.01,
+      "group": "Distort",
+      "widget": "slider",
+      "format": "degrees",
+      "hint": "Base rotation (radians stored)"
+    },
+    {
+      "name": "u_zoom",
+      "label": "Zoom",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.35,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Distort",
+      "widget": "slider"
+    },
+    {
+      "name": "u_spin",
+      "label": "Spin",
+      "type": "float",
+      "default": 0.0,
+      "min": -1.5,
+      "max": 1.5,
+      "step": 0.01,
+      "group": "Distort",
+      "widget": "slider",
+      "hint": "Auto-rotate speed (rad/sec scale)"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full kaleidoscope"
+    }
+  ]
+}

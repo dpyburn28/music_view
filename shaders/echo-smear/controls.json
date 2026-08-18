@@ -1,0 +1,70 @@
+{
+  "id": "echo-smear",
+  "name": "Echo Smear",
+  "description": "Feedback with directional UV drift. Heavier trails than feedback-trail; keep decay under 0.98.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_decay",
+      "label": "Decay",
+      "type": "float",
+      "default": 0.92,
+      "min": 0.0,
+      "max": 0.98,
+      "step": 0.01,
+      "group": "Temporal",
+      "widget": "slider",
+      "hint": "Trail linger (never 1.0)"
+    },
+    {
+      "name": "u_drift",
+      "label": "Drift",
+      "type": "float",
+      "default": 0.008,
+      "min": 0.0,
+      "max": 0.05,
+      "step": 0.001,
+      "group": "Temporal",
+      "widget": "slider",
+      "hint": "How far previous frame is shifted"
+    },
+    {
+      "name": "u_angle",
+      "label": "Angle",
+      "type": "float",
+      "default": 90.0,
+      "min": 0.0,
+      "max": 360.0,
+      "step": 1.0,
+      "group": "Temporal",
+      "widget": "slider",
+      "hint": "Drift direction in degrees (0 = right)"
+    },
+    {
+      "name": "u_mix",
+      "label": "Trail mix",
+      "type": "float",
+      "default": 0.65,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Temporal",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full echo"
+    }
+  ]
+}

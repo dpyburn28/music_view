@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Utility Sort",
+  "createdAt": "2026-08-13T20:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.643Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "pixel-sort",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.8,
+            "u_threshold": 0.4,
+            "u_length": 14,
+            "u_axis": 0,
+            "u_invert": 0,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "channel-ops",
+          "enabled": true,
+          "uniforms": {
+            "u_shift_r": 0.008,
+            "u_shift_g": 0,
+            "u_shift_b": -0.008,
+            "u_swap": 0,
+            "u_isolate": 0,
+            "u_gain_r": 1.05,
+            "u_gain_g": 1,
+            "u_gain_b": 1.05,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "line-glitch",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_density": 0.08,
+            "u_thickness": 2,
+            "u_axis": 0,
+            "u_flash": 0.25,
+            "u_speed": 5,
+            "u_intensity": 0.6
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

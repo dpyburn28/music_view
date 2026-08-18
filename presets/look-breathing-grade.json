@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "name": "Breathing Grade",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.628Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1,
+            "u_contrast": 1.1,
+            "u_saturation": 1.1,
+            "u_intensity": 1
+          },
+          "modulators": {
+            "u_saturation": {
+              "source": "sine",
+              "offset": 1.05,
+              "amp": 0.2,
+              "rate": 0.12,
+              "phase": 0,
+              "clock": "stack"
+            },
+            "u_contrast": {
+              "source": "sine",
+              "offset": 1.08,
+              "amp": 0.12,
+              "rate": 0.09,
+              "phase": 1.2,
+              "clock": "stack"
+            }
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.5,
+            "u_radius": 3,
+            "u_strength": 0.55,
+            "u_iterations": 2,
+            "u_intensity": 0.85
+          },
+          "modulators": {
+            "u_strength": {
+              "source": "sine",
+              "offset": 0.5,
+              "amp": 0.25,
+              "rate": 0.15,
+              "phase": 0.5,
+              "clock": "stack"
+            }
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.35,
+            "u_softness": 0.6,
+            "u_roundness": 1,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.08
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

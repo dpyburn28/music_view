@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Signal Lost",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.639Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "rgb-glitch",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.55,
+            "u_slices": 18,
+            "u_chroma": 0.02,
+            "u_speed": 3,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "vhs",
+          "enabled": true,
+          "uniforms": {}
+        },
+        {
+          "shaderId": "warp-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_scale": 8,
+            "u_strength": 0.012,
+            "u_speed": 1.2,
+            "u_intensity": 0.5
+          }
+        },
+        {
+          "shaderId": "invert",
+          "enabled": true,
+          "uniforms": {
+            "u_intensity": 0.08
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.18
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

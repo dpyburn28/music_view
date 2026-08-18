@@ -1,0 +1,118 @@
+{
+  "id": "oled",
+  "name": "OLED Cinema",
+  "description": "Premium OLED panel: pure blacks, high contrast, subtle pixel structure, soft corner vignette, and controlled bloom on highlights.",
+  "roles": [
+    "postprocess"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_black",
+      "label": "Black crush",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Tone",
+      "widget": "slider"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.25,
+      "min": 0.8,
+      "max": 2.2,
+      "step": 0.01,
+      "group": "Tone",
+      "widget": "slider"
+    },
+    {
+      "name": "u_brightness",
+      "label": "Brightness",
+      "type": "float",
+      "default": 1.05,
+      "min": 0.4,
+      "max": 1.8,
+      "step": 0.01,
+      "group": "Tone",
+      "widget": "slider"
+    },
+    {
+      "name": "u_saturation",
+      "label": "Saturation",
+      "type": "float",
+      "default": 1.12,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Tone",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_bloom",
+      "label": "Bloom",
+      "type": "float",
+      "default": 0.18,
+      "min": 0.0,
+      "max": 0.8,
+      "step": 0.01,
+      "group": "Glow",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_pixel",
+      "label": "Pixel structure",
+      "type": "float",
+      "default": 0.12,
+      "min": 0.0,
+      "max": 0.6,
+      "step": 0.01,
+      "group": "Glow",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_vignette",
+      "label": "Corner falloff",
+      "type": "float",
+      "default": 0.18,
+      "min": 0.0,
+      "max": 0.8,
+      "step": 0.01,
+      "group": "Glow",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_warmth",
+      "label": "Warmth",
+      "type": "float",
+      "default": 0.05,
+      "min": -0.2,
+      "max": 0.2,
+      "step": 0.01,
+      "group": "Tone",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Effect mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "format": "percent",
+      "unit": "%",
+      "hint": "Blend of processed vs original",
+      "widget": "slider"
+    }
+  ]
+}

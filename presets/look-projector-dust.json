@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Projector Dust",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.639Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "levels",
+          "enabled": true,
+          "uniforms": {
+            "u_lift": 0.03,
+            "u_gamma": 1.08,
+            "u_gain": 1,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "blur",
+          "enabled": true,
+          "uniforms": {
+            "u_radius": 0.8,
+            "u_quality": 2,
+            "u_intensity": 0.25
+          }
+        },
+        {
+          "shaderId": "projector",
+          "enabled": true,
+          "uniforms": {}
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.15
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.5,
+            "u_softness": 0.55,
+            "u_roundness": 0.85,
+            "u_invert": 0,
+            "u_intensity": 0.9
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

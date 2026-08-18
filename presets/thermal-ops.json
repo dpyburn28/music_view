@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "name": "Thermal Ops",
+  "createdAt": "2026-08-08T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.648Z",
+  "scene": {
+    "containers": [
+      {
+        "role": "song-cover",
+        "label": "Cover",
+        "labelCorner": "bottom-right",
+        "left": 281,
+        "top": 586,
+        "width": 518,
+        "height": 518,
+        "relative": {
+          "widthOfMin": 0.48,
+          "centerX": true,
+          "centerYOffset": -0.06
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 0,
+        "distancing": 12,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "fill",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#444450",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "connect": {
+            "color": "#ff5533",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"DIN Alternate\", \"Arial Narrow\", sans-serif",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f0f0f0",
+            "background": "rgba(10,10,14,0.9)",
+            "letterSpacing": 1.5,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"DIN Alternate\", \"Arial Narrow\", sans-serif",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f0f0f0",
+            "background": "rgba(10,10,14,0.9)",
+            "letterSpacing": 1.5,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-info",
+        "label": "Track",
+        "labelCorner": "bottom-right",
+        "left": 455,
+        "top": 1120,
+        "width": 170,
+        "height": 70,
+        "relative": {
+          "centerX": true,
+          "belowRole": "song-cover",
+          "gap": 16
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 1,
+        "distancing": 0,
+        "connect": true,
+        "anchorDistance": null,
+        "attachToRole": "song-cover",
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#444450",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "connect": {
+            "color": "#ff5533",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"DIN Alternate\", \"Arial Narrow\", sans-serif",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f0f0f0",
+            "background": "rgba(10,10,14,0.9)",
+            "letterSpacing": 1.5,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"DIN Alternate\", \"Arial Narrow\", sans-serif",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f0f0f0",
+            "background": "rgba(10,10,14,0.9)",
+            "letterSpacing": 1.5,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-lyrics",
+        "label": "Lyrics",
+        "labelCorner": "top-right",
+        "left": 360,
+        "top": 1204,
+        "width": 360,
+        "height": 115,
+        "relative": {
+          "widthOfPanel": 0.78,
+          "maxWidth": 360,
+          "centerX": true,
+          "belowRole": "song-info",
+          "gap": 14
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 2,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#444450",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "connect": {
+            "color": "#ff5533",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"DIN Alternate\", \"Arial Narrow\", sans-serif",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f0f0f0",
+            "background": "rgba(10,10,14,0.9)",
+            "letterSpacing": 1.5,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"DIN Alternate\", \"Arial Narrow\", sans-serif",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f0f0f0",
+            "background": "rgba(10,10,14,0.9)",
+            "letterSpacing": 1.5,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-progress",
+        "label": "Progress",
+        "labelCorner": "bottom-right",
+        "left": 350,
+        "top": 1872,
+        "width": 380,
+        "height": 28,
+        "relative": {
+          "widthOfPanel": 0.84,
+          "maxWidth": 380,
+          "centerX": true,
+          "bottomInset": 20
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 3,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": "ends",
+        "style": {
+          "border": {
+            "color": "#444450",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "connect": {
+            "color": "#ff5533",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"DIN Alternate\", \"Arial Narrow\", sans-serif",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f0f0f0",
+            "background": "rgba(10,10,14,0.9)",
+            "letterSpacing": 1.5,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"DIN Alternate\", \"Arial Narrow\", sans-serif",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f0f0f0",
+            "background": "rgba(10,10,14,0.9)",
+            "letterSpacing": 1.5,
+            "opacity": 1
+          }
+        }
+      }
+    ],
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "thermal",
+          "enabled": true,
+          "uniforms": {
+            "u_softness": 0.48,
+            "u_contrast": 1.35,
+            "u_brightness": 0.05,
+            "u_noise": 0.14,
+            "u_palette": 0,
+            "u_scan": 0.22,
+            "u_intensity": 1
+          },
+          "modulators": {
+            "u_scan": {
+              "source": "time",
+              "offset": 0.22,
+              "amp": 0.12,
+              "rate": 0.35,
+              "phase": 0
+            },
+            "u_noise": {
+              "source": "noise",
+              "offset": 0.14,
+              "amp": 0.05,
+              "rate": 1.5,
+              "phase": 0
+            },
+            "u_softness": {
+              "source": "sine",
+              "offset": 0.48,
+              "amp": 0.1,
+              "rate": 0.2,
+              "phase": 0
+            }
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

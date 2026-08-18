@@ -1,0 +1,13 @@
+{
+  "id": "poster-noise",
+  "name": "Poster Noise",
+  "description": "Posterize with pre-quant noise. One-knob graphic utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_levels", "label": "Levels", "type": "float", "default": 5.0, "min": 2.0, "max": 24.0, "step": 1.0, "group": "Utility", "widget": "stepper" },
+    { "name": "u_noise", "label": "Noise", "type": "float", "default": 0.75, "min": 0.0, "max": 2.0, "step": 0.05, "group": "Utility", "widget": "slider" },
+    { "name": "u_animate", "label": "Animate", "type": "float", "default": 0.0, "min": 0.0, "max": 2.0, "step": 0.05, "group": "Utility", "widget": "slider", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full effect" }
+  ]
+}

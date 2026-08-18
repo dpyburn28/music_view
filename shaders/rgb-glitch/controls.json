@@ -1,0 +1,71 @@
+{
+  "id": "rgb-glitch",
+  "name": "RGB Glitch",
+  "description": "Horizontal band slices with RGB channel offsets. Chaos for performance looks; keep amount low for subtlety.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Distort",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "Overall glitch strength"
+    },
+    {
+      "name": "u_slices",
+      "label": "Slices",
+      "type": "float",
+      "default": 24.0,
+      "min": 4.0,
+      "max": 64.0,
+      "step": 1.0,
+      "group": "Distort",
+      "widget": "stepper",
+      "hint": "Horizontal band count"
+    },
+    {
+      "name": "u_chroma",
+      "label": "Chroma split",
+      "type": "float",
+      "default": 0.012,
+      "min": 0.0,
+      "max": 0.06,
+      "step": 0.001,
+      "group": "Distort",
+      "widget": "slider",
+      "hint": "Extra RGB offset per slice"
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 6.0,
+      "min": 0.0,
+      "max": 24.0,
+      "step": 0.5,
+      "group": "Distort",
+      "widget": "slider",
+      "hint": "How fast slice offsets re-roll"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full glitch"
+    }
+  ]
+}

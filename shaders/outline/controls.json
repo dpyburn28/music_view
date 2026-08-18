@@ -1,0 +1,66 @@
+{
+  "id": "outline",
+  "name": "Outline",
+  "description": "Sobel-style edge detect. Graphic / poster stacks; pair with phosphor or duotone.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_strength",
+      "label": "Strength",
+      "type": "float",
+      "default": 1.2,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Style",
+      "widget": "slider",
+      "hint": "Edge gain"
+    },
+    {
+      "name": "u_threshold",
+      "label": "Threshold",
+      "type": "float",
+      "default": 0.08,
+      "min": 0.0,
+      "max": 0.5,
+      "step": 0.005,
+      "group": "Style",
+      "widget": "slider",
+      "hint": "Ignore weak gradients"
+    },
+    {
+      "name": "u_color",
+      "label": "Edge color",
+      "type": "color",
+      "default": [1.0, 1.0, 1.0],
+      "group": "Style",
+      "widget": "color"
+    },
+    {
+      "name": "u_invert_bg",
+      "label": "Black background",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Style",
+      "widget": "toggle",
+      "hint": "On = edges on black; Off = edges over original"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full outline"
+    }
+  ]
+}

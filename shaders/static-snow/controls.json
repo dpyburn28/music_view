@@ -1,0 +1,83 @@
+{
+  "id": "static-snow",
+  "name": "Static Snow",
+  "description": "TV snow / static flakes with density, grain size, and frame hold. Pure utility noise layer.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.45,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_density",
+      "label": "Density",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_size",
+      "label": "Size",
+      "type": "float",
+      "default": 2.0,
+      "min": 1.0,
+      "max": 16.0,
+      "step": 1.0,
+      "group": "Noise",
+      "widget": "stepper",
+      "unit": "px"
+    },
+    {
+      "name": "u_hold",
+      "label": "Hold",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 0.25,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider",
+      "hint": "Seconds per static frame (0 = every frame)",
+      "advanced": true
+    },
+    {
+      "name": "u_color",
+      "label": "Color snow",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Noise",
+      "widget": "toggle",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full static"
+    }
+  ]
+}

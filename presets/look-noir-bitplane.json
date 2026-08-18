@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "name": "Noir Bitplane",
+  "createdAt": "2026-08-13T22:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.637Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "bleach-bypass",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.75,
+            "u_contrast": 1.4,
+            "u_brightness": -0.06,
+            "u_intensity": 0.95
+          }
+        },
+        {
+          "shaderId": "bitplane",
+          "enabled": true,
+          "uniforms": {
+            "u_bit": 5,
+            "u_mode": 1,
+            "u_mono": 1,
+            "u_intensity": 0.35
+          }
+        },
+        {
+          "shaderId": "threshold",
+          "enabled": true,
+          "uniforms": {
+            "u_level": 0.42,
+            "u_softness": 0.12,
+            "u_mode": 2,
+            "u_low": [
+              0.05,
+              0.05,
+              0.06
+            ],
+            "u_high": [
+              0.95,
+              0.94,
+              0.9
+            ],
+            "u_invert": 0,
+            "u_intensity": 0.4
+          }
+        },
+        {
+          "shaderId": "scan-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.18,
+            "u_lineDensity": 1,
+            "u_rolling": 0.08,
+            "u_mono": 1,
+            "u_intensity": 0.65
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.5,
+            "u_softness": 0.5,
+            "u_roundness": 0.95,
+            "u_invert": 0,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.14
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

@@ -1,0 +1,310 @@
+{
+  "version": 1,
+  "name": "VHS Rental",
+  "createdAt": "2026-08-08T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.650Z",
+  "scene": {
+    "containers": [
+      {
+        "role": "song-cover",
+        "label": "Cover",
+        "labelCorner": "bottom-right",
+        "left": 281,
+        "top": 586,
+        "width": 518,
+        "height": 518,
+        "relative": {
+          "widthOfMin": 0.48,
+          "centerX": true,
+          "centerYOffset": -0.06
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 0,
+        "distancing": 8,
+        "connect": true,
+        "anchorDistance": null,
+        "attachToRole": "song-info",
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "fill",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#3a2a1a",
+            "lineWidth": 4,
+            "dash": []
+          },
+          "connect": {
+            "color": "#c4a574",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Courier New\", Courier, monospace",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f5e6c8",
+            "background": "rgba(20,12,8,0.75)",
+            "letterSpacing": 0.5,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Courier New\", Courier, monospace",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f5e6c8",
+            "background": "rgba(20,12,8,0.75)",
+            "letterSpacing": 0.5,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-info",
+        "label": "Track",
+        "labelCorner": "bottom-right",
+        "left": 460,
+        "top": 1120,
+        "width": 160,
+        "height": 72,
+        "relative": {
+          "centerX": true,
+          "belowRole": "song-cover",
+          "gap": 16
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 1,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#3a2a1a",
+            "lineWidth": 4,
+            "dash": []
+          },
+          "connect": {
+            "color": "#c4a574",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Courier New\", Courier, monospace",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f5e6c8",
+            "background": "rgba(20,12,8,0.75)",
+            "letterSpacing": 0.5,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Courier New\", Courier, monospace",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f5e6c8",
+            "background": "rgba(20,12,8,0.75)",
+            "letterSpacing": 0.5,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-lyrics",
+        "label": "Lyrics",
+        "labelCorner": "top-right",
+        "left": 360,
+        "top": 1206,
+        "width": 360,
+        "height": 110,
+        "relative": {
+          "widthOfPanel": 0.78,
+          "maxWidth": 360,
+          "centerX": true,
+          "belowRole": "song-info",
+          "gap": 14
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 2,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#3a2a1a",
+            "lineWidth": 4,
+            "dash": []
+          },
+          "connect": {
+            "color": "#c4a574",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Courier New\", Courier, monospace",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f5e6c8",
+            "background": "rgba(20,12,8,0.75)",
+            "letterSpacing": 0.5,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Courier New\", Courier, monospace",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f5e6c8",
+            "background": "rgba(20,12,8,0.75)",
+            "letterSpacing": 0.5,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-progress",
+        "label": "Progress",
+        "labelCorner": "bottom-right",
+        "left": 350,
+        "top": 1870,
+        "width": 380,
+        "height": 30,
+        "relative": {
+          "widthOfPanel": 0.84,
+          "maxWidth": 380,
+          "centerX": true,
+          "bottomInset": 20
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 3,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": "ends",
+        "style": {
+          "border": {
+            "color": "#3a2a1a",
+            "lineWidth": 4,
+            "dash": []
+          },
+          "connect": {
+            "color": "#c4a574",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Courier New\", Courier, monospace",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f5e6c8",
+            "background": "rgba(20,12,8,0.75)",
+            "letterSpacing": 0.5,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Courier New\", Courier, monospace",
+            "fontSize": 11,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#f5e6c8",
+            "background": "rgba(20,12,8,0.75)",
+            "letterSpacing": 0.5,
+            "opacity": 1
+          }
+        }
+      }
+    ],
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "vhs",
+          "enabled": true,
+          "uniforms": {
+            "u_bleed": 0.01,
+            "u_softness": 0.62,
+            "u_wobble": 0.004,
+            "u_noise": 0.18,
+            "u_scanline": 0.32,
+            "u_tracking": 0.22,
+            "u_saturation": 1.25,
+            "u_contrast": 1.12,
+            "u_tint": [
+              1.04,
+              0.96,
+              0.9
+            ],
+            "u_intensity": 1
+          },
+          "modulators": {
+            "u_wobble": {
+              "source": "noise",
+              "offset": 0.004,
+              "amp": 0.002,
+              "rate": 0.8,
+              "phase": 0
+            },
+            "u_tracking": {
+              "source": "sine",
+              "offset": 0.22,
+              "amp": 0.08,
+              "rate": 0.15,
+              "phase": 0
+            },
+            "u_noise": {
+              "source": "sine",
+              "offset": 0.18,
+              "amp": 0.05,
+              "rate": 0.35,
+              "phase": 1
+            }
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.1
+          },
+          "modulators": {
+            "u_amount": {
+              "source": "noise",
+              "offset": 0.1,
+              "amp": 0.04,
+              "rate": 1.2,
+              "phase": 0
+            }
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

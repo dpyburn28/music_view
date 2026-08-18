@@ -1,0 +1,47 @@
+{
+  "id": "blur",
+  "name": "Blur",
+  "description": "Soft box/dual-direction blur for dreamy stacks or pre-bloom haze. Keep radius modest for performance.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_radius",
+      "label": "Radius",
+      "type": "float",
+      "default": 2.0,
+      "min": 0.0,
+      "max": 16.0,
+      "step": 0.1,
+      "group": "Optics",
+      "widget": "slider",
+      "hint": "Blur size in pixels"
+    },
+    {
+      "name": "u_quality",
+      "label": "Taps",
+      "type": "float",
+      "default": 3.0,
+      "min": 1.0,
+      "max": 5.0,
+      "step": 1.0,
+      "group": "Optics",
+      "widget": "stepper",
+      "advanced": true,
+      "hint": "Sample rings (higher = smoother, costlier)"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full blur"
+    }
+  ]
+}

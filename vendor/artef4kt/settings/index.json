@@ -1,0 +1,161 @@
+{
+  "lastUpdated": "2025-07-13T19:49:06.615Z",
+  "presets": [
+    {
+      "description": "Preset: Arangiatta Lilla",
+      "name": "Arangiatta Lilla",
+      "file": "arangiatta-lilla.json"
+    },
+    {
+      "description": "Preset: Baby Barf",
+      "name": "Baby Barf",
+      "file": "baby-barf.json"
+    },
+    {
+      "description": "Preset: Blue Balast",
+      "name": "Blue Balast",
+      "file": "blue-balast.json"
+    },
+    {
+      "description": "Preset: Blue Metal",
+      "name": "Blue Metal",
+      "file": "blue-metal.json"
+    },
+    {
+      "description": "Preset: Blue Saphir",
+      "name": "Blue Saphir",
+      "file": "blue-saphir.json"
+    },
+    {
+      "description": "Preset: Bricks",
+      "name": "Bricks",
+      "file": "bricks.json"
+    },
+    {
+      "description": "Preset: Dark Mode",
+      "name": "Dark Mode",
+      "file": "dark-mode.json"
+    },
+    {
+      "description": "Preset: Deep Space Shockwaves",
+      "name": "Deep Space Shockwaves",
+      "file": "deep-space-shockwaves.json"
+    },
+    {
+      "description": "Preset: Default",
+      "name": "Default",
+      "file": "default.json"
+    },
+    {
+      "description": "Preset: Green Tinge",
+      "name": "Green Tinge",
+      "file": "green-tinge.json"
+    },
+    {
+      "description": "Preset: High Contrast",
+      "name": "High Contrast",
+      "file": "high-contrast.json"
+    },
+    {
+      "description": "Preset: Icy Surface",
+      "name": "Icy Surface",
+      "file": "icy-surface.json"
+    },
+    {
+      "description": "Preset: Lime Haze",
+      "name": "Lime Haze",
+      "file": "lime-haze.json"
+    },
+    {
+      "description": "Preset: Minimal Filmic",
+      "name": "Minimal Filmic",
+      "file": "minimal-filmic.json"
+    },
+    {
+      "description": "Preset: Minimal",
+      "name": "Minimal",
+      "file": "minimal.json"
+    },
+    {
+      "description": "Preset: Neon Vibes",
+      "name": "Neon Vibes",
+      "file": "neon-vibes.json"
+    },
+    {
+      "description": "Preset: Old And Retro Green",
+      "name": "Old And Retro Green",
+      "file": "old-and-retro-green.json"
+    },
+    {
+      "description": "Preset: Orange Far Filmic",
+      "name": "Orange Far Filmic",
+      "file": "orange-far-filmic.json"
+    },
+    {
+      "description": "Preset: Peachy Core",
+      "name": "Peachy Core",
+      "file": "peachy-core.json"
+    },
+    {
+      "description": "Preset: Peachy Purple Core",
+      "name": "Peachy Purple Core",
+      "file": "peachy-purple-core.json"
+    },
+    {
+      "description": "Preset: Purple Haze",
+      "name": "Purple Haze",
+      "file": "purple-haze.json"
+    },
+    {
+      "description": "Preset: Purple Shockwaves",
+      "name": "Purple Shockwaves",
+      "file": "purple-shockwaves.json"
+    },
+    {
+      "description": "Preset: Red Tinge",
+      "name": "Red Tinge",
+      "file": "red-tinge.json"
+    },
+    {
+      "description": "Preset: Rosacea Filmica",
+      "name": "Rosacea Filmica",
+      "file": "rosacea-filmica.json"
+    },
+    {
+      "description": "Preset: Sketchy",
+      "name": "Sketchy",
+      "file": "sketchy.json"
+    },
+    {
+      "description": "Preset: Soviet Red Filmic",
+      "name": "Soviet Red Filmic",
+      "file": "soviet-red-filmic.json"
+    },
+    {
+      "description": "Preset: Soviet Red",
+      "name": "Soviet Red",
+      "file": "soviet-red.json"
+    },
+    {
+      "description": "Preset: Teals Filmic",
+      "name": "Teals Filmic",
+      "file": "teals-filmic.json"
+    },
+    {
+      "description": "Preset: Teals",
+      "name": "Teals",
+      "file": "teals.json"
+    },
+    {
+      "description": "Preset: Wasp",
+      "name": "Wasp",
+      "file": "wasp.json"
+    },
+    {
+      "description": "Preset: Yellow Red",
+      "name": "Yellow Red",
+      "file": "yellow-red.json"
+    }
+  ],
+  "version": "1.0"
+}

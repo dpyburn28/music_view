@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "name": "Kaleido Prism",
+  "createdAt": "2026-08-13T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.634Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "kaleidoscope",
+          "enabled": true,
+          "uniforms": {
+            "u_segments": 8,
+            "u_angle": 0,
+            "u_zoom": 1.05,
+            "u_spin": 0.12,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "prism",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.85,
+            "u_angle": 0,
+            "u_center_x": 0.5,
+            "u_center_y": 0.5,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.45,
+            "u_radius": 3.5,
+            "u_strength": 0.8,
+            "u_iterations": 2,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "hue-shift",
+          "enabled": true,
+          "uniforms": {
+            "u_hue": 0,
+            "u_saturation": 1.25,
+            "u_intensity": 0.55
+          },
+          "modulators": {
+            "u_hue": {
+              "source": "sine",
+              "offset": 0,
+              "amp": 40,
+              "rate": 0.06,
+              "phase": 0,
+              "clock": "stack"
+            }
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

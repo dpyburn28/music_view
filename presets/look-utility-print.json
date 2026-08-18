@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "Utility Print",
+  "createdAt": "2026-08-13T20:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.643Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1,
+            "u_contrast": 1.15,
+            "u_saturation": 0.85,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "error-dither",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 6,
+            "u_strength": 1,
+            "u_pixelSize": 1,
+            "u_mono": 0.15,
+            "u_intensity": 0.95
+          }
+        },
+        {
+          "shaderId": "colored-grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.1,
+            "u_size": 1.5,
+            "u_chroma": 0.2,
+            "u_shadows": 0.4,
+            "u_speed": 1,
+            "u_intensity": 0.7
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

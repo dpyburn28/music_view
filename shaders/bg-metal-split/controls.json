@@ -1,0 +1,90 @@
+{
+  "id": "bg-metal-split",
+  "name": "Metal Split",
+  "description": "Brushed vertical filaments beside a cylindrical metal highlight. Stage / panel fill.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_split",
+      "label": "Split",
+      "type": "float",
+      "default": 0.48,
+      "min": 0.15,
+      "max": 0.85,
+      "step": 0.01,
+      "group": "Look",
+      "widget": "slider",
+      "format": "percent",
+      "order": 1,
+      "hint": "Vertical seam between filaments and the cylinder"
+    },
+    {
+      "name": "u_line_density",
+      "label": "Line density",
+      "type": "float",
+      "default": 220.0,
+      "min": 40.0,
+      "max": 480.0,
+      "step": 1.0,
+      "group": "Look",
+      "widget": "slider",
+      "order": 2
+    },
+    {
+      "name": "u_line_contrast",
+      "label": "Line contrast",
+      "type": "float",
+      "default": 0.85,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Look",
+      "widget": "slider",
+      "format": "percent",
+      "order": 3
+    },
+    {
+      "name": "u_highlight",
+      "label": "Highlight",
+      "type": "float",
+      "default": 0.62,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Look",
+      "widget": "slider",
+      "format": "percent",
+      "order": 4,
+      "hint": "Brightness of the cylindrical band"
+    },
+    {
+      "name": "u_band_y",
+      "label": "Band height",
+      "type": "float",
+      "default": 0.62,
+      "min": 0.15,
+      "max": 0.9,
+      "step": 0.01,
+      "group": "Look",
+      "widget": "slider",
+      "format": "percent",
+      "order": 5,
+      "hint": "Resting vertical position of the metal highlight",
+      "advanced": true
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 10,
+      "hint": "0 freezes the still"
+    }
+  ]
+}

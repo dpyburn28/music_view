@@ -1,0 +1,13 @@
+{
+  "id": "soft-pixel",
+  "name": "Soft Pixel",
+  "description": "Pixelate with soft cell edges and optional color snap. Gentler than hard pixelate.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_size", "label": "Size", "type": "float", "default": 6.0, "min": 1.0, "max": 48.0, "step": 1.0, "group": "Utility", "widget": "stepper", "unit": "px" },
+    { "name": "u_soft", "label": "Softness", "type": "float", "default": 0.45, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Utility", "widget": "slider" },
+    { "name": "u_snap", "label": "Color snap", "type": "float", "default": 0.0, "min": 0.0, "max": 16.0, "step": 1.0, "group": "Utility", "widget": "stepper", "hint": "0 = off, else quantize levels", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full pixel" }
+  ]
+}

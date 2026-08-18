@@ -1,0 +1,125 @@
+{
+  "id": "mono-lcd",
+  "name": "Mono LCD (Handheld)",
+  "description": "Game Boy\u2013style monochrome LCD: green-grey palette, dithered greys, coarse pixels, and slow ghosting feel.",
+  "roles": [
+    "postprocess"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_pixel_size",
+      "label": "Pixel size",
+      "type": "float",
+      "default": 4.0,
+      "min": 1.0,
+      "max": 16.0,
+      "step": 0.5,
+      "group": "Pixels",
+      "widget": "slider",
+      "unit": "px"
+    },
+    {
+      "name": "u_levels",
+      "label": "Grey levels",
+      "type": "float",
+      "default": 4.0,
+      "min": 2.0,
+      "max": 8.0,
+      "step": 1.0,
+      "group": "Palette",
+      "widget": "stepper",
+      "hint": "Number of dithered grey steps"
+    },
+    {
+      "name": "u_dither",
+      "label": "Dither",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Pixels",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_grid",
+      "label": "Grid gap",
+      "type": "float",
+      "default": 0.18,
+      "min": 0.0,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Pixels",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.2,
+      "min": 0.5,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_brightness",
+      "label": "Brightness",
+      "type": "float",
+      "default": 1.05,
+      "min": 0.4,
+      "max": 1.8,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_light",
+      "label": "Paper",
+      "type": "color",
+      "default": [
+        0.61,
+        0.74,
+        0.06
+      ],
+      "group": "Palette",
+      "advanced": true,
+      "widget": "color",
+      "pairWith": "u_dark",
+      "hint": "Lightest palette color"
+    },
+    {
+      "name": "u_dark",
+      "label": "Ink",
+      "type": "color",
+      "default": [
+        0.06,
+        0.22,
+        0.06
+      ],
+      "group": "Palette",
+      "advanced": true,
+      "widget": "color",
+      "pairWith": "u_light",
+      "hint": "Darkest palette color"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Effect mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "format": "percent",
+      "unit": "%",
+      "hint": "Blend of processed vs original",
+      "widget": "slider"
+    }
+  ]
+}

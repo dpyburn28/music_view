@@ -1,0 +1,312 @@
+{
+  "id": "audio-ferro-3",
+  "name": "Ferrofluid 3",
+  "description": "Physics-based ferrofluid surface simulation driven by the audio-beat container.",
+  "roles": [
+    "container"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_beat",
+      "label": "Beat",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "format": "percent",
+      "advanced": true
+    },
+    {
+      "name": "u_envelope",
+      "label": "Envelope",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "format": "percent",
+      "advanced": true
+    },
+    {
+      "name": "u_bass",
+      "label": "Bass",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "format": "percent",
+      "advanced": true
+    },
+    {
+      "name": "u_beat_phase",
+      "label": "Beat Phase",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_simulation_speed",
+      "label": "Simulation Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.1,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Simulation",
+      "widget": "slider"
+    },
+    {
+      "name": "u_solver_iterations",
+      "label": "Pressure Iterations",
+      "type": "float",
+      "default": 12.0,
+      "min": 2.0,
+      "max": 32.0,
+      "step": 1.0,
+      "group": "Simulation",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_dissipation",
+      "label": "Velocity Dissipation",
+      "type": "float",
+      "default": 0.985,
+      "min": 0.9,
+      "max": 1.0,
+      "step": 0.001,
+      "group": "Simulation",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_height_damping",
+      "label": "Height Damping",
+      "type": "float",
+      "default": 0.995,
+      "min": 0.9,
+      "max": 1.0,
+      "step": 0.001,
+      "group": "Simulation",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_seed_strength",
+      "label": "Instability Seed",
+      "type": "float",
+      "default": 0.012,
+      "min": 0.0,
+      "max": 0.05,
+      "step": 0.001,
+      "group": "Simulation",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_density",
+      "label": "Fluid Density",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.1,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Physics",
+      "widget": "slider"
+    },
+    {
+      "name": "u_viscosity",
+      "label": "Viscosity",
+      "type": "float",
+      "default": 0.22,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Physics",
+      "widget": "slider"
+    },
+    {
+      "name": "u_surface_tension",
+      "label": "Surface Tension",
+      "type": "float",
+      "default": 0.42,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Physics",
+      "widget": "slider"
+    },
+    {
+      "name": "u_gravity",
+      "label": "Gravity",
+      "type": "float",
+      "default": 0.28,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Physics",
+      "widget": "slider"
+    },
+    {
+      "name": "u_magnetic_susceptibility",
+      "label": "Magnetic Susceptibility",
+      "type": "float",
+      "default": 1.8,
+      "min": 0.0,
+      "max": 8.0,
+      "step": 0.05,
+      "group": "Magnetism",
+      "widget": "slider"
+    },
+    {
+      "name": "u_saturation_magnetization",
+      "label": "Saturation Magnetization",
+      "type": "float",
+      "default": 1.7,
+      "min": 0.2,
+      "max": 5.0,
+      "step": 0.05,
+      "group": "Magnetism",
+      "widget": "slider"
+    },
+    {
+      "name": "u_field_strength",
+      "label": "Field Strength",
+      "type": "float",
+      "default": 0.72,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Magnetism",
+      "widget": "slider"
+    },
+    {
+      "name": "u_field_gradient",
+      "label": "Field Gradient",
+      "type": "float",
+      "default": 0.18,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Magnetism",
+      "widget": "slider"
+    },
+    {
+      "name": "u_magnetic_relaxation",
+      "label": "Magnetic Relaxation",
+      "type": "float",
+      "default": 0.92,
+      "min": 0.5,
+      "max": 1.0,
+      "step": 0.005,
+      "group": "Magnetism",
+      "widget": "slider"
+    },
+    {
+      "name": "u_audio_field_gain",
+      "label": "Audio \u2192 Magnetic Field",
+      "type": "float",
+      "default": 0.85,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Magnetism",
+      "widget": "slider"
+    },
+    {
+      "name": "u_audio_bass_gain",
+      "label": "Bass Field Gain",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Magnetism",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_audio_beat_gain",
+      "label": "Beat Field Gain",
+      "type": "float",
+      "default": 0.9,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Magnetism",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_fluid_color",
+      "label": "Fluid Color",
+      "type": "color",
+      "default": [
+        0.005,
+        0.004,
+        0.003
+      ],
+      "group": "Material",
+      "widget": "color"
+    },
+    {
+      "name": "u_background_color",
+      "label": "Background",
+      "type": "color",
+      "default": [
+        0.9,
+        0.895,
+        0.88
+      ],
+      "group": "Material",
+      "widget": "color"
+    },
+    {
+      "name": "u_gloss",
+      "label": "Gloss",
+      "type": "float",
+      "default": 0.9,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Material",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_specular_strength",
+      "label": "Specular Strength",
+      "type": "float",
+      "default": 1.25,
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.01,
+      "group": "Material",
+      "widget": "slider"
+    },
+    {
+      "name": "u_surface_contrast",
+      "label": "Surface Contrast",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.2,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Material",
+      "widget": "slider"
+    }
+  ]
+}

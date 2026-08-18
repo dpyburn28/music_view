@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "LED Club",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.635Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1.05,
+            "u_contrast": 1.2,
+            "u_saturation": 1.4,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "pixelate",
+          "enabled": true,
+          "uniforms": {
+            "u_size": 6,
+            "u_intensity": 0.55
+          }
+        },
+        {
+          "shaderId": "led-matrix",
+          "enabled": true,
+          "uniforms": {}
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.45,
+            "u_radius": 2,
+            "u_strength": 0.55,
+            "u_iterations": 2,
+            "u_intensity": 0.8
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

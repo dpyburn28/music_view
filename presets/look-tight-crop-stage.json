@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Tight Crop Stage",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.641Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "crop-zoom",
+          "enabled": true,
+          "uniforms": {
+            "u_zoom": 1.45,
+            "u_pan_x": 0,
+            "u_pan_y": 0.02,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "levels",
+          "enabled": true,
+          "uniforms": {
+            "u_lift": 0,
+            "u_gamma": 1,
+            "u_gain": 1.08,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "sharpen",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.45,
+            "u_radius": 1,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.25,
+            "u_softness": 0.7,
+            "u_roundness": 1,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

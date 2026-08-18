@@ -1,0 +1,71 @@
+{
+  "id": "feedback-trail",
+  "name": "Feedback Trail",
+  "description": "Temporal feedback smear (uses previous frame). Zoom/rotate the trail for tunnel motion. Keep decay under 1 to avoid sticky frames.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_decay",
+      "label": "Decay",
+      "type": "float",
+      "default": 0.88,
+      "min": 0.0,
+      "max": 0.98,
+      "step": 0.01,
+      "group": "Temporal",
+      "widget": "slider",
+      "hint": "How long trails linger (never 1.0)"
+    },
+    {
+      "name": "u_zoom",
+      "label": "Zoom",
+      "type": "float",
+      "default": 1.015,
+      "min": 0.9,
+      "max": 1.1,
+      "step": 0.001,
+      "group": "Temporal",
+      "widget": "slider",
+      "hint": "Scale of previous frame about center (>1 = tunnel in)"
+    },
+    {
+      "name": "u_rotate",
+      "label": "Rotate",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.05,
+      "max": 0.05,
+      "step": 0.001,
+      "group": "Temporal",
+      "widget": "slider",
+      "hint": "Radians per frame-ish spin of the trail"
+    },
+    {
+      "name": "u_mix",
+      "label": "Trail mix",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Temporal",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "How much previous frame blends into the trail buffer"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full feedback look"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "name": "Utility Comic",
+  "createdAt": "2026-08-13T21:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.642Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "poster-edges",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 5,
+            "u_edge": 0.1,
+            "u_edgeBoost": 1.1,
+            "u_edgeColor": [
+              0.05,
+              0.05,
+              0.08
+            ],
+            "u_intensity": 0.95
+          }
+        },
+        {
+          "shaderId": "tri-dither",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 8,
+            "u_spread": 0.7,
+            "u_animate": 0,
+            "u_mono": 0,
+            "u_intensity": 0.4
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

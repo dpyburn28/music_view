@@ -1,0 +1,81 @@
+{
+  "id": "digital-noise",
+  "name": "Digital Noise",
+  "description": "Salt-and-pepper, edge ringing, and sensor hiss. Compression / CCD utility layer.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.4,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_pepper",
+      "label": "Salt & pepper",
+      "type": "float",
+      "default": 0.2,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider"
+    },
+    {
+      "name": "u_ringing",
+      "label": "Ringing",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider",
+      "hint": "Edge overshoot / Gibbs-like"
+    },
+    {
+      "name": "u_size",
+      "label": "Speck size",
+      "type": "float",
+      "default": 1.0,
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0,
+      "group": "Noise",
+      "widget": "stepper",
+      "unit": "px"
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Noise",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full digital noise"
+    }
+  ]
+}

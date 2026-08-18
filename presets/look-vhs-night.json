@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "VHS Night",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.644Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "levels",
+          "enabled": true,
+          "uniforms": {
+            "u_lift": 0.02,
+            "u_gamma": 1.05,
+            "u_gain": 0.95,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "hue-shift",
+          "enabled": true,
+          "uniforms": {
+            "u_hue": -8,
+            "u_saturation": 0.9,
+            "u_intensity": 0.5
+          }
+        },
+        {
+          "shaderId": "vhs",
+          "enabled": true,
+          "uniforms": {}
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.45,
+            "u_softness": 0.5,
+            "u_roundness": 0.95,
+            "u_invert": 0,
+            "u_intensity": 0.8
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.12
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

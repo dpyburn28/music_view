@@ -1,0 +1,81 @@
+{
+  "id": "luma-displace",
+  "name": "Luma Displace",
+  "description": "Offset UVs by luminance. Glass, refraction, and glitch utility — pairs with any stack.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.45,
+      "min": -2.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider"
+    },
+    {
+      "name": "u_angle",
+      "label": "Angle",
+      "type": "float",
+      "default": 0.0,
+      "min": -3.1416,
+      "max": 3.1416,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider"
+    },
+    {
+      "name": "u_center",
+      "label": "Pivot",
+      "type": "float",
+      "default": 0.5,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider",
+      "hint": "Luma value with zero displacement"
+    },
+    {
+      "name": "u_invert",
+      "label": "Invert luma",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Utility",
+      "widget": "toggle",
+      "advanced": true
+    },
+    {
+      "name": "u_smooth",
+      "label": "Smooth",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Utility",
+      "widget": "toggle",
+      "advanced": true,
+      "hint": "Blur luma before displace"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full displace"
+    }
+  ]
+}

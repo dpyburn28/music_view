@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "name": "Liquid Prism",
+  "createdAt": "2026-08-13T22:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.635Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "value-noise-warp",
+          "enabled": true,
+          "uniforms": {
+            "u_strength": 0.32,
+            "u_scale": 3.5,
+            "u_octaves": 3,
+            "u_speed": 0.35,
+            "u_intensity": 0.8
+          },
+          "modulators": {
+            "u_strength": {
+              "source": "sine",
+              "offset": 0.28,
+              "amp": 0.08,
+              "rate": 0.12,
+              "phase": 0,
+              "clock": "stack"
+            }
+          }
+        },
+        {
+          "shaderId": "luma-displace",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_angle": 0.6,
+            "u_center": 0.5,
+            "u_invert": 0,
+            "u_smooth": 1,
+            "u_intensity": 0.65
+          }
+        },
+        {
+          "shaderId": "prism",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.7,
+            "u_angle": 0.1,
+            "u_center_x": 0.5,
+            "u_center_y": 0.48,
+            "u_intensity": 0.8
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.48,
+            "u_radius": 3.5,
+            "u_strength": 0.75,
+            "u_iterations": 2,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "hue-shift",
+          "enabled": true,
+          "uniforms": {
+            "u_hue": 0,
+            "u_saturation": 1.2,
+            "u_intensity": 0.45
+          },
+          "modulators": {
+            "u_hue": {
+              "source": "sine",
+              "offset": 0,
+              "amp": 18,
+              "rate": 0.05,
+              "phase": 0,
+              "clock": "stack"
+            }
+          }
+        },
+        {
+          "shaderId": "clamp-tonemap",
+          "enabled": true,
+          "uniforms": {
+            "u_knee": 0.6,
+            "u_strength": 0.65,
+            "u_intensity": 1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

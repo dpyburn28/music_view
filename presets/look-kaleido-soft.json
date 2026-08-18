@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "name": "Kaleido Soft",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.635Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "mirror",
+          "enabled": true,
+          "uniforms": {
+            "u_flip_h": 0,
+            "u_flip_v": 0,
+            "u_quad": 1,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "crop-zoom",
+          "enabled": true,
+          "uniforms": {
+            "u_zoom": 1.25,
+            "u_pan_x": 0,
+            "u_pan_y": 0,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "blur",
+          "enabled": true,
+          "uniforms": {
+            "u_radius": 1,
+            "u_quality": 2,
+            "u_intensity": 0.2
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.5,
+            "u_radius": 2.5,
+            "u_strength": 0.5,
+            "u_iterations": 2,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_softness": 0.55,
+            "u_roundness": 1,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

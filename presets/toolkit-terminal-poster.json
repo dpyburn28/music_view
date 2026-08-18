@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "toolkit-terminal-poster",
+  "createdAt": "2026-08-13T00:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.650Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "outline",
+          "enabled": true,
+          "uniforms": {
+            "u_strength": 1.4,
+            "u_threshold": 0.06,
+            "u_color": [
+              0.45,
+              1,
+              0.55
+            ],
+            "u_invert_bg": 1,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "phosphor",
+          "enabled": true,
+          "uniforms": {}
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.12
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "id": "split-tone",
+  "name": "Split Tone",
+  "description": "Tint shadows and highlights with different colors. Classic film / music video grade.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_shadows",
+      "label": "Shadows",
+      "type": "color",
+      "default": [0.25, 0.35, 0.65],
+      "group": "Color",
+      "widget": "color"
+    },
+    {
+      "name": "u_highlights",
+      "label": "Highlights",
+      "type": "color",
+      "default": [1.0, 0.82, 0.55],
+      "group": "Color",
+      "widget": "color"
+    },
+    {
+      "name": "u_balance",
+      "label": "Balance",
+      "type": "float",
+      "default": 0.45,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "hint": "Luma pivot between shadow and highlight tints"
+    },
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.65,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_softness",
+      "label": "Softness",
+      "type": "float",
+      "default": 0.2,
+      "min": 0.01,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full split tone"
+    }
+  ]
+}

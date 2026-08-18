@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "toolkit-music-glow",
+  "createdAt": "2026-08-13T00:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.649Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.5,
+            "u_radius": 3,
+            "u_strength": 0.75,
+            "u_iterations": 2,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "chromatic",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.005,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_softness": 0.55,
+            "u_roundness": 1,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

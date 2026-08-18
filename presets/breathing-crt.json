@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "name": "Breathing CRT",
+  "createdAt": "2026-08-08T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.460Z",
+  "scene": {
+    "containers": [
+      {
+        "role": "song-cover",
+        "label": "Cover",
+        "labelCorner": "bottom-right",
+        "left": 281,
+        "top": 586,
+        "width": 518,
+        "height": 518,
+        "relative": {
+          "widthOfMin": 0.48,
+          "centerX": true,
+          "centerYOffset": -0.06
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 0,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": "default",
+        "shaderUniforms": {
+          "u_speed": 1
+        },
+        "shaderModulators": {
+          "u_speed": {
+            "source": "sine",
+            "offset": 1,
+            "amp": 0.35,
+            "rate": 0.25,
+            "phase": 0
+          }
+        },
+        "imageMode": "fill",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#000000",
+            "lineWidth": 5,
+            "dash": []
+          },
+          "connect": {
+            "color": "#000000",
+            "lineWidth": 5,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#111111",
+            "background": "transparent",
+            "letterSpacing": 0,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#111111",
+            "background": "transparent",
+            "letterSpacing": 0,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-info",
+        "label": "Track",
+        "labelCorner": "bottom-right",
+        "left": 460,
+        "top": 1120,
+        "width": 160,
+        "height": 72,
+        "relative": {
+          "centerX": true,
+          "belowRole": "song-cover",
+          "gap": 16
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 1,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#000000",
+            "lineWidth": 5,
+            "dash": []
+          },
+          "connect": {
+            "color": "#000000",
+            "lineWidth": 5,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#111111",
+            "background": "transparent",
+            "letterSpacing": 0,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#111111",
+            "background": "transparent",
+            "letterSpacing": 0,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-lyrics",
+        "label": "Lyrics",
+        "labelCorner": "top-right",
+        "left": 360,
+        "top": 1206,
+        "width": 360,
+        "height": 110,
+        "relative": {
+          "widthOfPanel": 0.78,
+          "maxWidth": 360,
+          "centerX": true,
+          "belowRole": "song-info",
+          "gap": 14
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 2,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#000000",
+            "lineWidth": 5,
+            "dash": []
+          },
+          "connect": {
+            "color": "#000000",
+            "lineWidth": 5,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#111111",
+            "background": "transparent",
+            "letterSpacing": 0,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#111111",
+            "background": "transparent",
+            "letterSpacing": 0,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-progress",
+        "label": "Progress",
+        "labelCorner": "bottom-right",
+        "left": 350,
+        "top": 1872,
+        "width": 380,
+        "height": 28,
+        "relative": {
+          "widthOfPanel": 0.84,
+          "maxWidth": 380,
+          "centerX": true,
+          "bottomInset": 20
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 3,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": "ends",
+        "style": {
+          "border": {
+            "color": "#000000",
+            "lineWidth": 5,
+            "dash": []
+          },
+          "connect": {
+            "color": "#000000",
+            "lineWidth": 5,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#111111",
+            "background": "transparent",
+            "letterSpacing": 0,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "system-ui, -apple-system, \"Segoe UI\", sans-serif",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#111111",
+            "background": "transparent",
+            "letterSpacing": 0,
+            "opacity": 1
+          }
+        }
+      }
+    ],
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "crt",
+          "enabled": true,
+          "uniforms": {
+            "u_curvature": 0.12,
+            "u_scanline": 0.55,
+            "u_mask": 0.45,
+            "u_mask_scale": 1,
+            "u_bloom": 0.28,
+            "u_brightness": 1.15,
+            "u_contrast": 1.08,
+            "u_vignette": 0.4,
+            "u_jitter": 0.002,
+            "u_aberration": 0.0015,
+            "u_intensity": 1
+          },
+          "modulators": {
+            "u_scanline": {
+              "source": "sine",
+              "offset": 0.55,
+              "amp": 0.12,
+              "rate": 0.35,
+              "phase": 0
+            },
+            "u_mask": {
+              "source": "sine",
+              "offset": 0.45,
+              "amp": 0.1,
+              "rate": 0.28,
+              "phase": 1.2
+            },
+            "u_bloom": {
+              "source": "sine",
+              "offset": 0.28,
+              "amp": 0.12,
+              "rate": 0.4,
+              "phase": 2
+            }
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

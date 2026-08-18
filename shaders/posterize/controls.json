@@ -1,0 +1,34 @@
+{
+  "id": "posterize",
+  "name": "Posterize",
+  "description": "Quantize RGB into discrete steps for a poster / print cut look.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_levels",
+      "label": "Levels",
+      "type": "float",
+      "default": 6.0,
+      "min": 2.0,
+      "max": 32.0,
+      "step": 1.0,
+      "group": "Color",
+      "widget": "stepper",
+      "hint": "Number of steps per channel"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full posterize"
+    }
+  ]
+}

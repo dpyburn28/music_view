@@ -1,0 +1,106 @@
+{
+  "id": "slice-warp",
+  "name": "Slice Warp",
+  "description": "Horizontal/vertical/both slice offsets with stretch and chroma. More versatile than basic RGB glitch.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.4,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Glitch",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_axis",
+      "label": "Axis",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 1.0,
+      "group": "Glitch",
+      "widget": "segmented",
+      "options": [
+        { "value": 0, "label": "H" },
+        { "value": 1, "label": "V" },
+        { "value": 2, "label": "Both" }
+      ]
+    },
+    {
+      "name": "u_slices_h",
+      "label": "H slices",
+      "type": "float",
+      "default": 28.0,
+      "min": 2.0,
+      "max": 80.0,
+      "step": 1.0,
+      "group": "Glitch",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_slices_v",
+      "label": "V slices",
+      "type": "float",
+      "default": 16.0,
+      "min": 2.0,
+      "max": 64.0,
+      "step": 1.0,
+      "group": "Glitch",
+      "widget": "stepper",
+      "advanced": true
+    },
+    {
+      "name": "u_stretch",
+      "label": "Stretch",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.5,
+      "step": 0.01,
+      "group": "Glitch",
+      "widget": "slider"
+    },
+    {
+      "name": "u_chroma",
+      "label": "Chroma",
+      "type": "float",
+      "default": 0.01,
+      "min": 0.0,
+      "max": 0.06,
+      "step": 0.001,
+      "group": "Glitch",
+      "widget": "slider"
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 5.0,
+      "min": 0.0,
+      "max": 24.0,
+      "step": 0.5,
+      "group": "Glitch",
+      "widget": "slider"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full slice warp"
+    }
+  ]
+}

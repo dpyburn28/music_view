@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "Utility JPEG",
+  "createdAt": "2026-08-13T21:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.642Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "jpeg-blocks",
+          "enabled": true,
+          "uniforms": {
+            "u_block": 10,
+            "u_quality": 0.25,
+            "u_ringing": 0.5,
+            "u_chromaSub": 1,
+            "u_intensity": 0.95
+          }
+        },
+        {
+          "shaderId": "digital-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.2,
+            "u_pepper": 0.08,
+            "u_ringing": 0.35,
+            "u_size": 1,
+            "u_speed": 1,
+            "u_intensity": 0.55
+          }
+        },
+        {
+          "shaderId": "row-shift",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.15,
+            "u_frequency": 120,
+            "u_speed": 2,
+            "u_smooth": 0,
+            "u_intensity": 0.5
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

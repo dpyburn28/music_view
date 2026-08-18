@@ -1,0 +1,67 @@
+{
+  "id": "error-dither",
+  "name": "Error Dither",
+  "description": "Single-pass Floyd–Steinberg-inspired error diffusion. Softer, print-like quantization vs Bayer.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_levels",
+      "label": "Levels",
+      "type": "float",
+      "default": 6.0,
+      "min": 2.0,
+      "max": 24.0,
+      "step": 1.0,
+      "group": "Dither",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_strength",
+      "label": "Diffusion",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.05,
+      "group": "Dither",
+      "widget": "slider",
+      "hint": "How much neighbor error bleeds into this pixel"
+    },
+    {
+      "name": "u_pixelSize",
+      "label": "Pixel size",
+      "type": "float",
+      "default": 1.0,
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0,
+      "group": "Dither",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_mono",
+      "label": "Mono",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Dither",
+      "widget": "slider"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full dither"
+    }
+  ]
+}

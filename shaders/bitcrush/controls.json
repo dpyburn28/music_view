@@ -1,0 +1,69 @@
+{
+  "id": "bitcrush",
+  "name": "Bitcrush",
+  "description": "Reduce bit depth (1–8 bits) with optional dither. Lo-fi / early digital utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_bits",
+      "label": "Bits",
+      "type": "float",
+      "default": 4.0,
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0,
+      "group": "Utility",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_dither",
+      "label": "Dither",
+      "type": "float",
+      "default": 0.75,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_scale",
+      "label": "Dither scale",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.5,
+      "max": 8.0,
+      "step": 0.5,
+      "group": "Utility",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_perChannel",
+      "label": "Per channel",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Utility",
+      "widget": "toggle",
+      "hint": "Off = crush luminance, keep chroma ratio"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full crush"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "id": "line-glitch",
+  "name": "Line Glitch",
+  "description": "Sparse H/V corrupted lines with shift and flashes. Cleaner than full-slice glitch for accents.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Glitch",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_density",
+      "label": "Density",
+      "type": "float",
+      "default": 0.12,
+      "min": 0.0,
+      "max": 0.6,
+      "step": 0.01,
+      "group": "Glitch",
+      "widget": "slider"
+    },
+    {
+      "name": "u_thickness",
+      "label": "Thickness",
+      "type": "float",
+      "default": 2.0,
+      "min": 1.0,
+      "max": 12.0,
+      "step": 1.0,
+      "group": "Glitch",
+      "widget": "stepper",
+      "unit": "px"
+    },
+    {
+      "name": "u_axis",
+      "label": "Axis",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Glitch",
+      "widget": "segmented",
+      "options": [
+        { "value": 0, "label": "H" },
+        { "value": 1, "label": "V" }
+      ]
+    },
+    {
+      "name": "u_flash",
+      "label": "Flash",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Glitch",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 4.0,
+      "min": 0.0,
+      "max": 20.0,
+      "step": 0.5,
+      "group": "Glitch",
+      "widget": "slider"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full line glitch"
+    }
+  ]
+}

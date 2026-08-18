@@ -1,0 +1,22 @@
+{
+  "id": "invert",
+  "name": "Invert",
+  "description": "Photographic negative / partial invert. Mix for selective look.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full invert"
+    }
+  ]
+}

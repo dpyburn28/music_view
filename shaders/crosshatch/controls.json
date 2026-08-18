@@ -1,0 +1,73 @@
+{
+  "id": "crosshatch",
+  "name": "Crosshatch",
+  "description": "Sketch lines denser in shadows. Graphic / ink look; pairs with outline or mono display packs.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_density",
+      "label": "Density",
+      "type": "float",
+      "default": 8.0,
+      "min": 2.0,
+      "max": 24.0,
+      "step": 0.5,
+      "group": "Style",
+      "widget": "slider",
+      "hint": "Line spacing (higher = finer)"
+    },
+    {
+      "name": "u_thickness",
+      "label": "Thickness",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.05,
+      "max": 0.9,
+      "step": 0.01,
+      "group": "Style",
+      "widget": "slider"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.15,
+      "min": 0.3,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Style",
+      "widget": "slider",
+      "hint": "Luma contrast before hatching"
+    },
+    {
+      "name": "u_color_ink",
+      "label": "Ink",
+      "type": "color",
+      "default": [0.1, 0.1, 0.12],
+      "group": "Style",
+      "widget": "color"
+    },
+    {
+      "name": "u_color_paper",
+      "label": "Paper",
+      "type": "color",
+      "default": [0.97, 0.96, 0.93],
+      "group": "Style",
+      "widget": "color"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full hatch"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "name": "Utility Lo-Fi",
+  "createdAt": "2026-08-13T20:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.642Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "bitcrush",
+          "enabled": true,
+          "uniforms": {
+            "u_bits": 4,
+            "u_dither": 0.85,
+            "u_scale": 1,
+            "u_perChannel": 1,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "blue-noise-dither",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 8,
+            "u_spread": 0.9,
+            "u_scale": 1,
+            "u_mono": 0,
+            "u_animate": 0.15,
+            "u_intensity": 0.55
+          }
+        },
+        {
+          "shaderId": "interlace",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.55,
+            "u_offset": 0.25,
+            "u_darken": 0.3,
+            "u_animate": 0,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "static-snow",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.2,
+            "u_density": 0.15,
+            "u_size": 1,
+            "u_hold": 0,
+            "u_color": 0,
+            "u_intensity": 0.5
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

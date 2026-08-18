@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Bleach War",
+  "createdAt": "2026-08-13T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.628Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "bleach-bypass",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.85,
+            "u_contrast": 1.45,
+            "u_brightness": -0.08,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "sharpen",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.45,
+            "u_radius": 1,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.22,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.35,
+            "u_softness": 0.5,
+            "u_roundness": 0.9,
+            "u_invert": 0,
+            "u_intensity": 0.8
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

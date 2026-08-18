@@ -1,0 +1,95 @@
+{
+  "id": "fbm-noise",
+  "name": "FBM Noise",
+  "description": "Fractal Brownian noise overlay. Modes: add, multiply, soft-light, luma. Versatile texture utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.5,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider"
+    },
+    {
+      "name": "u_scale",
+      "label": "Scale",
+      "type": "float",
+      "default": 6.0,
+      "min": 0.5,
+      "max": 40.0,
+      "step": 0.5,
+      "group": "Noise",
+      "widget": "slider"
+    },
+    {
+      "name": "u_octaves",
+      "label": "Octaves",
+      "type": "float",
+      "default": 4.0,
+      "min": 1.0,
+      "max": 6.0,
+      "step": 1.0,
+      "group": "Noise",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 0.2,
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.05,
+      "group": "Noise",
+      "widget": "slider"
+    },
+    {
+      "name": "u_mode",
+      "label": "Blend",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 3.0,
+      "step": 1.0,
+      "group": "Noise",
+      "widget": "segmented",
+      "options": [
+        { "value": 0, "label": "Add" },
+        { "value": 1, "label": "Mul" },
+        { "value": 2, "label": "Soft" },
+        { "value": 3, "label": "Luma" }
+      ]
+    },
+    {
+      "name": "u_mono",
+      "label": "Mono noise",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full noise"
+    }
+  ]
+}

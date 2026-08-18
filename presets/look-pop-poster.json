@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Pop Poster",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.639Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "posterize",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 4,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1.1,
+            "u_contrast": 1.35,
+            "u_saturation": 1.6,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "outline",
+          "enabled": true,
+          "uniforms": {
+            "u_strength": 1.5,
+            "u_threshold": 0.05,
+            "u_color": [
+              0.05,
+              0.05,
+              0.08
+            ],
+            "u_invert_bg": 0,
+            "u_intensity": 0.65
+          }
+        },
+        {
+          "shaderId": "sharpen",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_radius": 1,
+            "u_intensity": 0.5
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

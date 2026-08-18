@@ -1,0 +1,24 @@
+{
+  "name": "music_view",
+  "version": "0.1.0",
+  "description": "Desktop music visualizer: portrait stage, live look editing, and local playback in one workspace window.",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test scripts/test-scene-match.js scripts/test-workspace-bus.js scripts/test-user-settings.js scripts/test-tool-wrap.js scripts/test-workspace-hotkeys.js scripts/test-layout-space.js scripts/test-show-fx.js scripts/test-audio-input.js scripts/test-spotify-import.js"
+  },
+  "keywords": [
+    "electron",
+    "tiktok",
+    "portrait",
+    "1080x1920"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^29.0.0"
+  },
+  "dependencies": {
+    "music-metadata": "^11.14.0"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "name": "Pastel Comic",
+  "createdAt": "2026-08-13T22:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.638Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 1.08,
+            "u_contrast": 1.08,
+            "u_saturation": 1.15,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "poster-edges",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 6,
+            "u_edge": 0.11,
+            "u_edgeBoost": 0.85,
+            "u_edgeColor": [
+              0.25,
+              0.22,
+              0.35
+            ],
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "palette-map",
+          "enabled": true,
+          "uniforms": {
+            "u_c0": [
+              0.35,
+              0.32,
+              0.48
+            ],
+            "u_c1": [
+              0.72,
+              0.55,
+              0.7
+            ],
+            "u_c2": [
+              0.95,
+              0.78,
+              0.72
+            ],
+            "u_c3": [
+              0.98,
+              0.95,
+              0.88
+            ],
+            "u_contrast": 0.95,
+            "u_soft": 0.45,
+            "u_intensity": 0.55
+          }
+        },
+        {
+          "shaderId": "tri-dither",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 10,
+            "u_spread": 0.65,
+            "u_animate": 0,
+            "u_mono": 0,
+            "u_intensity": 0.45
+          }
+        },
+        {
+          "shaderId": "soft-pixel",
+          "enabled": true,
+          "uniforms": {
+            "u_size": 2,
+            "u_soft": 0.4,
+            "u_snap": 0,
+            "u_intensity": 0.3
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

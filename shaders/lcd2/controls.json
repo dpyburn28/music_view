@@ -1,0 +1,257 @@
+{
+  "id": "lcd2",
+  "name": "LCD Display (URP-style)",
+  "description": "CJT-Jackton URP LCD Display port: pixelized content, RGB subpixel mask with luma compensation, layout modes (square / offset / arrow / triangular), and derivative-based LOD fade so structure appears only when LCD pixels are large on screen.",
+  "roles": [
+    "postprocess"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_pixel_size",
+      "label": "Pixel size",
+      "type": "float",
+      "default": 4.0,
+      "min": 1.0,
+      "max": 24.0,
+      "step": 0.5,
+      "group": "Pixels",
+      "widget": "slider",
+      "unit": "px",
+      "hint": "LCD pixel size in screen pixels"
+    },
+    {
+      "name": "u_pixel_luma",
+      "label": "Pixel luma",
+      "type": "float",
+      "default": 4.0,
+      "min": 1.0,
+      "max": 8.0,
+      "step": 0.05,
+      "group": "Pixels",
+      "widget": "slider",
+      "hint": "Brightness restore for subpixel mask"
+    },
+    {
+      "name": "u_pixel_layout",
+      "label": "Layout",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 3.0,
+      "step": 1.0,
+      "group": "Pixels",
+      "widget": "segmented",
+      "options": [
+        {
+          "value": 0,
+          "label": "Square"
+        },
+        {
+          "value": 1,
+          "label": "Offset"
+        },
+        {
+          "value": 2,
+          "label": "Arrow"
+        },
+        {
+          "value": 3,
+          "label": "Tri"
+        }
+      ],
+      "hint": "Subpixel cell layout pattern"
+    },
+    {
+      "name": "u_layout_offset",
+      "label": "Layout offset",
+      "type": "float",
+      "default": 0.5,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Pixels",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_subpixel_gap",
+      "label": "Subpixel gap",
+      "type": "float",
+      "default": 0.12,
+      "min": 0.0,
+      "max": 0.4,
+      "step": 0.01,
+      "group": "Mask",
+      "widget": "slider"
+    },
+    {
+      "name": "u_row_gap",
+      "label": "Row gap",
+      "type": "float",
+      "default": 0.08,
+      "min": 0.0,
+      "max": 0.4,
+      "step": 0.01,
+      "group": "Mask",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_mask_soft",
+      "label": "Mask soft",
+      "type": "float",
+      "default": 0.04,
+      "min": 0.0,
+      "max": 0.2,
+      "step": 0.005,
+      "group": "Mask",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_bgr",
+      "label": "BGR subpixels",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Mask",
+      "advanced": true,
+      "widget": "toggle",
+      "hint": "Swap R/B subpixel order"
+    },
+    {
+      "name": "u_lod_pix_lo",
+      "label": "LOD pixelize lo",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 6.0,
+      "step": 0.1,
+      "group": "LOD",
+      "advanced": true,
+      "widget": "slider",
+      "pairWith": "u_lod_pix_hi",
+      "hint": "Screen-px size where full pixelization begins"
+    },
+    {
+      "name": "u_lod_pix_hi",
+      "label": "LOD pixelize hi",
+      "type": "float",
+      "default": 4.0,
+      "min": 0.5,
+      "max": 8.0,
+      "step": 0.1,
+      "group": "LOD",
+      "advanced": true,
+      "widget": "slider",
+      "pairWith": "u_lod_pix_lo",
+      "hint": "Screen-px size where pixelization ends"
+    },
+    {
+      "name": "u_lod_mask_lo",
+      "label": "LOD mask lo",
+      "type": "float",
+      "default": 3.0,
+      "min": 0.0,
+      "max": 6.0,
+      "step": 0.1,
+      "group": "LOD",
+      "advanced": true,
+      "widget": "slider",
+      "pairWith": "u_lod_mask_hi",
+      "hint": "Screen-px size for full RGB mask"
+    },
+    {
+      "name": "u_lod_mask_hi",
+      "label": "LOD mask hi",
+      "type": "float",
+      "default": 4.0,
+      "min": 0.5,
+      "max": 8.0,
+      "step": 0.1,
+      "group": "LOD",
+      "advanced": true,
+      "widget": "slider",
+      "pairWith": "u_lod_mask_lo",
+      "hint": "Screen-px size where mask hides"
+    },
+    {
+      "name": "u_force_pixels",
+      "label": "Force pixels",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "LOD",
+      "advanced": true,
+      "widget": "toggle",
+      "hint": "Ignore LOD and always show pixel structure"
+    },
+    {
+      "name": "u_interlace",
+      "label": "Interlace",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "FX",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_interlace_speed",
+      "label": "Interlace speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 8.0,
+      "step": 0.1,
+      "group": "FX",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_brightness",
+      "label": "Brightness",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.3,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider"
+    },
+    {
+      "name": "u_tint",
+      "label": "Panel tint",
+      "type": "color",
+      "default": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "group": "Color",
+      "advanced": true,
+      "widget": "color"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Effect mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "format": "percent",
+      "unit": "%",
+      "hint": "Blend of processed vs original",
+      "widget": "slider"
+    }
+  ]
+}

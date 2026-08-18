@@ -1,0 +1,136 @@
+{
+  "id": "audio-ferro-2",
+  "name": "Ferrofluid 2",
+  "description": "Glossy magnetic ferrofluid driven by beat energy.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_beat",
+      "label": "Beat",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_envelope",
+      "label": "Envelope",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_beat_phase",
+      "label": "Beat Phase",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_bass",
+      "label": "Bass",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Audio",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_size",
+      "label": "Fluid Size",
+      "type": "float",
+      "default": 0.30,
+      "min": 0.15,
+      "max": 0.48,
+      "step": 0.01,
+      "group": "Fluid",
+      "widget": "slider"
+    },
+    {
+      "name": "u_spikes",
+      "label": "Spike Height",
+      "type": "float",
+      "default": 0.20,
+      "min": 0.0,
+      "max": 0.45,
+      "step": 0.01,
+      "group": "Fluid",
+      "widget": "slider"
+    },
+    {
+      "name": "u_spike_count",
+      "label": "Magnetic Poles",
+      "type": "float",
+      "default": 10.0,
+      "min": 4.0,
+      "max": 20.0,
+      "step": 1.0,
+      "group": "Fluid",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_reactivity",
+      "label": "Beat Reactivity",
+      "type": "float",
+      "default": 0.28,
+      "min": 0.0,
+      "max": 0.8,
+      "step": 0.01,
+      "group": "Fluid",
+      "widget": "slider"
+    },
+    {
+      "name": "u_gloss",
+      "label": "Gloss",
+      "type": "float",
+      "default": 0.85,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Material",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_black",
+      "label": "Blackness",
+      "type": "float",
+      "default": 0.94,
+      "min": 0.5,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Material",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_edge",
+      "label": "Edge Softness",
+      "type": "float",
+      "default": 0.012,
+      "min": 0.002,
+      "max": 0.05,
+      "step": 0.001,
+      "group": "Material",
+      "widget": "slider"
+    }
+  ]
+}

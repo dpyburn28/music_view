@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "name": "Acid Trip",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.627Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "warp-ripple",
+          "enabled": true,
+          "uniforms": {
+            "u_amplitude": 0.022,
+            "u_frequency": 14,
+            "u_speed": 4.5,
+            "u_intensity": 0.85
+          },
+          "modulators": {
+            "u_amplitude": {
+              "source": "sine",
+              "offset": 0.016,
+              "amp": 0.01,
+              "rate": 0.4,
+              "phase": 0,
+              "clock": "stack"
+            }
+          }
+        },
+        {
+          "shaderId": "hue-shift",
+          "enabled": true,
+          "uniforms": {
+            "u_hue": 0,
+            "u_saturation": 1.5,
+            "u_intensity": 0.8
+          },
+          "modulators": {
+            "u_hue": {
+              "source": "sine",
+              "offset": 0,
+              "amp": 90,
+              "rate": 0.08,
+              "phase": 0,
+              "clock": "stack"
+            }
+          }
+        },
+        {
+          "shaderId": "mirror",
+          "enabled": true,
+          "uniforms": {
+            "u_flip_h": 0,
+            "u_flip_v": 0,
+            "u_quad": 1,
+            "u_intensity": 0.45
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.4,
+            "u_radius": 3.5,
+            "u_strength": 0.9,
+            "u_iterations": 2,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "chromatic",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.012,
+            "u_intensity": 0.9
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

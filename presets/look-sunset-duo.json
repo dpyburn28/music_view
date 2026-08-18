@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "name": "Sunset Duo",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.640Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "duotone",
+          "enabled": true,
+          "uniforms": {
+            "u_color_a": [
+              0.15,
+              0.05,
+              0.2
+            ],
+            "u_color_b": [
+              1,
+              0.55,
+              0.25
+            ],
+            "u_contrast": 1.2,
+            "u_smooth": 0.1,
+            "u_intensity": 0.95
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.55,
+            "u_radius": 3,
+            "u_strength": 0.6,
+            "u_iterations": 2,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.35,
+            "u_softness": 0.6,
+            "u_roundness": 1,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "grain",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.09
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "tape-hiss",
+  "name": "Tape Hiss",
+  "description": "Analog tape hiss with warm bias and sparse dropouts. Finish layer for lo-fi stacks.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_amount", "label": "Amount", "type": "float", "default": 0.35, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Noise", "widget": "slider" },
+    { "name": "u_dropout", "label": "Dropouts", "type": "float", "default": 0.25, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Noise", "widget": "slider" },
+    { "name": "u_warmth", "label": "Warmth", "type": "float", "default": 0.4, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Noise", "widget": "slider" },
+    { "name": "u_speed", "label": "Speed", "type": "float", "default": 1.0, "min": 0.0, "max": 3.0, "step": 0.05, "group": "Noise", "widget": "slider", "advanced": true },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full hiss" }
+  ]
+}

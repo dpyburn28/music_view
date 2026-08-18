@@ -1,0 +1,57 @@
+{
+  "id": "warp-noise",
+  "name": "Warp Noise",
+  "description": "Domain-warped UV using value noise. Organic liquid / heat haze without radial rings.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_scale",
+      "label": "Scale",
+      "type": "float",
+      "default": 4.0,
+      "min": 0.5,
+      "max": 16.0,
+      "step": 0.1,
+      "group": "Distort",
+      "widget": "slider",
+      "hint": "Noise feature size"
+    },
+    {
+      "name": "u_strength",
+      "label": "Strength",
+      "type": "float",
+      "default": 0.02,
+      "min": 0.0,
+      "max": 0.12,
+      "step": 0.001,
+      "group": "Distort",
+      "widget": "slider",
+      "hint": "UV warp amount"
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 0.4,
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.05,
+      "group": "Distort",
+      "widget": "slider"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full warp"
+    }
+  ]
+}

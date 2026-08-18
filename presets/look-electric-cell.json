@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "name": "Electric Cell",
+  "createdAt": "2026-08-13T22:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.631Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "contrast-sat",
+          "enabled": true,
+          "uniforms": {
+            "u_brightness": 0.98,
+            "u_contrast": 1.18,
+            "u_saturation": 1.25,
+            "u_intensity": 0.9
+          }
+        },
+        {
+          "shaderId": "cell-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.45,
+            "u_scale": 14,
+            "u_edge": 0.28,
+            "u_mode": 2,
+            "u_speed": 0.45,
+            "u_intensity": 0.7
+          },
+          "modulators": {
+            "u_speed": {
+              "source": "sine",
+              "offset": 0.4,
+              "amp": 0.2,
+              "rate": 0.08,
+              "phase": 0,
+              "clock": "stack"
+            }
+          }
+        },
+        {
+          "shaderId": "edge-glow",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.06,
+            "u_strength": 1.5,
+            "u_spread": 1.3,
+            "u_color": [
+              0.3,
+              0.95,
+              1
+            ],
+            "u_keep_image": 0.55,
+            "u_intensity": 0.75
+          }
+        },
+        {
+          "shaderId": "chromatic-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.4,
+            "u_scale": 1.6,
+            "u_speed": 0.55,
+            "u_intensity": 0.55
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.42,
+            "u_radius": 3.8,
+            "u_strength": 0.9,
+            "u_iterations": 3,
+            "u_intensity": 0.8
+          }
+        },
+        {
+          "shaderId": "clamp-tonemap",
+          "enabled": true,
+          "uniforms": {
+            "u_knee": 0.55,
+            "u_strength": 0.7,
+            "u_intensity": 1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

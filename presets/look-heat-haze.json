@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "name": "Heat Haze",
+  "createdAt": "2026-08-13T12:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.633Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "warp-noise",
+          "enabled": true,
+          "uniforms": {
+            "u_scale": 5,
+            "u_strength": 0.025,
+            "u_speed": 0.55,
+            "u_intensity": 0.85
+          }
+        },
+        {
+          "shaderId": "warp-ripple",
+          "enabled": true,
+          "uniforms": {
+            "u_amplitude": 0.006,
+            "u_frequency": 10,
+            "u_speed": 1.5,
+            "u_intensity": 0.5
+          }
+        },
+        {
+          "shaderId": "color-balance",
+          "enabled": true,
+          "uniforms": {
+            "u_shadows": [
+              0.55,
+              0.48,
+              0.45
+            ],
+            "u_mids": [
+              0.58,
+              0.5,
+              0.42
+            ],
+            "u_highs": [
+              0.62,
+              0.55,
+              0.4
+            ],
+            "u_amount": 0.4,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "bloom",
+          "enabled": true,
+          "uniforms": {
+            "u_threshold": 0.5,
+            "u_radius": 2.5,
+            "u_strength": 0.5,
+            "u_iterations": 2,
+            "u_intensity": 0.7
+          }
+        },
+        {
+          "shaderId": "vignette",
+          "enabled": true,
+          "uniforms": {
+            "u_amount": 0.35,
+            "u_softness": 0.55,
+            "u_roundness": 1,
+            "u_invert": 0,
+            "u_intensity": 1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "name": "Phosphor Terminal",
+  "createdAt": "2026-08-08T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.645Z",
+  "scene": {
+    "containers": [
+      {
+        "role": "song-cover",
+        "label": "Cover",
+        "labelCorner": "bottom-right",
+        "left": 313,
+        "top": 541,
+        "width": 454,
+        "height": 454,
+        "relative": {
+          "widthOfMin": 0.42,
+          "centerX": true,
+          "centerYOffset": -0.1
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 0,
+        "distancing": 0,
+        "connect": true,
+        "anchorDistance": 280,
+        "attachToRole": "song-lyrics",
+        "shaderId": "default",
+        "shaderUniforms": {
+          "u_speed": 0.6
+        },
+        "imageMode": "fill",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#1a4a28",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "connect": {
+            "color": "#3d8f55",
+            "lineWidth": 1,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#7dff9a",
+            "background": "rgba(0,12,4,0.85)",
+            "letterSpacing": 0.8,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#7dff9a",
+            "background": "rgba(0,12,4,0.85)",
+            "letterSpacing": 0.8,
+            "opacity": 1
+          }
+        },
+        "shaderModulators": {
+          "u_speed": {
+            "source": "sine",
+            "offset": 0.6,
+            "amp": 0.25,
+            "rate": 0.2,
+            "phase": 0
+          }
+        }
+      },
+      {
+        "role": "song-info",
+        "label": "Track",
+        "labelCorner": "bottom-right",
+        "left": 465,
+        "top": 1007,
+        "width": 150,
+        "height": 68,
+        "relative": {
+          "centerX": true,
+          "belowRole": "song-cover",
+          "gap": 12
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 1,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#1a4a28",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "connect": {
+            "color": "#3d8f55",
+            "lineWidth": 1,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#7dff9a",
+            "background": "rgba(0,12,4,0.85)",
+            "letterSpacing": 0.8,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#7dff9a",
+            "background": "rgba(0,12,4,0.85)",
+            "letterSpacing": 0.8,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-lyrics",
+        "label": "Lyrics",
+        "labelCorner": "top-right",
+        "left": 380,
+        "top": 1085,
+        "width": 320,
+        "height": 110,
+        "relative": {
+          "widthOfPanel": 0.72,
+          "maxWidth": 320,
+          "centerX": true,
+          "belowRole": "song-info",
+          "gap": 10
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 2,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#1a4a28",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "connect": {
+            "color": "#3d8f55",
+            "lineWidth": 1,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#7dff9a",
+            "background": "rgba(0,12,4,0.85)",
+            "letterSpacing": 0.8,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#7dff9a",
+            "background": "rgba(0,12,4,0.85)",
+            "letterSpacing": 0.8,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-progress",
+        "label": "Progress",
+        "labelCorner": "bottom-right",
+        "left": 370,
+        "top": 1876,
+        "width": 340,
+        "height": 28,
+        "relative": {
+          "widthOfPanel": 0.78,
+          "maxWidth": 340,
+          "centerX": true,
+          "bottomInset": 16
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 3,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": "ends",
+        "style": {
+          "border": {
+            "color": "#1a4a28",
+            "lineWidth": 2,
+            "dash": []
+          },
+          "connect": {
+            "color": "#3d8f55",
+            "lineWidth": 1,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#7dff9a",
+            "background": "rgba(0,12,4,0.85)",
+            "letterSpacing": 0.8,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"SF Mono\", \"Menlo\", \"Consolas\", monospace",
+            "fontSize": 11,
+            "fontWeight": "600",
+            "fontStyle": "normal",
+            "color": "#7dff9a",
+            "background": "rgba(0,12,4,0.85)",
+            "letterSpacing": 0.8,
+            "opacity": 1
+          }
+        }
+      }
+    ],
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "crt",
+          "enabled": true,
+          "uniforms": {
+            "u_curvature": 0.08,
+            "u_scanline": 0.4,
+            "u_mask": 0.25,
+            "u_mask_scale": 1.2,
+            "u_bloom": 0.35,
+            "u_brightness": 1.05,
+            "u_contrast": 1.15,
+            "u_vignette": 0.5,
+            "u_jitter": 0.001,
+            "u_aberration": 0.001,
+            "u_tint": [
+              0.7,
+              1,
+              0.75
+            ],
+            "u_intensity": 0.95
+          },
+          "modulators": {
+            "u_scanline": {
+              "source": "sine",
+              "offset": 0.4,
+              "amp": 0.1,
+              "rate": 0.3,
+              "phase": 0
+            },
+            "u_jitter": {
+              "source": "noise",
+              "offset": 0.001,
+              "amp": 0.0008,
+              "rate": 2,
+              "phase": 0
+            }
+          }
+        },
+        {
+          "shaderId": "phosphor",
+          "enabled": true,
+          "uniforms": {
+            "u_decay": 0.9,
+            "u_gain": 1.15,
+            "u_threshold": 0.06,
+            "u_bloom": 0.28,
+            "u_tint": [
+              0.55,
+              1,
+              0.6
+            ],
+            "u_intensity": 0.85
+          },
+          "modulators": {
+            "u_gain": {
+              "source": "sine",
+              "offset": 1.15,
+              "amp": 0.1,
+              "rate": 0.25,
+              "phase": 0.5
+            }
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "id": "colored-grain",
+  "name": "Colored Grain",
+  "description": "Per-channel grain with size, chroma, and shadow bias. More controllable than basic film grain.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.16,
+      "min": 0.0,
+      "max": 0.6,
+      "step": 0.005,
+      "group": "Noise",
+      "widget": "slider"
+    },
+    {
+      "name": "u_size",
+      "label": "Size",
+      "type": "float",
+      "default": 1.5,
+      "min": 0.5,
+      "max": 8.0,
+      "step": 0.5,
+      "group": "Noise",
+      "widget": "slider",
+      "unit": "px"
+    },
+    {
+      "name": "u_chroma",
+      "label": "Chroma",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider",
+      "hint": "0 = mono grain, 1 = independent RGB"
+    },
+    {
+      "name": "u_shadows",
+      "label": "Shadow bias",
+      "type": "float",
+      "default": 0.45,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Noise",
+      "widget": "slider",
+      "hint": "Stronger grain in dark areas"
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Noise",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full grain"
+    }
+  ]
+}

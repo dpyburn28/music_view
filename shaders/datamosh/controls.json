@@ -1,0 +1,82 @@
+{
+  "id": "datamosh",
+  "name": "Datamosh",
+  "description": "Block hold from previous frame (feedback). Motion-sticky macroblocks — true datamosh utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_amount",
+      "label": "Amount",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Glitch",
+      "widget": "slider",
+      "format": "percent"
+    },
+    {
+      "name": "u_block",
+      "label": "Block",
+      "type": "float",
+      "default": 18.0,
+      "min": 4.0,
+      "max": 64.0,
+      "step": 1.0,
+      "group": "Glitch",
+      "widget": "stepper",
+      "unit": "px"
+    },
+    {
+      "name": "u_threshold",
+      "label": "Motion thr",
+      "type": "float",
+      "default": 0.08,
+      "min": 0.0,
+      "max": 0.5,
+      "step": 0.005,
+      "group": "Glitch",
+      "widget": "slider",
+      "hint": "Low motion = stickier blocks"
+    },
+    {
+      "name": "u_noise",
+      "label": "Block noise",
+      "type": "float",
+      "default": 0.25,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Glitch",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 2.0,
+      "min": 0.0,
+      "max": 12.0,
+      "step": 0.25,
+      "group": "Glitch",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full datamosh"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "clamp-tonemap",
+  "name": "Clamp / Soft Clip",
+  "description": "Soft-knee highlight compression after bloom or high gain. Keeps whites from blowing out hard.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_knee",
+      "label": "Knee",
+      "type": "float",
+      "default": 0.75,
+      "min": 0.2,
+      "max": 0.98,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider",
+      "hint": "Where soft compression begins"
+    },
+    {
+      "name": "u_strength",
+      "label": "Strength",
+      "type": "float",
+      "default": 0.65,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "How hard highs are compressed"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full clamp"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "poster-edges",
+  "name": "Poster Edges",
+  "description": "Posterize + Sobel edges. Comic / graphic utility in one pack.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_levels", "label": "Levels", "type": "float", "default": 5.0, "min": 2.0, "max": 16.0, "step": 1.0, "group": "Style", "widget": "stepper" },
+    { "name": "u_edge", "label": "Edge thr", "type": "float", "default": 0.12, "min": 0.0, "max": 0.5, "step": 0.01, "group": "Style", "widget": "slider" },
+    { "name": "u_edgeBoost", "label": "Edge boost", "type": "float", "default": 1.0, "min": 0.0, "max": 2.0, "step": 0.05, "group": "Style", "widget": "slider" },
+    { "name": "u_edgeColor", "label": "Edge color", "type": "color", "default": [0.05, 0.05, 0.08], "group": "Style", "widget": "color" },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full effect" }
+  ]
+}

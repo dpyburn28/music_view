@@ -1,0 +1,14 @@
+{
+  "id": "bayer-dither",
+  "name": "Bayer Dither 8",
+  "description": "Ordered 8×8 Bayer quantization. Clean print / 1-bit game utility; sibling to base dither pack.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    { "name": "u_levels", "label": "Levels", "type": "float", "default": 4.0, "min": 2.0, "max": 32.0, "step": 1.0, "group": "Dither", "widget": "stepper" },
+    { "name": "u_spread", "label": "Spread", "type": "float", "default": 1.0, "min": 0.0, "max": 3.0, "step": 0.05, "group": "Dither", "widget": "slider" },
+    { "name": "u_pixelSize", "label": "Pixel size", "type": "float", "default": 2.0, "min": 1.0, "max": 16.0, "step": 1.0, "group": "Dither", "widget": "stepper" },
+    { "name": "u_mono", "label": "Mono", "type": "float", "default": 0.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Dither", "widget": "slider" },
+    { "name": "u_intensity", "label": "Mix", "type": "float", "default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01, "group": "Mix", "widget": "slider", "format": "percent", "hint": "0 = original, 1 = full dither" }
+  ]
+}

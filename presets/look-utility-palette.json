@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Utility Palette",
+  "createdAt": "2026-08-13T21:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.643Z",
+  "scene": {
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "bayer-dither",
+          "enabled": true,
+          "uniforms": {
+            "u_levels": 4,
+            "u_spread": 1,
+            "u_pixelSize": 2,
+            "u_mono": 1,
+            "u_intensity": 1
+          }
+        },
+        {
+          "shaderId": "palette-map",
+          "enabled": true,
+          "uniforms": {
+            "u_c0": [
+              0.06,
+              0.08,
+              0.1
+            ],
+            "u_c1": [
+              0.18,
+              0.32,
+              0.22
+            ],
+            "u_c2": [
+              0.55,
+              0.78,
+              0.32
+            ],
+            "u_c3": [
+              0.9,
+              0.96,
+              0.7
+            ],
+            "u_contrast": 1.15,
+            "u_soft": 0.1,
+            "u_intensity": 1
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

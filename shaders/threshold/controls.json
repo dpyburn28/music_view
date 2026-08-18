@@ -1,0 +1,88 @@
+{
+  "id": "threshold",
+  "name": "Threshold",
+  "description": "Luma threshold with soft edge and color map modes. Stencil, poster, and keying utility.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_level",
+      "label": "Level",
+      "type": "float",
+      "default": 0.45,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Utility",
+      "widget": "slider"
+    },
+    {
+      "name": "u_softness",
+      "label": "Softness",
+      "type": "float",
+      "default": 0.05,
+      "min": 0.0,
+      "max": 0.4,
+      "step": 0.005,
+      "group": "Utility",
+      "widget": "slider"
+    },
+    {
+      "name": "u_mode",
+      "label": "Mode",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 1.0,
+      "group": "Utility",
+      "widget": "segmented",
+      "options": [
+        { "value": 0, "label": "Map" },
+        { "value": 1, "label": "Key" },
+        { "value": 2, "label": "Punch" }
+      ]
+    },
+    {
+      "name": "u_low",
+      "label": "Low color",
+      "type": "color",
+      "default": [0.0, 0.0, 0.0],
+      "group": "Utility",
+      "widget": "color"
+    },
+    {
+      "name": "u_high",
+      "label": "High color",
+      "type": "color",
+      "default": [1.0, 1.0, 1.0],
+      "group": "Utility",
+      "widget": "color"
+    },
+    {
+      "name": "u_invert",
+      "label": "Invert",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Utility",
+      "widget": "toggle",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original, 1 = full threshold"
+    }
+  ]
+}

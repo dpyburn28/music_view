@@ -1,0 +1,58 @@
+{
+  "id": "contrast-sat",
+  "name": "Contrast & Saturation",
+  "description": "Simple grade punch: brightness, contrast around mid-grey, and saturation. Foundation polish without a full levels stack.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_brightness",
+      "label": "Brightness",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "hint": "1 = unchanged"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "hint": "1 = unchanged; pivots around mid-grey"
+    },
+    {
+      "name": "u_saturation",
+      "label": "Saturation",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.5,
+      "step": 0.01,
+      "group": "Color",
+      "widget": "slider",
+      "hint": "0 = greyscale, 1 = original, >1 = punch"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full effect"
+    }
+  ]
+}

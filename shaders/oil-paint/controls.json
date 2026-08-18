@@ -1,0 +1,57 @@
+{
+  "id": "oil-paint",
+  "name": "Oil Paint",
+  "description": "Painterly kuwahara-style regions with color quantization. Heavy; use sparingly in stacks.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_radius",
+      "label": "Radius",
+      "type": "float",
+      "default": 2.5,
+      "min": 0.5,
+      "max": 5.0,
+      "step": 0.1,
+      "group": "Style",
+      "widget": "slider",
+      "hint": "Brush region size (cost scales up)"
+    },
+    {
+      "name": "u_levels",
+      "label": "Color levels",
+      "type": "float",
+      "default": 12.0,
+      "min": 3.0,
+      "max": 24.0,
+      "step": 1.0,
+      "group": "Style",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_smooth",
+      "label": "Smooth",
+      "type": "float",
+      "default": 0.35,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Style",
+      "widget": "slider",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "0 = original scene, 1 = full paint"
+    }
+  ]
+}

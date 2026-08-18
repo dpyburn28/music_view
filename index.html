@@ -1,0 +1,33 @@
+<!-- Leftover stage markup. The app loads workspace.html. Keep as a capture-shell reference. -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TikTok-Style Window</title>
+    <link rel="stylesheet" href="./main.css" />
+</head>
+
+<body>
+    <div class="app-shell">
+        <div class="top-panel">
+            <canvas id="bg-canvas"></canvas>
+            <canvas id="bg-postprocess-canvas"></canvas>
+            <canvas id="top-canvas"></canvas>
+        </div>
+        <video id="bg-video" class="bg-video-el" playsinline muted loop preload="auto"></video>
+        <div class="bottom-panel"></div>
+        <canvas id="overlay-canvas"></canvas>
+        <canvas id="postprocess-canvas"></canvas>
+    </div>
+    <script src="./param-mod.js"></script>
+    <script src="./shaders.js"></script>
+    <script src="./artef4kt-host.js"></script>
+    <script src="./scene-match.js"></script>
+    <script src="./layout-space.js"></script>
+    <script src="./audio-input.js"></script>
+    <script src="./renderer.js"></script>
+</body>
+
+</html>

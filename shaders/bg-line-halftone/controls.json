@@ -1,0 +1,75 @@
+{
+  "id": "bg-line-halftone",
+  "name": "Line Halftone",
+  "description": "Organic noise field cut into 1-bit vertical line-dither. Stage / panel fill.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_density",
+      "label": "Line density",
+      "type": "float",
+      "default": 95.0,
+      "min": 16.0,
+      "max": 220.0,
+      "step": 1.0,
+      "group": "Look",
+      "widget": "slider",
+      "order": 1,
+      "hint": "Carrier frequency along X — how many vertical bars"
+    },
+    {
+      "name": "u_scale",
+      "label": "Scale",
+      "type": "float",
+      "default": 1.45,
+      "min": 0.6,
+      "max": 8.0,
+      "step": 0.05,
+      "group": "Look",
+      "widget": "slider",
+      "order": 2,
+      "hint": "Noise feature size"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 0.78,
+      "min": 0.15,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Look",
+      "widget": "slider",
+      "format": "percent",
+      "order": 3,
+      "hint": "Pushes the field toward solid black/white vs a wide line band"
+    },
+    {
+      "name": "u_invert",
+      "label": "Invert",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Look",
+      "widget": "toggle",
+      "order": 4,
+      "advanced": true
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 10,
+      "hint": "Y-scroll of the fluid. 0 freezes the still"
+    }
+  ]
+}

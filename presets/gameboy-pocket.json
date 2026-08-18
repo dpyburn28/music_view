@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "name": "Game Boy Pocket",
+  "createdAt": "2026-08-08T18:00:00.000Z",
+  "updatedAt": "2026-08-14T23:50:41.626Z",
+  "scene": {
+    "containers": [
+      {
+        "role": "song-cover",
+        "label": "Cover",
+        "labelCorner": "bottom-right",
+        "left": 313,
+        "top": 541,
+        "width": 454,
+        "height": 454,
+        "relative": {
+          "widthOfMin": 0.42,
+          "centerX": true,
+          "centerYOffset": -0.1
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 0,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "fill",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#306230",
+            "lineWidth": 6,
+            "dash": []
+          },
+          "connect": {
+            "color": "#8bac0f",
+            "lineWidth": 3,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Lucida Console\", Monaco, monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#0d280d",
+            "background": "rgba(155,188,15,0.85)",
+            "letterSpacing": 1,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Lucida Console\", Monaco, monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#0d280d",
+            "background": "rgba(155,188,15,0.85)",
+            "letterSpacing": 1,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-info",
+        "label": "Track",
+        "labelCorner": "bottom-right",
+        "left": 470,
+        "top": 1007,
+        "width": 140,
+        "height": 64,
+        "relative": {
+          "centerX": true,
+          "belowRole": "song-cover",
+          "gap": 12
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 1,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#306230",
+            "lineWidth": 6,
+            "dash": []
+          },
+          "connect": {
+            "color": "#8bac0f",
+            "lineWidth": 3,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Lucida Console\", Monaco, monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#0d280d",
+            "background": "rgba(155,188,15,0.85)",
+            "letterSpacing": 1,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Lucida Console\", Monaco, monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#0d280d",
+            "background": "rgba(155,188,15,0.85)",
+            "letterSpacing": 1,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-lyrics",
+        "label": "Lyrics",
+        "labelCorner": "top-right",
+        "left": 380,
+        "top": 1081,
+        "width": 320,
+        "height": 100,
+        "relative": {
+          "widthOfPanel": 0.72,
+          "maxWidth": 320,
+          "centerX": true,
+          "belowRole": "song-info",
+          "gap": 10
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 2,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": {
+            "color": "#306230",
+            "lineWidth": 6,
+            "dash": []
+          },
+          "connect": {
+            "color": "#8bac0f",
+            "lineWidth": 3,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Lucida Console\", Monaco, monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#0d280d",
+            "background": "rgba(155,188,15,0.85)",
+            "letterSpacing": 1,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Lucida Console\", Monaco, monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#0d280d",
+            "background": "rgba(155,188,15,0.85)",
+            "letterSpacing": 1,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-progress",
+        "label": "Progress",
+        "labelCorner": "bottom-right",
+        "left": 370,
+        "top": 1878,
+        "width": 340,
+        "height": 26,
+        "relative": {
+          "widthOfPanel": 0.78,
+          "maxWidth": 340,
+          "centerX": true,
+          "bottomInset": 16
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 3,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": "center",
+        "style": {
+          "border": {
+            "color": "#306230",
+            "lineWidth": 6,
+            "dash": []
+          },
+          "connect": {
+            "color": "#8bac0f",
+            "lineWidth": 3,
+            "dash": []
+          },
+          "label": {
+            "fontFamily": "\"Lucida Console\", Monaco, monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#0d280d",
+            "background": "rgba(155,188,15,0.85)",
+            "letterSpacing": 1,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "\"Lucida Console\", Monaco, monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#0d280d",
+            "background": "rgba(155,188,15,0.85)",
+            "letterSpacing": 1,
+            "opacity": 1
+          }
+        }
+      }
+    ],
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "mono-lcd",
+          "enabled": true,
+          "uniforms": {
+            "u_pixel_size": 5,
+            "u_levels": 4,
+            "u_dither": 0.42,
+            "u_grid": 0.22,
+            "u_contrast": 1.35,
+            "u_brightness": 1.08,
+            "u_light": [
+              0.61,
+              0.74,
+              0.06
+            ],
+            "u_dark": [
+              0.06,
+              0.22,
+              0.06
+            ],
+            "u_intensity": 1
+          },
+          "modulators": {
+            "u_dither": {
+              "source": "sine",
+              "offset": 0.42,
+              "amp": 0.08,
+              "rate": 0.2,
+              "phase": 0
+            },
+            "u_brightness": {
+              "source": "sine",
+              "offset": 1.08,
+              "amp": 0.06,
+              "rate": 0.12,
+              "phase": 1.5
+            }
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

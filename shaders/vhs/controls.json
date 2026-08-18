@@ -1,0 +1,131 @@
+{
+  "id": "vhs",
+  "name": "VHS / Composite",
+  "description": "Analog tape and composite video: chroma bleed, tracking noise, soft luma, horizontal wobble, and color fringing.",
+  "roles": [
+    "postprocess"
+  ],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_bleed",
+      "label": "Chroma bleed",
+      "type": "float",
+      "default": 0.006,
+      "min": 0.0,
+      "max": 0.03,
+      "step": 0.0005,
+      "group": "Tape",
+      "widget": "slider"
+    },
+    {
+      "name": "u_softness",
+      "label": "Luma soft",
+      "type": "float",
+      "default": 0.55,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Tape",
+      "widget": "slider"
+    },
+    {
+      "name": "u_wobble",
+      "label": "Tracking wobble",
+      "type": "float",
+      "default": 0.003,
+      "min": 0.0,
+      "max": 0.02,
+      "step": 0.0005,
+      "group": "Tape",
+      "widget": "slider"
+    },
+    {
+      "name": "u_noise",
+      "label": "Tape noise",
+      "type": "float",
+      "default": 0.12,
+      "min": 0.0,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Tape",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_scanline",
+      "label": "Scanlines",
+      "type": "float",
+      "default": 0.22,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Tape",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_tracking",
+      "label": "Tracking bars",
+      "type": "float",
+      "default": 0.15,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Tape",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_saturation",
+      "label": "Saturation",
+      "type": "float",
+      "default": 1.15,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Color",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_contrast",
+      "label": "Contrast",
+      "type": "float",
+      "default": 1.05,
+      "min": 0.5,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Color",
+      "advanced": true,
+      "widget": "slider"
+    },
+    {
+      "name": "u_tint",
+      "label": "Tape tint",
+      "type": "color",
+      "default": [
+        1.02,
+        0.98,
+        0.94
+      ],
+      "group": "Color",
+      "advanced": true,
+      "widget": "color"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Effect mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "format": "percent",
+      "unit": "%",
+      "hint": "Blend of processed vs original",
+      "widget": "slider"
+    }
+  ]
+}
