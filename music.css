@@ -376,7 +376,7 @@ html:not(.workspace) body,
     /* height:0 + grow fills leftover space so this box is the scrollport */
     flex: 1 1 auto;
     height: 0;
-    min-height: 160px;
+    min-height: 520px;
     overflow-x: hidden;
     overflow-y: scroll;
     overscroll-behavior: contain;
