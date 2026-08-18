@@ -220,6 +220,12 @@ function renderSongList() {
         li.dataset.id = song.id;
         if (song.id === selectedId) li.classList.add('selected');
 
+        const thumb = document.createElement('img');
+        thumb.className = 'song-thumb';
+        thumb.alt = '';
+        thumb.loading = 'lazy';
+        li.appendChild(thumb);
+
         const title = document.createElement('span');
         title.className = 'song-title';
         title.textContent = song.title;
@@ -234,6 +240,70 @@ function renderSongList() {
 
         li.addEventListener('click', () => selectSong(song.id));
         list.appendChild(li);
+    }
+    loadVisibleCovers();
+}
+
+const coverCache = new Map();
+let coverObserver = null;
+
+function loadVisibleCovers() {
+    const list = $('song-list');
+    if (!list) return;
+
+    if (coverObserver) coverObserver.disconnect();
+
+    const thumbs = list.querySelectorAll('.song-thumb:not([src])');
+    if (!thumbs.length) return;
+
+    if (!coverObserver) {
+        coverObserver = new IntersectionObserver((entries) => {
+            for (const entry of entries) {
+                if (!entry.isIntersecting) continue;
+                const img = entry.target;
+                coverObserver.unobserve(img);
+                fetchCoverForThumb(img);
+            }
+        }, { root: $('song-list'), rootMargin: '200px' });
+    }
+
+    for (const thumb of thumbs) {
+        const li = thumb.closest('li');
+        const songId = li?.dataset?.id;
+        if (!songId) continue;
+
+        if (coverCache.has(songId)) {
+            const cached = coverCache.get(songId);
+            if (cached) thumb.src = cached;
+            continue;
+        }
+        coverObserver.observe(thumb);
+    }
+}
+
+async function fetchCoverForThumb(img) {
+    const li = img.closest('li');
+    const songId = li?.dataset?.id;
+    if (!songId) return;
+    if (coverCache.has(songId)) {
+        const cached = coverCache.get(songId);
+        if (cached) img.src = cached;
+        return;
+    }
+
+    const song = songs.find(s => s.id === songId);
+    if (!song?.path || !musicViewApi()?.getCover) return;
+
+    try {
+        const result = await musicViewApi().getCover(song.path);
+        if (result?.ok && result.dataUrl) {
+            coverCache.set(songId, result.dataUrl);
+            if (img.isConnected) img.src = result.dataUrl;
+        } else {
+            coverCache.set(songId, null);
+        }
+    } catch (_) {
+        coverCache.set(songId, null);
     }
 }
 
