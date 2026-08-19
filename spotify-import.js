@@ -979,8 +979,8 @@ function existingAudioForBase(dir, base) {
   return null;
 }
 
-function songFromPath(audioPath) {
-  const listed = musicLibrary.listSongs();
+async function songFromPath(audioPath) {
+  const listed = await musicLibrary.listSongs();
   if (listed.ok && Array.isArray(listed.songs)) {
     const hit = listed.songs.find((s) => s.path === audioPath);
     if (hit) return hit;

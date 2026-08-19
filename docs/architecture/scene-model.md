@@ -151,6 +151,6 @@ Capture feeds the first enabled pass as `u_scene`; each pass’s output becomes 
 ## Export / apply
 
 - **Export:** Display walks live containers + stack → JSON (version 1 preset envelope).
-- **Apply:** Display rebuilds stack programs and container properties; music content remains whatever is currently playing.
+- **Apply:** Display rebuilds stack programs and container properties; music content remains whatever is currently playing. Container geometry is preserved when explicit pixel values are present — `restackLyricsSnapshot` only fills missing/invalid fields on `song-lyrics`; `clampContainerInPanel` skips containers already within bounds.
 
 See [Authoring → presets](../authoring/presets.md).

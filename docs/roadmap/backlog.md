@@ -125,6 +125,9 @@ Future: zip install of shader packs / preset packs, version field on packages, c
 
 ## Recently finished (do not re-open without cause)
 
+- Song list cover art thumbnails + startup preloading
+- Song list artist / genre display and filter
+- Preset load: lyrics geometry preservation
 - Look / Object controls IA  
 - Schema-driven shader widgets  
 - Param modulation with clocks and multi-wave sources  

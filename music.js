@@ -205,7 +205,10 @@ function applyFilter() {
     filtered = !q
         ? songs.slice()
         : songs.filter((s) =>
-            s.title.toLowerCase().includes(q) || s.name.toLowerCase().includes(q),
+            s.title.toLowerCase().includes(q)
+            || s.name.toLowerCase().includes(q)
+            || (s.artist && s.artist.toLowerCase().includes(q))
+            || (s.genre && s.genre.toLowerCase().includes(q)),
         );
     renderSongList();
 }
@@ -226,11 +229,26 @@ function renderSongList() {
         thumb.loading = 'lazy';
         li.appendChild(thumb);
 
+        const info = document.createElement('span');
+        info.className = 'song-info';
+
         const title = document.createElement('span');
         title.className = 'song-title';
         title.textContent = song.title;
         title.title = song.name;
-        li.appendChild(title);
+        info.appendChild(title);
+
+        const metaParts = [];
+        if (song.artist) metaParts.push(song.artist);
+        if (song.genre) metaParts.push(song.genre);
+        if (metaParts.length) {
+            const sub = document.createElement('span');
+            sub.className = 'song-meta';
+            sub.textContent = metaParts.join(' \u00B7 ');
+            info.appendChild(sub);
+        }
+
+        li.appendChild(info);
 
         const badge = document.createElement('span');
         badge.className = 'badge' + (song.hasLyrics ? '' : ' muted');
@@ -305,6 +323,38 @@ async function fetchCoverForThumb(img) {
     } catch (_) {
         coverCache.set(songId, null);
     }
+}
+
+const COVER_PRELOAD_CONCURRENCY = 4;
+
+async function preloadCovers() {
+    if (!songs.length || !musicViewApi()?.getCover) return;
+    const load = loadUi();
+    let loaded = 0;
+    const total = songs.length;
+    const queue = songs.filter((s) => !coverCache.has(s.id));
+    if (!queue.length) return;
+
+    const workers = Array.from({ length: Math.min(COVER_PRELOAD_CONCURRENCY, queue.length) }, async () => {
+        while (queue.length) {
+            const song = queue.shift();
+            try {
+                const result = await musicViewApi().getCover(song.path);
+                if (result?.ok && result.dataUrl) {
+                    coverCache.set(song.id, result.dataUrl);
+                } else {
+                    coverCache.set(song.id, null);
+                }
+            } catch (_) {
+                coverCache.set(song.id, null);
+            }
+            loaded++;
+            if (load && loaded % 4 === 0) {
+                load.set(60 + Math.round((loaded / total) * 35), `Loading covers\u2026 ${loaded}/${total}`);
+            }
+        }
+    });
+    await Promise.allSettled(workers);
 }
 
 function clearCoverArt() {
@@ -2378,6 +2428,8 @@ async function init() {
         wireMusicCommands();
         if (load) load.set(52, 'Scanning library…');
         await refreshLibrary();
+        if (load) load.set(60, 'Loading cover art…');
+        await preloadCovers();
         probeSpotifyImportTools();
         // Clip-arm clock rides the existing tick via a patched progress publisher
         window.__musicViewTickClipArm = tickClipArm;

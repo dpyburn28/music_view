@@ -2,6 +2,22 @@
 
 Running app update log. Newest entries first.
 
+## 2026-08-18
+
+### Song list cover art
+
+Music dock shows a **36×36 thumbnail** per track. Cover art is extracted from embedded `METADATA_BLOCK_PICTURE` via `music-metadata` and cached in-renderer so subsequent scrolls are instant. On first launch, `preloadCovers()` batch-loads all covers with 4 concurrent workers during the boot overlay — the list renders with covers already populated.
+
+Each `<li>` now includes an **artist · genre** line below the title (metadata read during the same `listSongs` scan). Filter matches on artist and genre as well as title/filename.
+
+Song list `min-height` raised to **520 px** so the library is readable without scrolling.
+
+### Preset load — lyrics position preserved
+
+`restackLyricsSnapshot` no longer overwrites explicit `left`, `top`, `width`, or `height` on the `song-lyrics` container when loading a preset or performance snapshot. Geometry set by the author (or a previous save) is kept; only missing or invalid values are filled by the restack math. This fixes the lyrics panel being pushed up to sit directly below `song-info` when a preset was saved with `bottomPanel.heightRatio: 0`.
+
+`clampContainerInPanel` now early-returns when the clamped position matches the current position, preventing `syncDesignFromLive` from overwriting `layoutDesign` with live-pixel values for containers that don't need repositioning.
+
 ## 2026-08-15
 
 ### Spotify import

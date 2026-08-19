@@ -3869,6 +3869,7 @@ function clampContainerInPanel(state) {
     let top = state.top != null ? state.top : state.element.offsetTop;
     left = Math.max(0, Math.min(Math.max(0, panelW - w), left));
     top = Math.max(0, Math.min(Math.max(0, panelH - h), top));
+    if (left === state.left && top === state.top) return;
     setContainerPosition(state, left, top);
 }
 

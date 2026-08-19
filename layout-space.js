@@ -283,19 +283,25 @@
       setStyleFontSize(lyrics.style, font);
     }
     const active = Math.max(font + 4, Math.round(font * 1.5));
-    const height = Math.max(160, Math.round(font * 1.35 * 2 + active * 1.3 + 36));
+    const computedHeight = Math.max(160, Math.round(font * 1.35 * 2 + active * 1.3 + 36));
     let width = num(lyrics.width);
     if (width == null || width < 200 || width > panelW) {
       width = Math.min(380, Math.round(panelW * 0.82));
+      lyrics.width = roundPx(width);
     }
-    lyrics.width = roundPx(width);
-    lyrics.height = roundPx(height);
-    lyrics.left = roundPx((panelW - width) / 2);
-    const anchor = (info && num(info.top) != null) ? info : cover;
-    if (anchor && num(anchor.top) != null && num(anchor.height) != null) {
-      lyrics.top = roundPx(anchor.top + anchor.height + 16);
+    if (num(lyrics.height) == null || lyrics.height < computedHeight) {
+      lyrics.height = roundPx(computedHeight);
     }
-    lyrics.relative = null;
+    if (num(lyrics.left) == null) {
+      lyrics.left = roundPx((panelW - (width || num(lyrics.width) || 380)) / 2);
+    }
+    if (num(lyrics.top) == null) {
+      const anchor = (info && num(info.top) != null) ? info : cover;
+      if (anchor && num(anchor.top) != null && num(anchor.height) != null) {
+        lyrics.top = roundPx(anchor.top + anchor.height + 16);
+      }
+    }
+    if (num(lyrics.top) != null) lyrics.relative = null;
   }
 
   function normalizeScene(scene, opts) {

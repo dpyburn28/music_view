@@ -46,6 +46,16 @@ Display name inside JSON (`name`) may be human-readable (`"Breathing CRT"`); fil
 
 `presets.js` rewrites `version`, `updatedAt`, and requires `scene` on save. Extra top-level keys are not required.
 
+**`bottomPanel` fields:**
+
+| Field | Effect |
+|-------|--------|
+| `heightRatio` | 0–1 of shell height. `0` = strip hidden, stage is fullscreen; `0.25` = bottom 25% is the colored strip. Container float area shrinks accordingly. |
+| `includeInFloatArea` | When `true`, floating containers may be placed/resized into the bottom strip area even when `heightRatio > 0`. |
+| `color` | CSS hex fill of the strip. |
+
+A preset saved with `heightRatio: 0` gives containers the full stage height. Saving with `heightRatio: 0.25` and loading with `heightRatio: 0` (or vice versa) will cause `clampContainerInPanel` to reposition containers that fall outside the new float area.
+
 **Layout vs FX-only:** if `scene.containers` is missing, not an array, or `[]`, apply is **FX-only** (postprocess + bottom strip + `background` when present; panel set unchanged). A non-empty `containers` list updates/spawns those panels and **prunes generic extras** only — unique roles omitted from old files stay.
 
 `scene.background` is optional. Layout apply with the key missing resets to a **blank white solid**. FX-only apply leaves the live background unless the file includes `background`. Export always writes the live background (omit empty FX layers).
@@ -109,7 +119,8 @@ Mirror live container snapshots. Minimum practical fields (see also [containers.
 | `shaderId` | Package id string or `null` (beat panel often `audio-ferrofluid`) |
 | `shaderUniforms` | Flat map of **values only** (`number` or `[r,g,b]`) |
 | `shaderModulators` | Optional; omit or `{}` when static ([modulation](./param-modulation.md)) |
-| Runtime fields | Never include DOM nodes, canvas refs, or renderer instances |
+| Runtime fields | Never include DOM nodes, canvas refs, or renderer instances. `snapshotId` is generated at save time for container matching — do not invent values. |
+| `song-lyrics` geometry | Explicit `left`, `top`, `width`, `height` are preserved on load; only missing/invalid values are filled by restack math |
 
 ## `scene.postprocess`
 

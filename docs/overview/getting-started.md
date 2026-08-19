@@ -43,8 +43,8 @@ If your songs live elsewhere, update `SONG_DIR_CANDIDATES` in `music-library.js`
 
 ## First-run checklist
 
-1. Wait for the boot overlay (percent + step) to finish. Later loads show a slim busy bar at the top.
-2. **Music** (left dock) — pick a song, or paste a Spotify track URL and Import; confirm cover/title and lyrics (if `.lrc` present).
+1. Wait for the boot overlay (percent + step) to finish. Cover art thumbnails for all songs are loaded during this phase. Later loads show a slim busy bar at the top.
+2. **Music** (left dock) — pick a song, or paste a Spotify track URL and Import; confirm cover/title/artist and lyrics (if `.lrc` present).
 3. **Look** — enable postprocess; add or reorder FX layers; load a preset (e.g. `vhs-rental`).
 4. **Look → Background** — leave the default white solid, or set Shader / Image / Video. Shader packages are container-role fills (`bg-*` and `default`). Apply commits the pick; you can switch packages without clearing first. Basic|All applies to background uniforms as well as Look FX.
 5. **Look → Render** — optional frame-rate cap (`Native` or 12–60). This is a machine setting, not part of a look.

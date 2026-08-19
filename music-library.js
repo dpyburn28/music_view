@@ -53,7 +53,7 @@ function resolveSongsDir() {
   return SONG_DIR_CANDIDATES[0];
 }
 
-function listSongs() {
+async function listSongs() {
   const dir = resolveSongsDir();
   if (!fs.existsSync(dir)) {
     return {
@@ -76,6 +76,13 @@ function listSongs() {
     };
   }
 
+  let mm;
+  try {
+    mm = await import('music-metadata');
+  } catch (_) {
+    mm = null;
+  }
+
   const songs = [];
   for (const ent of entries) {
     if (!ent.isFile()) continue;
@@ -88,17 +95,32 @@ function listSongs() {
     const lrcPath = path.join(dir, lrcName);
     const hasLyrics = fs.existsSync(lrcPath);
 
+    let artist = '';
+    let genre = '';
+    if (mm) {
+      try {
+        const metadata = await mm.parseFile(audioPath, { duration: false, skipCovers: true });
+        const c = metadata.common || {};
+        artist = c.artist
+          || (Array.isArray(c.artists) ? c.artists.filter(Boolean).join(', ') : '')
+          || c.albumartist
+          || '';
+        genre = Array.isArray(c.genre) ? c.genre.filter(Boolean).join(', ') : (c.genre || '');
+      } catch (_) { /* metadata unavailable — leave empty */ }
+    }
+
     songs.push({
       id: ent.name,
       name: ent.name,
       title: base,
       ext,
       path: audioPath,
-      // Custom protocol (registered in app.js) — streams local files safely
       fileUrl: songFileUrl(audioPath),
       nativeFileUrl: pathToFileURL(audioPath).href,
       hasLyrics,
       lyricsPath: hasLyrics ? lrcPath : null,
+      artist,
+      genre,
     });
   }
 
