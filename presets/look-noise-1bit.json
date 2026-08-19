@@ -1,0 +1,238 @@
+{
+  "version": 1,
+  "name": "Noise 1-Bit",
+  "createdAt": "2026-08-18T12:00:00.000Z",
+  "updatedAt": "2026-08-18T12:00:00.000Z",
+  "scene": {
+    "containers": [
+      {
+        "role": "song-cover",
+        "label": "Cover",
+        "labelCorner": "bottom-right",
+        "left": 288,
+        "top": 440,
+        "width": 504,
+        "height": 504,
+        "relative": {
+          "widthOfMin": 0.47,
+          "centerX": true,
+          "centerYOffset": -0.1
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 0,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "fill",
+        "progressTimeMode": null,
+        "style": {
+          "border": { "color": "#000000", "lineWidth": 4, "dash": [] },
+          "connect": { "color": "#000000", "lineWidth": 2, "dash": [] },
+          "label": {
+            "fontFamily": "monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#ffffff",
+            "background": "rgba(0,0,0,0.7)",
+            "letterSpacing": 1,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#ffffff",
+            "background": "rgba(0,0,0,0.7)",
+            "letterSpacing": 1,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-info",
+        "label": "Track",
+        "labelCorner": "bottom-right",
+        "left": 470,
+        "top": 956,
+        "width": 140,
+        "height": 64,
+        "relative": {
+          "centerX": true,
+          "belowRole": "song-cover",
+          "gap": 12
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 1,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": { "color": "#000000", "lineWidth": 4, "dash": [] },
+          "connect": { "color": "#000000", "lineWidth": 2, "dash": [] },
+          "label": {
+            "fontFamily": "monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#ffffff",
+            "background": "rgba(0,0,0,0.7)",
+            "letterSpacing": 1,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#ffffff",
+            "background": "rgba(0,0,0,0.7)",
+            "letterSpacing": 1,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-lyrics",
+        "label": "Lyrics",
+        "labelCorner": "top-right",
+        "left": 380,
+        "top": 1032,
+        "width": 320,
+        "height": 100,
+        "relative": {
+          "widthOfPanel": 0.72,
+          "maxWidth": 320,
+          "centerX": true,
+          "belowRole": "song-info",
+          "gap": 10
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 2,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": { "color": "#000000", "lineWidth": 4, "dash": [] },
+          "connect": { "color": "#000000", "lineWidth": 2, "dash": [] },
+          "label": {
+            "fontFamily": "monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#ffffff",
+            "background": "rgba(0,0,0,0.7)",
+            "letterSpacing": 1,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#ffffff",
+            "background": "rgba(0,0,0,0.7)",
+            "letterSpacing": 1,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-progress",
+        "label": "Progress",
+        "labelCorner": "bottom-right",
+        "left": 370,
+        "top": 1878,
+        "width": 340,
+        "height": 26,
+        "relative": {
+          "widthOfPanel": 0.78,
+          "maxWidth": 340,
+          "centerX": true,
+          "bottomInset": 16
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 3,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": "center",
+        "style": {
+          "border": { "color": "#000000", "lineWidth": 4, "dash": [] },
+          "connect": { "color": "#000000", "lineWidth": 2, "dash": [] },
+          "label": {
+            "fontFamily": "monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#ffffff",
+            "background": "rgba(0,0,0,0.7)",
+            "letterSpacing": 1,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "monospace",
+            "fontSize": 10,
+            "fontWeight": "700",
+            "fontStyle": "normal",
+            "color": "#ffffff",
+            "background": "rgba(0,0,0,0.7)",
+            "letterSpacing": 1,
+            "opacity": 1
+          }
+        }
+      }
+    ],
+    "postprocess": {
+      "active": true,
+      "layers": [
+        {
+          "shaderId": "noise-dither",
+          "enabled": true,
+          "uniforms": {
+            "u_scale": 2.0,
+            "u_strength": 0.6,
+            "u_keepColor": 1.0,
+            "u_intensity": 0.85
+          },
+          "modulators": {
+            "u_strength": {
+              "source": "sine",
+              "offset": 0.6,
+              "amp": 0.15,
+              "rate": 0.15,
+              "phase": 0
+            }
+          }
+        }
+      ]
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

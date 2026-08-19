@@ -26,7 +26,7 @@ Each ported package goes into `shaders/<id>/` with `controls.json` + `shader.fra
 2. Create `shaders/<id>/shader.frag` with inlined GLSL (no `#include`, no `varying` from vert)
 3. Add `<id>` to `shaders/index.json`
 4. Test: apply as container fill or postprocess layer in Controls
-5. Create 1–2 presets under `shaders/<id>/presets/` with visually distinct settings
+5. Create a look preset in `presets/` that features the new shader (postprocess layer or container fill)
 
 ## Shared utilities
 

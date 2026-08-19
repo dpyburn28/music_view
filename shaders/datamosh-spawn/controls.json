@@ -1,0 +1,103 @@
+{
+  "id": "datamosh-spawn",
+  "name": "Spawn Mosh",
+  "description": "Threshold + spawn-rate datamosh from Three-World. Blocks hold when motion is low; spawn probability gates new frames.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_thresholdMax",
+      "label": "Threshold",
+      "type": "float",
+      "default": 0.15,
+      "min": 0.0,
+      "max": 0.5,
+      "step": 0.005,
+      "group": "Motion",
+      "widget": "slider",
+      "hint": "Max luma delta below which blocks stick"
+    },
+    {
+      "name": "u_thresholdRamp",
+      "label": "Threshold Ramp",
+      "type": "float",
+      "default": 0.8,
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "hint": "How fast threshold rises from zero on start"
+    },
+    {
+      "name": "u_deltaScale",
+      "label": "Delta Scale",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.1,
+      "max": 5.0,
+      "step": 0.1,
+      "group": "Motion",
+      "widget": "slider"
+    },
+    {
+      "name": "u_spawnRate",
+      "label": "Spawn Rate",
+      "type": "float",
+      "default": 0.7,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Spawn",
+      "widget": "slider",
+      "format": "percent",
+      "hint": "Probability of keeping current frame (lower = more mosh)"
+    },
+    {
+      "name": "u_spawnScale",
+      "label": "Spawn Scale",
+      "type": "float",
+      "default": 8.0,
+      "min": 1.0,
+      "max": 32.0,
+      "step": 1.0,
+      "group": "Spawn",
+      "widget": "stepper"
+    },
+    {
+      "name": "u_spawnSpeed",
+      "label": "Spawn Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.1,
+      "group": "Spawn",
+      "widget": "slider"
+    },
+    {
+      "name": "u_spawnSeed",
+      "label": "Seed",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 100.0,
+      "step": 1.0,
+      "group": "Spawn",
+      "widget": "stepper",
+      "advanced": true
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent"
+    }
+  ]
+}

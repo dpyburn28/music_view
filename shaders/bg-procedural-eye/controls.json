@@ -1,0 +1,229 @@
+{
+  "id": "bg-procedural-eye",
+  "name": "Procedural Eye",
+  "description": "Realistic procedural eye from Three-World — iris fibers, crypts, collarette, specular. Container fill.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_eyeRadius",
+      "label": "Radius",
+      "type": "float",
+      "default": 0.4,
+      "min": 0.1,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Shape",
+      "widget": "slider",
+      "order": 1
+    },
+    {
+      "name": "u_scleraSqueeze",
+      "label": "Squeeze",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 0.4,
+      "step": 0.01,
+      "group": "Shape",
+      "widget": "slider",
+      "order": 2
+    },
+    {
+      "name": "u_scleraAngle",
+      "label": "Angle",
+      "type": "float",
+      "default": 0.0,
+      "min": -1.57,
+      "max": 1.57,
+      "step": 0.05,
+      "group": "Shape",
+      "widget": "slider",
+      "order": 3
+    },
+    {
+      "name": "u_scleraColor",
+      "label": "Sclera",
+      "type": "color",
+      "default": [0.95, 0.95, 0.95],
+      "group": "Shape",
+      "widget": "color",
+      "order": 4
+    },
+    {
+      "name": "u_pupilPosition",
+      "label": "Position",
+      "type": "vec2",
+      "default": [0.0, 0.0],
+      "group": "Pupil",
+      "widget": "vec",
+      "order": 10
+    },
+    {
+      "name": "u_pupilRadius",
+      "label": "Radius",
+      "type": "float",
+      "default": 0.12,
+      "min": 0.02,
+      "max": 0.3,
+      "step": 0.005,
+      "group": "Pupil",
+      "widget": "slider",
+      "order": 11
+    },
+    {
+      "name": "u_pupilColor",
+      "label": "Color",
+      "type": "color",
+      "default": [0.02, 0.02, 0.02],
+      "group": "Pupil",
+      "widget": "color",
+      "order": 12
+    },
+    {
+      "name": "u_irisRadius",
+      "label": "Radius",
+      "type": "float",
+      "default": 0.25,
+      "min": 0.1,
+      "max": 0.45,
+      "step": 0.005,
+      "group": "Iris",
+      "widget": "slider",
+      "order": 20
+    },
+    {
+      "name": "u_irisInnerColor",
+      "label": "Inner",
+      "type": "color",
+      "default": [0.3, 0.5, 0.2],
+      "group": "Iris",
+      "widget": "color",
+      "order": 21
+    },
+    {
+      "name": "u_irisOuterColor",
+      "label": "Outer",
+      "type": "color",
+      "default": [0.15, 0.35, 0.55],
+      "group": "Iris",
+      "widget": "color",
+      "order": 22
+    },
+    {
+      "name": "u_irisCryptColor",
+      "label": "Crypt",
+      "type": "color",
+      "default": [0.1, 0.15, 0.1],
+      "group": "Iris",
+      "widget": "color",
+      "order": 23
+    },
+    {
+      "name": "u_limbalWidth",
+      "label": "Limbal",
+      "type": "float",
+      "default": 0.03,
+      "min": 0.0,
+      "max": 0.08,
+      "step": 0.005,
+      "group": "Iris",
+      "widget": "slider",
+      "order": 24
+    },
+    {
+      "name": "u_irisRadialComp",
+      "label": "Radial",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.3,
+      "max": 2.0,
+      "step": 0.05,
+      "group": "Iris",
+      "widget": "slider",
+      "order": 25
+    },
+    {
+      "name": "u_irisCryptFreq",
+      "label": "Crypt Freq",
+      "type": "float",
+      "default": 8.0,
+      "min": 2.0,
+      "max": 20.0,
+      "step": 0.5,
+      "group": "Iris",
+      "widget": "slider",
+      "order": 26
+    },
+    {
+      "name": "u_fiberFreq",
+      "label": "Fiber Freq",
+      "type": "float",
+      "default": 12.0,
+      "min": 3.0,
+      "max": 30.0,
+      "step": 0.5,
+      "group": "Iris",
+      "widget": "slider",
+      "order": 27
+    },
+    {
+      "name": "u_eyelidColor",
+      "label": "Color",
+      "type": "color",
+      "default": [0.6, 0.45, 0.35],
+      "group": "Eyelid",
+      "widget": "color",
+      "order": 30
+    },
+    {
+      "name": "u_eyelidBias",
+      "label": "Bias",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.2,
+      "max": 0.2,
+      "step": 0.01,
+      "group": "Eyelid",
+      "widget": "slider",
+      "order": 31
+    },
+    {
+      "name": "u_eyelidAngle",
+      "label": "Angle",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.5,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Eyelid",
+      "widget": "slider",
+      "order": 32
+    },
+    {
+      "name": "u_blink",
+      "label": "Blink",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Eyelid",
+      "widget": "slider",
+      "format": "percent",
+      "order": 33
+    },
+    {
+      "name": "u_soften",
+      "label": "Soften",
+      "type": "float",
+      "default": 0.01,
+      "min": 0.001,
+      "max": 0.05,
+      "step": 0.001,
+      "group": "Render",
+      "widget": "slider",
+      "order": 40
+    }
+  ]
+}

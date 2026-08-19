@@ -1,0 +1,113 @@
+{
+  "id": "bg-sky-gradient",
+  "name": "Sky Gradient",
+  "description": "Procedural sky dome with animated clouds from Three-World. Container fill — no source image needed.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_topColor",
+      "label": "Zenith",
+      "type": "color",
+      "default": [0.2, 0.4, 0.8],
+      "group": "Sky",
+      "widget": "color",
+      "order": 1
+    },
+    {
+      "name": "u_bottomColor",
+      "label": "Horizon",
+      "type": "color",
+      "default": [0.7, 0.8, 1.0],
+      "group": "Sky",
+      "widget": "color",
+      "order": 2
+    },
+    {
+      "name": "u_horizonOffset",
+      "label": "Horizon Offset",
+      "type": "float",
+      "default": 0.0,
+      "min": -0.5,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Sky",
+      "widget": "slider",
+      "order": 3
+    },
+    {
+      "name": "u_cloudSpeed",
+      "label": "Speed",
+      "type": "float",
+      "default": 0.05,
+      "min": 0.0,
+      "max": 0.3,
+      "step": 0.005,
+      "group": "Clouds",
+      "widget": "slider",
+      "order": 10
+    },
+    {
+      "name": "u_cloudScale",
+      "label": "Scale",
+      "type": "float",
+      "default": 3.0,
+      "min": 0.5,
+      "max": 8.0,
+      "step": 0.1,
+      "group": "Clouds",
+      "widget": "slider",
+      "order": 11
+    },
+    {
+      "name": "u_cloudDensity",
+      "label": "Density",
+      "type": "float",
+      "default": 0.45,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Clouds",
+      "widget": "slider",
+      "format": "percent",
+      "order": 12
+    },
+    {
+      "name": "u_cloudSoftness",
+      "label": "Softness",
+      "type": "float",
+      "default": 0.15,
+      "min": 0.0,
+      "max": 0.5,
+      "step": 0.01,
+      "group": "Clouds",
+      "widget": "slider",
+      "order": 13
+    },
+    {
+      "name": "u_cloudBrightness",
+      "label": "Brightness",
+      "type": "float",
+      "default": 0.9,
+      "min": 0.0,
+      "max": 1.5,
+      "step": 0.01,
+      "group": "Clouds",
+      "widget": "slider",
+      "order": 14
+    },
+    {
+      "name": "u_cloudHeight",
+      "label": "Height",
+      "type": "float",
+      "default": 0.0,
+      "min": -1.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Clouds",
+      "widget": "slider",
+      "hint": "-1 = full sphere, 0 = horizon, 1 = top only",
+      "order": 15
+    }
+  ]
+}

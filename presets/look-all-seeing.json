@@ -1,0 +1,267 @@
+{
+  "version": 1,
+  "name": "All Seeing",
+  "createdAt": "2026-08-18T12:00:00.000Z",
+  "updatedAt": "2026-08-18T12:00:00.000Z",
+  "scene": {
+    "containers": [
+      {
+        "role": "stage",
+        "label": "Stage",
+        "labelCorner": "bottom-right",
+        "left": 0,
+        "top": 0,
+        "width": 1080,
+        "height": 1920,
+        "relative": {},
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": -1,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": "bg-procedural-eye",
+        "shaderUniforms": {
+          "u_eyeRadius": 0.42,
+          "u_scleraSqueeze": 0.05,
+          "u_scleraAngle": 0.0,
+          "u_scleraColor": [0.95, 0.93, 0.9],
+          "u_pupilPosition": [0.0, 0.0],
+          "u_pupilRadius": 0.1,
+          "u_pupilColor": [0.01, 0.01, 0.01],
+          "u_irisRadius": 0.28,
+          "u_irisInnerColor": [0.4, 0.55, 0.25],
+          "u_irisOuterColor": [0.18, 0.38, 0.58],
+          "u_irisCryptColor": [0.12, 0.18, 0.12],
+          "u_limbalWidth": 0.035,
+          "u_irisRadialComp": 1.1,
+          "u_irisCryptFreq": 9.0,
+          "u_fiberFreq": 14.0,
+          "u_eyelidColor": [0.55, 0.4, 0.32],
+          "u_eyelidBias": -0.02,
+          "u_eyelidAngle": 0.0,
+          "u_blink": 0.0,
+          "u_soften": 0.012
+        },
+        "imageMode": "fill",
+        "progressTimeMode": null,
+        "style": {
+          "border": { "color": "transparent", "lineWidth": 0, "dash": [] },
+          "connect": { "color": "transparent", "lineWidth": 0, "dash": [] },
+          "label": { "opacity": 0 },
+          "text": { "opacity": 0 }
+        }
+      },
+      {
+        "role": "song-cover",
+        "label": "Cover",
+        "labelCorner": "bottom-right",
+        "left": 288,
+        "top": 440,
+        "width": 504,
+        "height": 504,
+        "relative": {
+          "widthOfMin": 0.47,
+          "centerX": true,
+          "centerYOffset": -0.1
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 0,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "fill",
+        "progressTimeMode": null,
+        "style": {
+          "border": { "color": "rgba(60,50,40,0.3)", "lineWidth": 3, "dash": [] },
+          "connect": { "color": "transparent", "lineWidth": 0, "dash": [] },
+          "label": {
+            "fontFamily": "sans-serif",
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fontStyle": "normal",
+            "color": "#e8ddd0",
+            "background": "rgba(30,25,20,0.5)",
+            "letterSpacing": 0,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "sans-serif",
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fontStyle": "normal",
+            "color": "#e8ddd0",
+            "background": "rgba(30,25,20,0.5)",
+            "letterSpacing": 0,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-info",
+        "label": "Track",
+        "labelCorner": "bottom-right",
+        "left": 470,
+        "top": 956,
+        "width": 140,
+        "height": 64,
+        "relative": {
+          "centerX": true,
+          "belowRole": "song-cover",
+          "gap": 12
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 1,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": { "color": "rgba(60,50,40,0.3)", "lineWidth": 3, "dash": [] },
+          "connect": { "color": "transparent", "lineWidth": 0, "dash": [] },
+          "label": {
+            "fontFamily": "sans-serif",
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fontStyle": "normal",
+            "color": "#e8ddd0",
+            "background": "rgba(30,25,20,0.5)",
+            "letterSpacing": 0,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "sans-serif",
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fontStyle": "normal",
+            "color": "#e8ddd0",
+            "background": "rgba(30,25,20,0.5)",
+            "letterSpacing": 0,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-lyrics",
+        "label": "Lyrics",
+        "labelCorner": "top-right",
+        "left": 380,
+        "top": 1032,
+        "width": 320,
+        "height": 100,
+        "relative": {
+          "widthOfPanel": 0.72,
+          "maxWidth": 320,
+          "centerX": true,
+          "belowRole": "song-info",
+          "gap": 10
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 2,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": null,
+        "style": {
+          "border": { "color": "rgba(60,50,40,0.3)", "lineWidth": 3, "dash": [] },
+          "connect": { "color": "transparent", "lineWidth": 0, "dash": [] },
+          "label": {
+            "fontFamily": "sans-serif",
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fontStyle": "normal",
+            "color": "#e8ddd0",
+            "background": "rgba(30,25,20,0.5)",
+            "letterSpacing": 0,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "sans-serif",
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fontStyle": "normal",
+            "color": "#e8ddd0",
+            "background": "rgba(30,25,20,0.5)",
+            "letterSpacing": 0,
+            "opacity": 1
+          }
+        }
+      },
+      {
+        "role": "song-progress",
+        "label": "Progress",
+        "labelCorner": "bottom-right",
+        "left": 370,
+        "top": 1878,
+        "width": 340,
+        "height": 26,
+        "relative": {
+          "widthOfPanel": 0.78,
+          "maxWidth": 340,
+          "centerX": true,
+          "bottomInset": 16
+        },
+        "wander": false,
+        "wanderAmplitude": 1,
+        "wanderFrequency": 12,
+        "layer": 3,
+        "distancing": 0,
+        "connect": false,
+        "anchorDistance": null,
+        "attachToRole": null,
+        "shaderId": null,
+        "shaderUniforms": {},
+        "imageMode": "scale",
+        "progressTimeMode": "center",
+        "style": {
+          "border": { "color": "rgba(60,50,40,0.3)", "lineWidth": 3, "dash": [] },
+          "connect": { "color": "transparent", "lineWidth": 0, "dash": [] },
+          "label": {
+            "fontFamily": "sans-serif",
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fontStyle": "normal",
+            "color": "#e8ddd0",
+            "background": "rgba(30,25,20,0.5)",
+            "letterSpacing": 0,
+            "opacity": 1
+          },
+          "text": {
+            "fontFamily": "sans-serif",
+            "fontSize": 10,
+            "fontWeight": "500",
+            "fontStyle": "normal",
+            "color": "#e8ddd0",
+            "background": "rgba(30,25,20,0.5)",
+            "letterSpacing": 0,
+            "opacity": 1
+          }
+        }
+      }
+    ],
+    "postprocess": {
+      "active": false,
+      "layers": []
+    },
+    "layoutSpace": "design-1080x1920"
+  }
+}

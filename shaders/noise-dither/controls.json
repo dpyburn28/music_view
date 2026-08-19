@@ -1,0 +1,56 @@
+{
+  "id": "noise-dither",
+  "name": "Noise Dither",
+  "description": "Noise-ordered 1-bit dither from Three-World. Hard threshold with optional color preservation.",
+  "roles": ["postprocess"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_scale",
+      "label": "Scale",
+      "type": "float",
+      "default": 2.0,
+      "min": 0.5,
+      "max": 20.0,
+      "step": 0.1,
+      "group": "Dither",
+      "widget": "slider",
+      "hint": "Size of the noise pattern"
+    },
+    {
+      "name": "u_strength",
+      "label": "Strength",
+      "type": "float",
+      "default": 0.5,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.01,
+      "group": "Dither",
+      "widget": "slider"
+    },
+    {
+      "name": "u_keepColor",
+      "label": "Keep Color",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Dither",
+      "widget": "toggle",
+      "hint": "Preserve original color channels"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Mix",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Mix",
+      "widget": "slider",
+      "format": "percent"
+    }
+  ]
+}
