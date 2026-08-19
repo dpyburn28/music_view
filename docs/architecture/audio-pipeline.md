@@ -70,4 +70,4 @@ Today’s live binding is **role-based** for `audio-scope`, `audio-history`, `au
 
 ### ARTEF4KT embed
 
-When a container has role `artef4kt`, the stage loads `vendor/artef4kt` via `artef4kt-host.js` and calls `setAnalysis` each frame with bands taken from that panel’s `audioInput` (and the lead or mix tap). ARTEF4KT does **not** open its own MediaElement or AudioContext for the track.
+When a container has role `artef4kt`, the stage loads `vendor/artef4kt` via `src/renderer/artef4kt-host.js` and calls `setAnalysis` each frame with bands taken from that panel’s `audioInput` (and the lead or mix tap). ARTEF4KT does **not** open its own MediaElement or AudioContext for the track.

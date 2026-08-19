@@ -1,6 +1,6 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { isTyping, spaceTarget } = require('../workspace-hotkeys');
+const { isTyping, spaceTarget } = require('../src/workspace/workspace-hotkeys');
 
 test('isTyping covers form fields and contenteditable', () => {
   assert.equal(isTyping({ tagName: 'INPUT' }), true);

@@ -1,6 +1,6 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { normalizeShowFx, composeShowFx, validatePerformance } = require('../performances');
+const { normalizeShowFx, composeShowFx, validatePerformance } = require('../src/main/performances');
 
 test('normalizeShowFx drops empty layers and stays off by default', () => {
   assert.deepEqual(normalizeShowFx(null), { active: false, layers: [] });

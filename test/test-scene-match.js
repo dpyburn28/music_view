@@ -1,6 +1,6 @@
 const { test } = require('node:test');
 const assert = require('node:assert/strict');
-const { scoreSceneMatch, pickAutoMode } = require('../scene-match');
+const { scoreSceneMatch, pickAutoMode } = require('../src/renderer/scene-match');
 
 const EIGHT = [
   { role: 'song-cover', shaderId: null },

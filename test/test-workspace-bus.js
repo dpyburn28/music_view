@@ -6,7 +6,7 @@ const {
   MUSIC_VIEW_API_KEYS,
   createWorkspaceBus,
   defaultBusFlags,
-} = require('../workspace-bus');
+} = require('../src/workspace/workspace-bus');
 
 function extractPreloadKeys(src) {
   const start = src.indexOf("exposeInMainWorld('musicView'");

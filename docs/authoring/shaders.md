@@ -53,7 +53,7 @@ If it is missing from the index, `listShaders` will not offer it.
 
 ### What the runtime injects
 
-`shaders.js` wraps your source with:
+`src/renderer/shaders.js` wraps your source with:
 
 - `precision mediump float;`
 - `varying vec2 v_uv;` (0–1, full triangle)
@@ -308,4 +308,4 @@ void main() {
 
 ## Runtime load path (for debugging)
 
-`renderer.js` → `listShaders` reads `shaders/index.json` and fetches each `controls.json` in parallel (no fragment). `loadShaderPackage(id)` / `loadShaderControls` then fetch the frag entry when applying a fill or FX layer, map meta through an allow-list, and build default uniform maps. Compile errors surface as program link/compile exceptions in the Display DevTools console.
+`src/renderer/renderer.js` → `listShaders` reads `shaders/index.json` and fetches each `controls.json` in parallel (no fragment). `loadShaderPackage(id)` / `loadShaderControls` then fetch the frag entry when applying a fill or FX layer, map meta through an allow-list, and build default uniform maps. Compile errors surface as program link/compile exceptions in the Display DevTools console.

@@ -31,7 +31,7 @@ The **scene** is everything Display owns that defines the visual layout (and wha
 }
 ```
 
-`layoutSpace: "design-1080x1920"` means container `left` / `top` / `width` / `height` and type/stroke sizes are in that design frame. The live stage applies a **uniform** scale (`min(sx, sy)`) so the composition does not stretch. `layout-space.js` normalizes older files on load.
+`layoutSpace: "design-1080x1920"` means container `left` / `top` / `width` / `height` and type/stroke sizes are in that design frame. The live stage applies a **uniform** scale (`min(sx, sy)`) so the composition does not stretch. `src/shared/layout-space.js` normalizes older files on load.
 
 ### Bottom strip (`bottomPanel`)
 

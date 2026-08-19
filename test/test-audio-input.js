@@ -1,6 +1,6 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const A = require('../audio-input.js');
+const A = require('../src/shared/audio-input.js');
 
 test('defaults per viz role', () => {
   assert.equal(A.defaultAudioInput('audio-scope').source, 'full');

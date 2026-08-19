@@ -2,6 +2,23 @@
 
 Running app update log. Newest entries first.
 
+## 2026-08-19
+
+### Codebase reorganization
+
+All source files moved from root into a conventional directory structure:
+
+- `src/main/` — Node.js modules (music-library, spotify-import, presets, performances, user-settings)
+- `src/renderer/` — Display / scene / rendering (renderer, shaders, scene-match, artef4kt-host, performance)
+- `src/controls/` — Controls UI
+- `src/music/` — Music playback + audio analysis
+- `src/workspace/` — Workspace shell, bus, hotkeys, boot loader
+- `src/shared/` — Code used by both main and renderer (param-mod, audio-input, layout-space)
+- `legacy/` — Standalone HTML files (index, controls, music, performance) kept for reference
+- `test/` — Renamed from `scripts/`
+
+Root now has only `app.js`, `preload.js`, `workspace.html`, and `package.json`. All script tag paths in `workspace.html`, `require()` paths in `app.js`, and test `require()` paths updated accordingly. `__dirname`-relative paths in `presets.js` and `performances.js` adjusted for the new depth.
+
 ## 2026-08-18
 
 ### Song list cover art

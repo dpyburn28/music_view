@@ -2,55 +2,67 @@
 
 ```
 music_view/
-├── app.js                 # Electron main: workspace window, IPC, menu, song://
-├── preload.js             # contextBridge → window.musicView
-├── user-settings.js       # userData/user-settings.json (docks, window, present, render.fps)
-├── workspace-bus.js       # in-process musicView facade
-├── package.json           # npm start → electron .; npm test
+├── app.js                        # Electron main: workspace window, IPC, menu, song://
+├── preload.js                    # contextBridge → window.musicView
+├── package.json                  # npm start → electron .; npm test
 │
-├── workspace.html         # Landscape shell (launched); first-paint #app-load
-├── workspace.css
-├── workspace-load.js      # Boot overlay + slim busy bar
-├── workspace.js           # fitStage / docks / Present / apply render FPS
-├── workspace-hotkeys.js   # Single workspace key router
-├── index.html             # Leftover stage partial (not launched)
-├── main.css
-├── renderer.js            # Scene engine, commands, music consumers
-├── shaders.js             # WebGL helpers + postprocess stack
-├── param-mod.js           # LFO resolve (stage + controls)
-├── layout-space.js        # 1080×1920 design frame helpers
-├── audio-input.js         # Per-container audioInput sanitize
-├── artef4kt-host.js       # Load/mount ARTEF4KT embed
-├── scene-match.js         # Morph vs crossfade scorer (also node --test)
+├── workspace.html                # Landscape shell (launched); first-paint #app-load
 │
-├── vendor/artef4kt/       # Vendored Three.js ferrofluid runtime + settings
+├── src/
+│   ├── main/                     # Node.js modules (require'd by app.js)
+│   │   ├── music-library.js      # Song scan + LRC + metadata
+│   │   ├── spotify-import.js     # Spotify URL → local audio + .lrc (yt-dlp + LRCLIB)
+│   │   ├── presets.js            # List/load/save/delete preset JSON
+│   │   ├── performances.js       # Validate + Show FX compose
+│   │   └── user-settings.js      # userData/user-settings.json (docks, window, present, render.fps)
+│   │
+│   ├── renderer/                 # Display / scene / rendering
+│   │   ├── renderer.js           # Scene engine, commands, music consumers
+│   │   ├── shaders.js            # WebGL helpers + postprocess stack
+│   │   ├── scene-match.js        # Morph vs crossfade scorer (also node --test)
+│   │   ├── artef4kt-host.js      # Load/mount ARTEF4KT embed
+│   │   ├── performance.js        # Showcase conductor (IIFE; window.MusicViewShow)
+│   │   ├── main.css
+│   │   └── performance.css
+│   │
+│   ├── controls/                 # Controls UI
+│   │   ├── controls.js           # Look/Object UI (IIFE; window.__musicViewControls)
+│   │   └── controls.css
+│   │
+│   ├── music/                    # Music library + playback
+│   │   ├── music.js              # UI + publish streams (IIFE; window.MusicViewMusic)
+│   │   ├── audio-analysis.js     # Web Audio analysis + dual-deck mixer
+│   │   └── music.css
+│   │
+│   ├── workspace/                # Workspace shell + bus
+│   │   ├── workspace.js          # fitStage / docks / Present / apply render FPS
+│   │   ├── workspace-bus.js      # In-process musicView facade
+│   │   ├── workspace-hotkeys.js  # Single workspace key router
+│   │   ├── workspace-load.js     # Boot overlay + slim busy bar
+│   │   └── workspace.css
+│   │
+│   └── shared/                   # Used by both main + renderer
+│       ├── param-mod.js          # LFO resolve (stage + controls)
+│       ├── audio-input.js        # Per-container audioInput sanitize
+│       └── layout-space.js       # 1080×1920 design frame helpers
 │
-├── controls.html          # Leftover standalone Controls (not launched)
-├── controls.css
-├── controls.js
+├── legacy/                       # Standalone HTML files (not launched)
+│   ├── index.html
+│   ├── controls.html
+│   ├── music.html
+│   └── performance.html
 │
-├── music.html             # Leftover standalone Music (not launched)
-├── music.css
-├── music.js
-├── audio-analysis.js      # Web Audio analysis + dual-deck mixer
-├── music-library.js       # Main-process song scan + LRC + metadata
-├── spotify-import.js      # Spotify URL → local audio + .lrc (yt-dlp + LRCLIB)
+├── vendor/artef4kt/              # Vendored Three.js ferrofluid runtime + settings
 │
-├── presets.js
-├── presets/               # Visual preset JSON
-│
-├── performances.js        # Validate + Show FX compose
-├── performances/          # Performance JSON (e.g. container-walk.json)
-├── performance.html       # Leftover standalone (not launched)
-├── performance.css
-├── performance.js
+├── presets/                      # Visual preset JSON
+├── performances/                 # Performance JSON (e.g. container-walk.json)
 │
 ├── shaders/
 │   ├── index.json
 │   ├── README.md
 │   └── <id>/controls.json + shader.frag
 │
-├── scripts/               # node --test fixtures
+├── test/                         # node --test fixtures
 │
 └── docs/
 ```
@@ -59,4 +71,4 @@ music_view/
 
 | Surface | HTML | Primary scripts |
 |---------|------|-----------------|
-| Workspace (launched) | `workspace.html` | `workspace-load.js`, `workspace-bus.js`, `layout-space.js`, `audio-input.js`, `renderer.js`, `audio-analysis.js`, `music.js`, `controls.js`, `performance.js`, `workspace-hotkeys.js`, `workspace.js` |
+| Workspace (launched) | `workspace.html` | `src/workspace/workspace-load.js`, `src/workspace/workspace-bus.js`, `src/shared/layout-space.js`, `src/shared/audio-input.js`, `src/renderer/renderer.js`, `src/music/audio-analysis.js`, `src/music/music.js`, `src/controls/controls.js`, `src/renderer/performance.js`, `src/workspace/workspace-hotkeys.js`, `src/workspace/workspace.js` |

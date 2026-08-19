@@ -1,6 +1,6 @@
 # Display scene commands
 
-Controls (and tools) drive the stage through `musicView.sendCommand(command, payload)`. In the workspace this is in-process `sceneCommand` in `renderer.js`.
+Controls (and tools) drive the stage through `musicView.sendCommand(command, payload)`. In the workspace this is in-process `sceneCommand` in `src/renderer/renderer.js`.
 
 Return shape: `{ ok: boolean, error?: string, state?: object, … }`.
 

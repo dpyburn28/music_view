@@ -8,7 +8,7 @@ End-to-end picture of a running session: music in, pixels out.
 ┌─────────────┐  in-process     ┌──────────────┐  in-process    ┌─────────────┐
 │ Music dock  │ ──────────────► │ workspace-   │ ◄──────────── │ Controls    │
 │ analysis +  │  now-playing,   │ bus + stage  │  commands +   │ Look/Object │
-│ transport   │  audio-frame    │ renderer.js  │  state push   │             │
+│ transport   │  audio-frame    │ src/renderer/ │  state push   │             │
 └─────────────┘                 └──────────────┘               └─────────────┘
                                         ▲
                                         │ show state / Go
@@ -18,8 +18,8 @@ End-to-end picture of a running session: music in, pixels out.
                                  └──────────────┘
 ```
 
-1. **Music** loads a song from disk (`music-library.js` + `song://` stream), plays it on `#audio-a` / `#audio-b`, parses LRC, and runs `audio-analysis.js`.
-2. Music **publishes** now-playing metadata, lyric focus, progress, empty-lyrics FX, and binary audio frames on the workspace bus (`workspace-bus.js`). No JSON clone on `audio-frame`.
+1. **Music** loads a song from disk (`src/main/music-library.js` + `song://` stream), plays it on `#audio-a` / `#audio-b`, parses LRC, and runs `src/music/audio-analysis.js`.
+2. Music **publishes** now-playing metadata, lyric focus, progress, empty-lyrics FX, and binary audio frames on the workspace bus (`src/workspace/workspace-bus.js`). No JSON clone on `audio-frame`.
 3. **Controls** calls `musicView.sendCommand(command, payload)` (in-process `sceneCommand` in the workspace). The stage replies with `{ ok, state? }` and also **pushes** state on changes so Controls stay live.
 4. **Workspace** hosts the portrait stage (`.app-shell` inside `#stage-slot`). Display logic: container DOM/layout, canvas drawing, container WebGL, per-container FX, and the full-frame postprocess stack. It loads the **default** visual preset at startup. Capture still sees only `.app-shell`, not the toolbar or docks.
 5. **Performance** (when a show is loaded) drives Music transport + `applySceneTransition` so looks morph or cut with the clips. When auto/morph only the stage fill changes, the outgoing shader or video keeps rendering on a fade layer (it is not a still frame). A forced **crossfade** still freezes the whole composite.
@@ -121,8 +121,8 @@ See [param-modulation](../authoring/param-modulation.md).
 ## Boot sequence (simplified)
 
 1. Electron ready → register `song://` + `media://` → create the **workspace** window.
-2. `workspace.html` paints `#app-load` immediately (`workspace-load.js`) so the first frame is a progress overlay, not an empty grid.
-3. Workspace loads docks, stage (`renderer.js`), Music, Controls, Performance. Overlay steps: stage, default look, shader catalog, presets, library.
+2. `workspace.html` paints `#app-load` immediately (`src/workspace/workspace-load.js`) so the first frame is a progress overlay, not an empty grid.
+3. Workspace loads docks, stage (`src/renderer/renderer.js`), Music, Controls, Performance. Overlay steps: stage, default look, shader catalog, presets, library.
 4. Stage builds song panels + audio viz + ARTEF4KT, starts postprocess capture, then `loadAndApplyPreset('default')`.
 5. Shader catalog metadata loads in parallel. User settings apply dock sizes and `render.fps`.
 6. Overlay hides when the workspace is ready. Later look / track / library loads use a compact busy bar instead of the full card.
@@ -130,7 +130,7 @@ See [param-modulation](../authoring/param-modulation.md).
 
 ## Mental model for contributors
 
-- **Stage (`renderer.js`)** = engine + scene graph.
+- **Stage (`src/renderer/renderer.js`)** = engine + scene graph.
 - **Controls** = editor UI over the workspace bus.
 - **Music** = content + analysis publisher.
 - **Performance** = conductor for saved shows.

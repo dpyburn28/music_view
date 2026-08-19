@@ -1,11 +1,11 @@
 const { app, BrowserWindow, screen, ipcMain, protocol, Menu, dialog } = require('electron');
 const path = require('path');
 const { randomUUID } = require('crypto');
-const musicLibrary = require('./music-library');
-const spotifyImport = require('./spotify-import');
-const presets = require('./presets');
-const performances = require('./performances');
-const userSettings = require('./user-settings');
+const musicLibrary = require('./src/main/music-library');
+const spotifyImport = require('./src/main/spotify-import');
+const presets = require('./src/main/presets');
+const performances = require('./src/main/performances');
+const userSettings = require('./src/main/user-settings');
 
 // Must be registered before app is ready (for streaming local audio)
 const MEDIA_SCHEME_PRIVILEGES = {

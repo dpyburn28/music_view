@@ -5,13 +5,13 @@
 
 const fs = require('fs');
 const path = require('path');
-const { normalizePreset, LAYOUT_SPACE } = require('./layout-space');
+const { normalizePreset, LAYOUT_SPACE } = require('../shared/layout-space');
 
 const PRESET_VERSION = 1;
 const DEFAULT_NAME = 'default';
 
 function presetsDir() {
-  return path.join(__dirname, 'presets');
+  return path.join(__dirname, '..', '..', 'presets');
 }
 
 function ensurePresetsDir() {

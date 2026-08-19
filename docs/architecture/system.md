@@ -10,9 +10,9 @@
 
 Security defaults: `contextIsolation: true`, `nodeIntegration: false`.
 
-Tool scripts (`music.js`, `controls.js`, `performance.js`, `renderer.js`) run in the **same document**. They talk through `workspace-bus.js` (in-process). `window.musicView` stays the preload object — never overwrite it; use `musicViewApi()` / `__musicViewIpc` when wrapping.
+Tool scripts (`src/music/music.js`, `src/controls/controls.js`, `src/renderer/performance.js`, `src/renderer/renderer.js`) run in the **same document**. They talk through `src/workspace/workspace-bus.js` (in-process). `window.musicView` stays the preload object — never overwrite it; use `musicViewApi()` / `__musicViewIpc` when wrapping.
 
-Standalone `controls.html` / `music.html` / `performance.html` / `index.html` remain in the tree as leftovers and are **not launched**.
+Standalone HTML files (`legacy/controls.html`, `legacy/music.html`, `legacy/performance.html`, `legacy/index.html`) remain in the tree as leftovers and are **not launched**.
 
 ## Module map
 
@@ -20,26 +20,26 @@ Standalone `controls.html` / `music.html` / `performance.html` / `index.html` re
 |------|---------|---------|
 | `app.js` | main | Window lifecycle, IPC handlers, protocol, application menu |
 | `preload.js` | preload | Bridge API |
-| `user-settings.js` | main | `userData/user-settings.json` (workspace window + docks + present + `render.fps`) |
-| `workspace.html` / `.css` / `.js` | workspace | Shell, `#stage-slot`, dock sizes; `#dock-show` collapsed by default |
-| `workspace-load.js` | workspace | First-paint `#app-load` overlay + later slim busy bar |
-| `workspace-hotkeys.js` | workspace | Single Space / Esc / 1–2 / `[` `]` router |
-| `workspace-bus.js` | workspace | In-process flags on (`inProcessDisplay`, `inProcessAudio`, `inProcessPerfFanout`, …) |
-| `layout-space.js` | workspace | 1080×1920 design frame, normalize presets / performances |
-| `audio-input.js` | workspace | Per-container `audioInput` sanitize / defaults |
-| `music-library.js` | main | Song scan, LRC parse, cover/metadata |
-| `spotify-import.js` | main | Spotify track URL → songs dir + optional `.lrc` |
-| `presets.js` | main | List/load/save/delete preset JSON |
-| `performances.js` | main | List/load/save/delete + validate performances, compose Show FX |
-| `renderer.js` | stage | Containers, scene commands, capture, music consumers |
-| `shaders.js` | stage | WebGL renderer + postprocess stack |
-| `param-mod.js` | stage + controls | Pure LFO resolve (also Node-exportable) |
-| `controls.js` | controls | Look/Object UI (IIFE; `window.__musicViewControls`) |
-| `music.js` | music | UI + publish streams (IIFE; `window.MusicViewMusic`) |
-| `performance.js` | performance | Showcase conductor (IIFE; `window.MusicViewShow`) |
-| `audio-analysis.js` | music | Web Audio graph + dual-deck mix + channel isolation |
-| `artef4kt-host.js` | stage | Mount ARTEF4KT embed |
-| `scene-match.js` | stage + node | Morph vs crossfade scorer |
+| `src/main/user-settings.js` | main | `userData/user-settings.json` (workspace window + docks + present + `render.fps`) |
+| `workspace.html` / `src/workspace/*.css` / `src/workspace/*.js` | workspace | Shell, `#stage-slot`, dock sizes; `#dock-show` collapsed by default |
+| `src/workspace/workspace-load.js` | workspace | First-paint `#app-load` overlay + later slim busy bar |
+| `src/workspace/workspace-hotkeys.js` | workspace | Single Space / Esc / 1–2 / `[` `]` router |
+| `src/workspace/workspace-bus.js` | workspace | In-process flags on (`inProcessDisplay`, `inProcessAudio`, `inProcessPerfFanout`, …) |
+| `src/shared/layout-space.js` | shared | 1080×1920 design frame, normalize presets / performances |
+| `src/shared/audio-input.js` | shared | Per-container `audioInput` sanitize / defaults |
+| `src/main/music-library.js` | main | Song scan, LRC parse, cover/metadata |
+| `src/main/spotify-import.js` | main | Spotify track URL → songs dir + optional `.lrc` |
+| `src/main/presets.js` | main | List/load/save/delete preset JSON |
+| `src/main/performances.js` | main | List/load/save/delete + validate performances, compose Show FX |
+| `src/renderer/renderer.js` | stage | Containers, scene commands, capture, music consumers |
+| `src/renderer/shaders.js` | stage | WebGL renderer + postprocess stack |
+| `src/shared/param-mod.js` | shared | Pure LFO resolve (also Node-exportable) |
+| `src/controls/controls.js` | controls | Look/Object UI (IIFE; `window.__musicViewControls`) |
+| `src/music/music.js` | music | UI + publish streams (IIFE; `window.MusicViewMusic`) |
+| `src/renderer/performance.js` | stage | Showcase conductor (IIFE; `window.MusicViewShow`) |
+| `src/music/audio-analysis.js` | music | Web Audio graph + dual-deck mix + channel isolation |
+| `src/renderer/artef4kt-host.js` | stage | Mount ARTEF4KT embed |
+| `src/renderer/scene-match.js` | stage + node | Morph vs crossfade scorer |
 
 ## Communication
 
@@ -116,8 +116,8 @@ Main appends Chromium switches for WebGL / accelerated 2D canvas (see `app.js`).
 
 | Concern | Where |
 |---------|--------|
-| Songs directory | Hardcoded candidates in `music-library.js` |
-| Design frame | 1080×1920 in `layout-space.js`; live stage letterboxes |
+| Songs directory | Hardcoded candidates in `src/main/music-library.js` |
+| Design frame | 1080×1920 in `src/shared/layout-space.js`; live stage letterboxes |
 | Workspace geometry / docks / render FPS | `userData/user-settings.json` |
 | Shader catalog | `shaders/index.json` |
 | Default look | `presets/default.json` |

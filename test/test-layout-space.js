@@ -10,7 +10,7 @@ const {
   normalizeScene,
   normalizePreset,
   normalizePerformance,
-} = require("../layout-space");
+} = require("../src/shared/layout-space");
 
 test("relative classic look resolves onto 1080×1920", () => {
   const scene = normalizeScene({

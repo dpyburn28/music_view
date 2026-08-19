@@ -19,14 +19,14 @@ One landscape **Workspace** window. Music, Controls, and Performance are docks i
 
 | Pane | Role | Primary files |
 |------|------|----------------|
-| **Stage** | Portrait `.app-shell` inside `#stage-slot` | `renderer.js`, `shaders.js`, `main.css` |
-| **Music** | Library, transport, lyrics, analysis | `music.js`, `audio-analysis.js` |
-| **Controls** | Look (FX, presets, background, render FPS) and Object (containers) | `controls.js` |
-| **Performance** | Clip list + show transport (starts collapsed) | `performance.js` |
+| **Stage** | Portrait `.app-shell` inside `#stage-slot` | `src/renderer/renderer.js`, `src/renderer/shaders.js`, `src/renderer/main.css` |
+| **Music** | Library, transport, lyrics, analysis | `src/music/music.js`, `src/music/audio-analysis.js` |
+| **Controls** | Look (FX, presets, background, render FPS) and Object (containers) | `src/controls/controls.js` |
+| **Performance** | Clip list + show transport (starts collapsed) | `src/renderer/performance.js` |
 
 **Present** hides chrome (docks / toolbar). **Fullscreen** is a separate OS fullscreen toggle. **Reset Layout** (View menu) restores dock sizes.
 
-Main process (`app.js`) creates the workspace, brokers leftover IPC, loads songs/presets/performances from disk, and serves local audio via a custom `song://` protocol. In the workspace, Music ↔ stage ↔ Controls talk over `workspace-bus.js` (in-process).
+Main process (`app.js`) creates the workspace, brokers leftover IPC, loads songs/presets/performances from disk, and serves local audio via a custom `song://` protocol. In the workspace, Music ↔ stage ↔ Controls talk over `src/workspace/workspace-bus.js` (in-process).
 
 ## Feature summary
 

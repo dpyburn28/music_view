@@ -5,11 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>music_view</title>
-    <link rel="stylesheet" href="./main.css" />
-    <link rel="stylesheet" href="./music.css" />
-    <link rel="stylesheet" href="./controls.css" />
-    <link rel="stylesheet" href="./performance.css" />
-    <link rel="stylesheet" href="./workspace.css" />
+    <link rel="stylesheet" href="./src/renderer/main.css" />
+    <link rel="stylesheet" href="./src/music/music.css" />
+    <link rel="stylesheet" href="./src/controls/controls.css" />
+    <link rel="stylesheet" href="./src/renderer/performance.css" />
+    <link rel="stylesheet" href="./src/workspace/workspace.css" />
 </head>
 
 <body class="workspace is-booting">
@@ -22,7 +22,7 @@
             <div class="app-load-pct">0%</div>
         </div>
     </div>
-    <script src="./workspace-load.js"></script>
+    <script src="./src/workspace/workspace-load.js"></script>
     <header id="app-toolbar">
         <span class="app-wordmark">music_view</span>
         <nav class="toolbar-docks" aria-label="Panels">
@@ -1109,7 +1109,7 @@
                 </dialog>
         </footer>
     </div>
-    <script src="./workspace-bus.js"></script>
+    <script src="./src/workspace/workspace-bus.js"></script>
     <script>
         (function () {
             const ipc = window.musicView;
@@ -1124,19 +1124,19 @@
             });
         })();
     </script>
-    <script src="./param-mod.js"></script>
-    <script src="./shaders.js"></script>
-    <script src="./artef4kt-host.js"></script>
-    <script src="./scene-match.js"></script>
-    <script src="./layout-space.js"></script>
-    <script src="./audio-input.js"></script>
-    <script src="./renderer.js"></script>
-    <script src="./audio-analysis.js"></script>
-    <script src="./music.js"></script>
-    <script src="./controls.js"></script>
-    <script src="./performance.js"></script>
-    <script src="./workspace-hotkeys.js"></script>
-    <script src="./workspace.js"></script>
+    <script src="./src/shared/param-mod.js"></script>
+    <script src="./src/renderer/shaders.js"></script>
+    <script src="./src/renderer/artef4kt-host.js"></script>
+    <script src="./src/renderer/scene-match.js"></script>
+    <script src="./src/shared/layout-space.js"></script>
+    <script src="./src/shared/audio-input.js"></script>
+    <script src="./src/renderer/renderer.js"></script>
+    <script src="./src/music/audio-analysis.js"></script>
+    <script src="./src/music/music.js"></script>
+    <script src="./src/controls/controls.js"></script>
+    <script src="./src/renderer/performance.js"></script>
+    <script src="./src/workspace/workspace-hotkeys.js"></script>
+    <script src="./src/workspace/workspace.js"></script>
 </body>
 
 </html>

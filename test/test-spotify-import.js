@@ -4,7 +4,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-const si = require('../spotify-import');
+const si = require('../src/main/spotify-import');
 
 test('parseSpotifyInput accepts track urls, intl paths, and URIs', () => {
   const a = si.parseSpotifyInput('https://open.spotify.com/track/3n3Ppam7vgaVa1iaRUc9Lp?si=abc');

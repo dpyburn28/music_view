@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const settings = require('../user-settings');
+const settings = require('../src/main/user-settings');
 
 function tmpDir() {
   return fs.mkdtempSync(path.join(os.tmpdir(), 'music-view-settings-'));

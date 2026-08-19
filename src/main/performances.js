@@ -6,7 +6,7 @@
 const fs = require('fs');
 const path = require('path');
 const { sanitizePresetName } = require('./presets');
-const { normalizePerformance } = require('./layout-space');
+const { normalizePerformance } = require('../shared/layout-space');
 
 const PERFORMANCE_VERSION = 1;
 
@@ -16,7 +16,7 @@ const EASINGS = new Set(['linear', 'ease-in-out']);
 const LOOK_MODES = new Set(['snapshot', 'inherit']);
 
 function performancesDir() {
-  return path.join(__dirname, 'performances');
+  return path.join(__dirname, '..', '..', 'performances');
 }
 
 function ensurePerformancesDir() {
