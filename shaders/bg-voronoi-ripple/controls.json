@@ -1,0 +1,87 @@
+{
+  "id": "bg-voronoi-ripple",
+  "name": "Voronoi Ripple",
+  "description": "Organic glowing Voronoi mesh with domain warping and luminous junction nodes. Stage / panel fill.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_scale",
+      "label": "Scale",
+      "type": "float",
+      "default": 8.0,
+      "min": 2.0,
+      "max": 20.0,
+      "step": 0.1,
+      "group": "Look",
+      "widget": "slider",
+      "order": 1,
+      "hint": "Cell density"
+    },
+    {
+      "name": "u_edge",
+      "label": "Edge",
+      "type": "float",
+      "default": 12.0,
+      "min": 2.0,
+      "max": 30.0,
+      "step": 0.5,
+      "group": "Look",
+      "widget": "slider",
+      "order": 2,
+      "hint": "Edge glow sharpness"
+    },
+    {
+      "name": "u_nodeIntensity",
+      "label": "Nodes",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.05,
+      "group": "Look",
+      "widget": "slider",
+      "order": 3,
+      "hint": "Junction bloom strength"
+    },
+    {
+      "name": "u_warp",
+      "label": "Warp",
+      "type": "float",
+      "default": 0.4,
+      "min": 0.0,
+      "max": 1.5,
+      "step": 0.01,
+      "group": "Warp",
+      "widget": "slider",
+      "order": 10,
+      "hint": "Domain warp amplitude"
+    },
+    {
+      "name": "u_warpSpeed",
+      "label": "Warp Speed",
+      "type": "float",
+      "default": 0.3,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Warp",
+      "widget": "slider",
+      "order": 11,
+      "hint": "Warp animation rate"
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 0.5,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 20,
+      "hint": "0 freezes the still"
+    }
+  ]
+}
