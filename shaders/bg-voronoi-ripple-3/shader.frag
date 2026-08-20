@@ -9,6 +9,7 @@ uniform float u_containerAware;
 uniform float u_scale;
 uniform float u_edgeWidth;
 uniform float u_sminK;
+uniform float u_pointDensity;
 uniform float u_warpStrength;
 uniform float u_warpFreq;
 uniform float u_speed;
@@ -82,22 +83,36 @@ vec2 perimeterPoint(vec4 rect, float t) {
     return org + vec2(0.0, sz.y - d);
 }
 
-// Try to insert a point into the nearest-3 tracking
-void trackNearest(vec2 pt, vec2 warped,
-    inout float f1, inout float f2, inout float f3,
-    inout vec2 b1, inout vec2 b2, inout vec2 b3) {
-    vec2 diff = pt - warped;
-    float d = dot(diff, diff);
-    if (d < f1) {
-        f3 = f2; b3 = b2;
-        f2 = f1; b2 = b1;
-        f1 = d; b1 = pt;
-    } else if (d < f2) {
-        f3 = f2; b3 = b2;
-        f2 = d; b2 = pt;
-    } else if (d < f3) {
-        f3 = d; b3 = pt;
-    }
+// Connection points per container, scaling with its perimeter
+int pointCountFor(vec4 c, float density) {
+    float perim = 2.0 * (c.z + c.w);
+    return int(clamp(floor(perim * density + 0.5), 2.0, 8.0));
+}
+
+// Deterministic feature point on a container perimeter: even spacing,
+// hashed jitter, slow drift along the edge over time
+vec2 featurePoint(vec4 c, int i, int j, float density, float t, float phase) {
+    int nPts = pointCountFor(c, density);
+    float spacing = 1.0 / float(nPts);
+    float seed = hash21(vec2(float(i) * 3.71, float(j) * 7.93));
+    float jit = (seed - 0.5) * spacing * 0.6;
+    float drift = sin(t * 0.35 + seed * 6.2831) * spacing * 0.18;
+    float tt = fract(float(j) * spacing + jit + drift + phase);
+    vec2 pt = perimeterPoint(c, tt);
+    return mix(pt, c.xy + c.zw * 0.5, 0.06);
+}
+
+// Drifting seed point for the free-form fallback grid (unit-cell frame)
+vec2 fallbackCellPoint(vec2 cellOffset, float t) {
+    vec2 seed = hash22(cellOffset);
+    float ph1 = seed.x * 6.2831;
+    float ph2 = seed.y * 6.2831;
+    float ph3 = hash21(cellOffset + 7.7) * 6.2831;
+    float ph4 = hash21(cellOffset + 13.1) * 6.2831;
+    return cellOffset + vec2(
+        0.5 + sin(t * 0.3 + ph1) * 0.22 + cos(t * 0.17 + ph2) * 0.16,
+        0.5 + cos(t * 0.23 + ph3) * 0.22 + sin(t * 0.13 + ph4) * 0.16
+    );
 }
 
 void main() {
@@ -123,42 +138,47 @@ void main() {
         );
         vec2 warped = uvFlip + warpAmt * (q - 0.5) * 0.3;
 
-        // Find 3 nearest feature points — generated directly on container perimeters
-        float f1 = 1e10, f2 = 1e10, f3 = 1e10;
-        vec2 b1 = vec2(0.0), b2 = vec2(0.0), b3 = vec2(0.0);
+        float density = max(u_pointDensity, 0.5);
+        float k = max(u_sminK, 0.001);
 
+        // Pass 1: locate the single nearest feature point
+        float best = 1e10;
+        vec2 bp = vec2(0.0);
         for (int i = 0; i < 16; i++) {
             if (i >= count) break;
             vec4 c = getContainer(i);
             if (c.z <= 0.0 || c.w <= 0.0) continue;
-
-            vec2 center = c.xy + c.zw * 0.5;
-
-            // 2 points per container on its perimeter, offset by phase
-            float t0 = fract(hash21(vec2(float(i), 5.3)) + u_phase);
-            vec2 pt0 = perimeterPoint(c, t0);
-            pt0 = mix(pt0, center, 0.08);
-            trackNearest(pt0, warped, f1, f2, f3, b1, b2, b3);
-
-            float t1 = fract(hash21(vec2(float(i), 11.7)) + u_phase);
-            vec2 pt1 = perimeterPoint(c, t1);
-            pt1 = mix(pt1, center, 0.08);
-            trackNearest(pt1, warped, f1, f2, f3, b1, b2, b3);
+            int nPts = pointCountFor(c, density);
+            for (int j = 0; j < 8; j++) {
+                if (j >= nPts) break;
+                vec2 pt = featurePoint(c, i, j, density, t, u_phase);
+                vec2 diff = pt - warped;
+                float d = dot(diff, diff);
+                if (d < best) { best = d; bp = pt; }
+            }
         }
 
-        // Voronoi edge distances via perpendicular bisectors
-        float e12 = 1.0;
-        vec2 dir12 = b2 - b1;
-        if (length(dir12) > 0.001)
-            e12 = abs(dot(warped - (b1 + b2) * 0.5, normalize(dir12)));
-
-        float e13 = 1.0;
-        vec2 dir13 = b3 - b1;
-        if (length(dir13) > 0.001)
-            e13 = abs(dot(warped - (b1 + b3) * 0.5, normalize(dir13)));
-
-        // smin blend for organic pinching at junctions
-        float edge = smin(e12, e13, max(u_sminK, 0.01));
+        // Pass 2: exact edge distance. Every point is paired with the nearest
+        // and soft-mined — bisectors of non-nearest pairs never bound the
+        // nearest cell, so this stays continuous through junctions instead of
+        // clipping where nearest-2/3 ranks swap.
+        float edge = 1e10;
+        for (int i = 0; i < 16; i++) {
+            if (i >= count) break;
+            vec4 c = getContainer(i);
+            if (c.z <= 0.0 || c.w <= 0.0) continue;
+            int nPts = pointCountFor(c, density);
+            for (int j = 0; j < 8; j++) {
+                if (j >= nPts) break;
+                vec2 pt = featurePoint(c, i, j, density, t, u_phase);
+                vec2 dir = pt - bp;
+                float dl = length(dir);
+                if (dl > 0.0001) {
+                    float bd = abs(dot(warped - (bp + pt) * 0.5, dir / dl));
+                    edge = smin(edge, bd, k);
+                }
+            }
+        }
 
         // Container borders — smin with border SDF
         float borderDist = 1.0;
@@ -167,11 +187,11 @@ void main() {
             vec4 c = getContainer(i);
             if (c.z <= 0.0 || c.w <= 0.0) continue;
             float bd = abs(boxSdf(warped, c.xy, c.xy + c.zw));
-            borderDist = smin(borderDist, bd, max(u_sminK, 0.01) * 0.8);
+            borderDist = smin(borderDist, bd, k * 0.8);
         }
 
         // Combine Voronoi edges + container borders
-        float combined = smin(edge, borderDist, max(u_sminK, 0.01) * 1.2);
+        float combined = smin(edge, borderDist, k * 1.2);
 
         float w = max(u_edgeWidth, 0.002);
         intensity = 1.0 - smoothstep(0.0, w, combined);
@@ -195,39 +215,34 @@ void main() {
         fp.x *= aspect;
         vec2 ip = floor(fp);
         vec2 fpFrac = fract(fp);
+        float k = max(u_sminK, 0.001);
 
-        float ff1 = 1e10, ff2 = 1e10, ff3 = 1e10;
-        vec2 fb1 = vec2(0.0), fb2 = vec2(0.0), fb3 = vec2(0.0);
-
+        // Pass 1: nearest seed among the 3x3 neighborhood
+        float best = 1e10;
+        vec2 bp = vec2(0.0);
         for (int y = -1; y <= 1; y++) {
             for (int x = -1; x <= 1; x++) {
-                vec2 neighbor = vec2(float(x), float(y));
-                vec2 cell = ip + neighbor;
-                vec2 seed = hash22(cell);
-                float ph1 = seed.x * 6.2831;
-                float ph2 = seed.y * 6.2831;
-                float ph3 = hash21(cell + 7.7) * 6.2831;
-                float ph4 = hash21(cell + 13.1) * 6.2831;
-                vec2 pt = vec2(
-                    0.5 + sin(t * 0.3 + ph1) * 0.22 + cos(t * 0.17 + ph2) * 0.16,
-                    0.5 + cos(t * 0.23 + ph3) * 0.22 + sin(t * 0.13 + ph4) * 0.16
-                );
-                vec2 diff = neighbor + pt - fpFrac;
+                vec2 wp = fallbackCellPoint(vec2(float(x), float(y)), t);
+                vec2 diff = wp - fpFrac;
                 float d = dot(diff, diff);
-                if (d < ff1) { ff3 = ff2; fb3 = fb2; ff2 = ff1; fb2 = fb1; ff1 = d; fb1 = ip + neighbor + pt; }
-                else if (d < ff2) { ff3 = ff2; fb3 = fb2; ff2 = d; fb2 = ip + neighbor + pt; }
-                else if (d < ff3) { ff3 = d; fb3 = ip + neighbor + pt; }
+                if (d < best) { best = d; bp = wp; }
             }
         }
 
-        float ee12 = 1.0;
-        vec2 dd12 = fb2 - fb1;
-        if (length(dd12) > 0.001) ee12 = abs(dot(fpFrac - (fb1 + fb2) * 0.5, normalize(dd12)));
-        float ee13 = 1.0;
-        vec2 dd13 = fb3 - fb1;
-        if (length(dd13) > 0.001) ee13 = abs(dot(fpFrac - (fb1 + fb3) * 0.5, normalize(dd13)));
+        // Pass 2: exact edge distance via bisectors paired with the nearest
+        float fallbackEdge = 1e10;
+        for (int y = -1; y <= 1; y++) {
+            for (int x = -1; x <= 1; x++) {
+                vec2 wp = fallbackCellPoint(vec2(float(x), float(y)), t);
+                vec2 dir = wp - bp;
+                float dl = length(dir);
+                if (dl > 0.0001) {
+                    float dd = abs(dot(fpFrac - (bp + wp) * 0.5, dir / dl));
+                    fallbackEdge = smin(fallbackEdge, dd, k);
+                }
+            }
+        }
 
-        float fallbackEdge = smin(ee12, ee13, max(u_sminK, 0.01));
         float w = max(u_edgeWidth, 0.002);
         intensity = 1.0 - smoothstep(0.0, w, fallbackEdge);
     }

@@ -4902,10 +4902,9 @@ function startWander(topPanel, state, redraw, containers) {
             return; // skip this movement
         }
 
-        state.element.style.left = `${nextLeft}px`;
-        state.element.style.top = `${nextTop}px`;
-        state.left = nextLeft;
-        state.top = nextTop;
+        // Route through setContainerPosition so design sync + background
+        // shader container bounds follow the wandered position
+        setContainerPosition(state, nextLeft, nextTop);
         redraw();
     };
 
@@ -8208,6 +8207,7 @@ function applyContainerVisibility(state) {
     el.classList.toggle("is-hidden", !on);
     if (!sceneTransition) el.style.opacity = "";
     el.setAttribute("aria-hidden", on ? "false" : "true");
+    syncContainerBoundsToBgShader();
 }
 
 const MULTI_INSTANCE_AUDIO_ROLES = new Set(["audio-scope", "audio-history", "audio-beat"]);

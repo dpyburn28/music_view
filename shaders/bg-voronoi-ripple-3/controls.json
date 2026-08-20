@@ -34,7 +34,7 @@
       "name": "u_sminK",
       "label": "Junction Flare",
       "type": "float",
-      "default": 0.15,
+      "default": 0.05,
       "min": 0.02,
       "max": 0.5,
       "step": 0.005,
@@ -42,6 +42,19 @@
       "widget": "slider",
       "order": 2,
       "hint": "How much edges flare at junctions (smin radius)"
+    },
+    {
+      "name": "u_pointDensity",
+      "label": "Point Density",
+      "type": "float",
+      "default": 2.5,
+      "min": 0.5,
+      "max": 6.0,
+      "step": 0.1,
+      "group": "Look",
+      "widget": "slider",
+      "order": 3,
+      "hint": "Connection points per container, scaled by size"
     },
     {
       "name": "u_warpStrength",
