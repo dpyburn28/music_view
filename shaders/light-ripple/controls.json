@@ -1,0 +1,93 @@
+{
+  "id": "light-ripple",
+  "name": "Light Ripple",
+  "description": "Animated ripple pattern by Danilo Guanabara. Credit: pouet.net/prod.php?which=57245",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 1,
+      "hint": "Animation speed"
+    },
+    {
+      "name": "u_threshold",
+      "label": "Threshold",
+      "type": "float",
+      "default": 0.5,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Shape",
+      "widget": "slider",
+      "format": "percent",
+      "order": 10,
+      "hint": "Step function cutoff"
+    },
+    {
+      "name": "u_zoom",
+      "label": "Zoom",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.2,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Shape",
+      "widget": "slider",
+      "order": 11,
+      "hint": "Pattern scale"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Intensity",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Style",
+      "widget": "slider",
+      "format": "percent",
+      "order": 20
+    },
+    {
+      "name": "u_vignette",
+      "label": "Vignette",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Style",
+      "widget": "slider",
+      "format": "percent",
+      "order": 21
+    },
+    {
+      "name": "u_bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": [0.0, 0.0, 0.0],
+      "group": "Style",
+      "widget": "color",
+      "order": 22
+    },
+    {
+      "name": "u_fg_color",
+      "label": "Foreground",
+      "type": "color",
+      "default": [1.0, 1.0, 1.0],
+      "group": "Style",
+      "widget": "color",
+      "order": 23
+    }
+  ]
+}
