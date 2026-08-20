@@ -1,0 +1,113 @@
+{
+  "id": "bg-voronoi-ripple-3",
+  "name": "Voronoi Ripple 3",
+  "description": "Organic Voronoi cellular mesh — feature points on container perimeters, smin-blended edges, FBM warp. Stage / panel fill.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_containerAware",
+      "label": "Container Aware",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 1.0,
+      "group": "Mode",
+      "widget": "toggle",
+      "hint": "Mesh connects floating container edges (off = free-form Voronoi)"
+    },
+    {
+      "name": "u_edgeWidth",
+      "label": "Edge Width",
+      "type": "float",
+      "default": 0.015,
+      "min": 0.005,
+      "max": 0.05,
+      "step": 0.001,
+      "group": "Look",
+      "widget": "slider",
+      "order": 1,
+      "hint": "Line thickness"
+    },
+    {
+      "name": "u_sminK",
+      "label": "Junction Flare",
+      "type": "float",
+      "default": 0.15,
+      "min": 0.02,
+      "max": 0.5,
+      "step": 0.005,
+      "group": "Look",
+      "widget": "slider",
+      "order": 2,
+      "hint": "How much edges flare at junctions (smin radius)"
+    },
+    {
+      "name": "u_warpStrength",
+      "label": "Warp",
+      "type": "float",
+      "default": 0.08,
+      "min": 0.0,
+      "max": 0.4,
+      "step": 0.005,
+      "group": "Distortion",
+      "widget": "slider",
+      "order": 10,
+      "hint": "Edge roughness via domain warping"
+    },
+    {
+      "name": "u_warpFreq",
+      "label": "Warp Freq",
+      "type": "float",
+      "default": 2.5,
+      "min": 1.0,
+      "max": 5.0,
+      "step": 0.1,
+      "group": "Distortion",
+      "widget": "slider",
+      "order": 11,
+      "hint": "Scale of warp noise pattern"
+    },
+    {
+      "name": "u_scale",
+      "label": "Scale",
+      "type": "float",
+      "default": 3.5,
+      "min": 1.5,
+      "max": 8.0,
+      "step": 0.1,
+      "group": "Fallback Voronoi",
+      "widget": "slider",
+      "order": 20,
+      "hint": "Cell density (fallback mode only)",
+      "advanced": true
+    },
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 0.25,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 30,
+      "hint": "0 freezes the still"
+    },
+    {
+      "name": "u_phase",
+      "label": "Phase",
+      "type": "float",
+      "default": 0.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.005,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 31,
+      "hint": "Slides connection points along container perimeters"
+    }
+  ]
+}

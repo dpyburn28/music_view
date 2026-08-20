@@ -18,6 +18,8 @@
   "bg-starburst",
   "bg-line-halftone",
   "bg-voronoi-ripple",
+  "bg-voronoi-ripple-2",
+  "bg-voronoi-ripple-3",
   "light-ripple",
   "orb-tunnel",
   "volumetric-fog",

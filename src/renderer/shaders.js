@@ -597,6 +597,9 @@ function createShaderRenderer(canvas, fragSource, initialUniforms = {}, options 
     /** Reused when modulators active — avoid per-frame alloc */
     const resolvedScratch = {};
     const useAlphaBlend = options.alphaBlend === true;
+    /** Cached locations for container-bound array uniforms (lazy). */
+    const CONTAINER_MAX = 16;
+    let containerLocCache = null;
 
     function uploadUserUniforms(map) {
         for (const k in map) {
@@ -801,6 +804,30 @@ function createShaderRenderer(canvas, fragSource, initialUniforms = {}, options 
         /** Optional clamp bounds from package meta. */
         setBoundsByName(obj) {
             boundsByName = obj && typeof obj === 'object' ? Object.assign({}, obj) : {};
+        },
+        /**
+         * Upload container bounds as uniform array for container-aware shaders.
+         * @param {Array<{left:number, top:number, width:number, height:number}>} bounds normalized 0–1 UV
+         */
+        setContainerBounds(bounds) {
+            if (!containerLocCache) {
+                containerLocCache = { count: gl.getUniformLocation(program, 'u_containerCount'), locs: [] };
+                for (let i = 0; i < CONTAINER_MAX; i++) {
+                    containerLocCache.locs.push(gl.getUniformLocation(program, `u_containers[${i}]`));
+                }
+            }
+            const clamped = Array.isArray(bounds) ? bounds.slice(0, CONTAINER_MAX) : [];
+            if (containerLocCache.count) gl.uniform1f(containerLocCache.count, clamped.length);
+            for (let i = 0; i < CONTAINER_MAX; i++) {
+                const loc = containerLocCache.locs[i];
+                if (!loc) continue;
+                if (i < clamped.length) {
+                    const b = clamped[i];
+                    gl.uniform4f(loc, b.left, b.top, b.width, b.height);
+                } else {
+                    gl.uniform4f(loc, -1, -1, 0, 0);
+                }
+            }
         },
         destroy() {
             this.stop();

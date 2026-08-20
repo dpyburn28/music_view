@@ -842,6 +842,7 @@ async function applyBackgroundShader(idOrPath, uniformsOverride = null) {
         if (typeof scene.bgShaderRenderer.render === "function") {
             try { scene.bgShaderRenderer.render(); } catch (_) { /* ignore */ }
         }
+        syncContainerBoundsToBgShader();
         return pkg;
     }
     bg.shaderModulators = {};
@@ -860,6 +861,7 @@ async function applyBackgroundShader(idOrPath, uniformsOverride = null) {
     });
     scene.bgCtx = null;
     if (bg.mode === "shader") scene.bgShaderRenderer.start();
+    syncContainerBoundsToBgShader();
     return pkg;
 }
 
@@ -869,6 +871,24 @@ function updateBackgroundUniforms(uniforms) {
     if (scene.bgShaderRenderer) {
         scene.bgShaderRenderer.setUniforms(bg.shaderUniforms);
     }
+}
+
+function syncContainerBoundsToBgShader() {
+    if (!scene.bgShaderRenderer || typeof scene.bgShaderRenderer.setContainerBounds !== "function") return;
+    const area = getFloatAreaSize();
+    const fw = Math.max(1, area.width);
+    const fh = Math.max(1, area.height);
+    const bounds = [];
+    for (const c of scene.containers) {
+        if (!c || c.visible === false) continue;
+        bounds.push({
+            left: (c.left || 0) / fw,
+            top: (c.top || 0) / fh,
+            width: (c.width || 1) / fw,
+            height: (c.height || 1) / fh,
+        });
+    }
+    try { scene.bgShaderRenderer.setContainerBounds(bounds); } catch (_) { /* ignore */ }
 }
 
 function updateBackgroundModulators(modulators) {
@@ -2282,6 +2302,7 @@ function destroyFloatingContainer(state) {
     }
     const idx = scene.containers.indexOf(state);
     if (idx >= 0) scene.containers.splice(idx, 1);
+    syncContainerBoundsToBgShader();
     if (scene.songPanels) {
         for (const key of Object.keys(scene.songPanels)) {
             if (scene.songPanels[key] === state) scene.songPanels[key] = null;
@@ -4700,6 +4721,7 @@ function createFloatingContainer(
     state.left = placementLeft;
     state.top = placementTop;
     syncDesignFromLive(state);
+    syncContainerBoundsToBgShader();
 
     // Interactive move / edge-resize (also selects for Controls)
     setupContainerDragResize(state);
@@ -4984,6 +5006,7 @@ function setContainerSize(state, width, height) {
         try { state.postprocessRenderer.render(); } catch (_) { /* ignore */ }
     }
     syncDesignFromLive(state);
+    syncContainerBoundsToBgShader();
 }
 
 function setContainerPosition(state, left, top) {
@@ -4994,6 +5017,7 @@ function setContainerPosition(state, left, top) {
     state.element.style.left = `${l}px`;
     state.element.style.top = `${t}px`;
     syncDesignFromLive(state);
+    syncContainerBoundsToBgShader();
 }
 
 /** Hit zone (px) for edge/corner resize on floating boxes. */
