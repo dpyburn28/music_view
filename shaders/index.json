@@ -20,6 +20,8 @@
   "light-ripple",
   "orb-tunnel",
   "volumetric-fog",
+  "geometric-grid",
+  "morph-grid",
   "cloud-volumetric",
   "levels",
   "contrast-sat",

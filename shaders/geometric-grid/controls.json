@@ -1,0 +1,57 @@
+{
+  "id": "geometric-grid",
+  "name": "Geometric Grid",
+  "description": "Animated grid of geometric shapes with hash-based randomness and symmetry.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 1,
+      "hint": "Animation speed"
+    },
+    {
+      "name": "u_zoom",
+      "label": "Zoom",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.3,
+      "max": 3.0,
+      "step": 0.05,
+      "group": "Shape",
+      "widget": "slider",
+      "order": 10,
+      "hint": "Grid cell size"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Intensity",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Style",
+      "widget": "slider",
+      "format": "percent",
+      "order": 20
+    },
+    {
+      "name": "u_bg_color",
+      "label": "Background",
+      "type": "color",
+      "default": [0.9, 0.9, 0.9],
+      "group": "Style",
+      "widget": "color",
+      "order": 21
+    }
+  ]
+}
