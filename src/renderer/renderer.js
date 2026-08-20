@@ -8186,8 +8186,11 @@ function applyContainerVisibility(state) {
     el.setAttribute("aria-hidden", on ? "false" : "true");
 }
 
+const MULTI_INSTANCE_AUDIO_ROLES = new Set(["audio-scope", "audio-history", "audio-beat"]);
+
 function roleTaken(role, exceptId) {
     if (!role || !UNIQUE_SNAPSHOT_ROLES.has(role)) return false;
+    if (MULTI_INSTANCE_AUDIO_ROLES.has(role)) return false;
     return scene.containers.some((c) => c.role === role && c.id !== exceptId);
 }
 
@@ -8720,7 +8723,7 @@ async function commandDuplicateContainer(payload) {
             top: Math.max(0, top),
             text: src.text || "",
             label: (src.label || "Panel") + " copy",
-            role: null,
+            role: src.role || null,
             layer: nextContainerLayer(),
             style: JSON.parse(JSON.stringify(src.style || {})),
             wander: !!src.wander,

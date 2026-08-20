@@ -2940,6 +2940,7 @@ const UNIQUE_PANEL_ROLES = [
     'song-cover', 'song-info', 'song-lyrics', 'song-progress', 'show-progress',
     'audio-scope', 'audio-history', 'audio-beat', 'artef4kt',
 ];
+const AUDIO_MULTI_ROLES = new Set(['audio-scope', 'audio-history', 'audio-beat']);
 
 function genericChip(c) {
     if (c.shaderId) return 'shader';
@@ -3029,7 +3030,7 @@ function fillRoleSelect(current) {
         const opt = document.createElement('option');
         opt.value = role;
         opt.textContent = role === 'show-progress' ? 'show time' : role.replace(/^song-/, '');
-        if (taken.has(role) && role !== current) opt.disabled = true;
+        if (taken.has(role) && role !== current && !AUDIO_MULTI_ROLES.has(role)) opt.disabled = true;
         sel.appendChild(opt);
     }
     sel.value = current || '';
@@ -3065,7 +3066,7 @@ function renderContainerAddMenu() {
         btn.className = 'btn-menu-item';
         btn.setAttribute('role', 'menuitem');
         btn.textContent = item.label;
-        if (item.role && taken.has(item.role)) {
+        if (item.role && taken.has(item.role) && !AUDIO_MULTI_ROLES.has(item.role)) {
             btn.disabled = true;
             btn.title = 'Already on stage';
         }
