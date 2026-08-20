@@ -1,0 +1,89 @@
+{
+  "id": "orb-tunnel",
+  "name": "Orb Tunnel",
+  "description": "Raymarched twisted tunnel with a glowing orb light source.",
+  "roles": ["container"],
+  "entry": "shader.frag",
+  "uniforms": [
+    {
+      "name": "u_speed",
+      "label": "Speed",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.05,
+      "group": "Motion",
+      "widget": "slider",
+      "order": 1,
+      "hint": "Animation speed"
+    },
+    {
+      "name": "u_steps",
+      "label": "Quality",
+      "type": "float",
+      "default": 0.5,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Motion",
+      "widget": "slider",
+      "format": "percent",
+      "order": 2,
+      "hint": "Raymarch quality (lower = faster)"
+    },
+    {
+      "name": "u_detail",
+      "label": "Detail",
+      "type": "float",
+      "default": 0.5,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Shape",
+      "widget": "slider",
+      "format": "percent",
+      "order": 10,
+      "hint": "Fractal noise detail"
+    },
+    {
+      "name": "u_twist",
+      "label": "Twist",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.05,
+      "group": "Shape",
+      "widget": "slider",
+      "order": 11,
+      "hint": "Tunnel twist amount"
+    },
+    {
+      "name": "u_glow",
+      "label": "Glow",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.05,
+      "group": "Style",
+      "widget": "slider",
+      "order": 20,
+      "hint": "Orb glow intensity"
+    },
+    {
+      "name": "u_intensity",
+      "label": "Intensity",
+      "type": "float",
+      "default": 1.0,
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.01,
+      "group": "Style",
+      "widget": "slider",
+      "format": "percent",
+      "order": 21
+    }
+  ]
+}
