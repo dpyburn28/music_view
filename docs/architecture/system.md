@@ -28,7 +28,6 @@ Standalone HTML files (`legacy/controls.html`, `legacy/music.html`, `legacy/perf
 | `src/shared/layout-space.js` | shared | 1080×1920 design frame, normalize presets / performances |
 | `src/shared/audio-input.js` | shared | Per-container `audioInput` sanitize / defaults |
 | `src/main/music-library.js` | main | Song scan, LRC parse, cover/metadata |
-| `src/main/spotify-import.js` | main | Spotify track URL → songs dir + optional `.lrc` |
 | `src/main/presets.js` | main | List/load/save/delete preset JSON |
 | `src/main/performances.js` | main | List/load/save/delete + validate performances, compose Show FX |
 | `src/renderer/renderer.js` | stage | Containers, scene commands, capture, music consumers |
@@ -65,7 +64,7 @@ Return shape: `{ ok, error?, state? }`.
 
 ### Music library (invoke)
 
-`listSongs`, `loadSong`, `loadLyrics`, `getCover`, `getSongDisplayInfo`, `importSpotifyTrack`, `probeSpotifyImport` — main-process FS + metadata + optional Spotify import.
+`listSongs`, `loadSong`, `loadLyrics`, `getCover`, `getSongDisplayInfo` — main-process FS + metadata.
 
 ### Presets & performances (invoke)
 

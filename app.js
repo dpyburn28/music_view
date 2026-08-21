@@ -2,7 +2,6 @@ const { app, BrowserWindow, screen, ipcMain, protocol, Menu, dialog } = require(
 const path = require('path');
 const { randomUUID } = require('crypto');
 const musicLibrary = require('./src/main/music-library');
-const spotifyImport = require('./src/main/spotify-import');
 const presets = require('./src/main/presets');
 const performances = require('./src/main/performances');
 const userSettings = require('./src/main/user-settings');
@@ -414,27 +413,6 @@ ipcMain.handle('music-get-cover', async (_event, songPath) => {
     return { ok: false, error: 'Song path outside songs directory' };
   }
   return musicLibrary.extractCoverArt(resolved);
-});
-
-function importCacheDir() {
-  return path.join(userDataDir(), 'bin');
-}
-
-ipcMain.handle('music-import-spotify-probe', async () => {
-  return spotifyImport.probeTools({ cacheDir: importCacheDir() });
-});
-
-ipcMain.handle('music-import-spotify', async (event, url) => {
-  return spotifyImport.importSpotifyTrack(url, {
-    cacheDir: importCacheDir(),
-    onProgress: (payload) => {
-      try {
-        if (event.sender && !event.sender.isDestroyed()) {
-          event.sender.send('spotify-import-progress', payload);
-        }
-      } catch (_) { /* ignore */ }
-    },
-  });
 });
 
 ipcMain.handle('music-get-display-info', async (_event, songPath) => {

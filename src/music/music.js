@@ -1410,74 +1410,6 @@ function seekTo(seconds, deckName) {
     }
 }
 
-function setSpotifyImportStatus(msg, kind) {
-    const el = $('spotify-import-status');
-    if (!el) return;
-    const text = msg || '';
-    el.textContent = text;
-    el.hidden = !text;
-    el.classList.toggle('is-error', kind === 'error');
-    el.classList.toggle('is-ok', kind === 'ok');
-}
-
-async function probeSpotifyImportTools() {
-    if (!musicViewApi()?.probeSpotifyImport) return;
-    try {
-        const tools = await musicViewApi().probeSpotifyImport();
-        if (tools && tools.ok === false && tools.hint) {
-            setSpotifyImportStatus(tools.hint, '');
-        }
-    } catch (_) { /* optional */ }
-}
-
-async function importFromSpotify(ev) {
-    if (ev) ev.preventDefault();
-    const input = $('spotify-url');
-    const btn = $('btn-spotify-import');
-    const url = (input && input.value || '').trim();
-    if (!url) {
-        setSpotifyImportStatus('Paste a Spotify track link', 'error');
-        if (input) input.focus();
-        return;
-    }
-    if (!musicViewApi()?.importSpotifyTrack) {
-        setSpotifyImportStatus('Import API missing', 'error');
-        return;
-    }
-    if (btn) btn.disabled = true;
-    if (input) input.disabled = true;
-    setSpotifyImportStatus('Looking up track…', '');
-    const load = loadUi();
-    if (load) load.begin('Importing from Spotify…');
-    let result;
-    try {
-        result = await musicViewApi().importSpotifyTrack(url);
-    } catch (e) {
-        result = { ok: false, error: String(e && e.message ? e.message : e) };
-    } finally {
-        if (load) load.end();
-        if (btn) btn.disabled = false;
-        if (input) input.disabled = false;
-    }
-    if (!result?.ok) {
-        setSpotifyImportStatus(result?.error || 'Import failed', 'error');
-        return;
-    }
-    const bits = [];
-    if (result.skippedAudio) bits.push('already on disk');
-    if (result.lyrics?.wrote && result.lyrics.synced) bits.push('synced lyrics');
-    else if (result.lyrics?.wrote) bits.push('unsynced lyrics');
-    else if (result.lyrics?.found) bits.push('lyrics already present');
-    else bits.push('no lyrics found');
-    const title = result.meta?.title || result.song?.title || 'Track';
-    setSpotifyImportStatus(`Imported ${title} (${bits.join(', ')})`, 'ok');
-    if (input) input.value = '';
-    await refreshLibrary();
-    if (result.song?.id && !showDriving) {
-        await selectSong(result.song.id);
-    }
-}
-
 function wireEvents() {
     $('music-btn-refresh').addEventListener('click', () => refreshLibrary());
     $('song-filter').addEventListener('input', () => applyFilter());
@@ -1487,15 +1419,6 @@ function wireEvents() {
             if (songList.scrollHeight <= songList.clientHeight + 1) return;
             e.stopPropagation();
         }, { capture: true });
-    }
-    const spotifyForm = $('spotify-import');
-    if (spotifyForm) {
-        spotifyForm.addEventListener('submit', (e) => { importFromSpotify(e); });
-    }
-    if (musicViewApi()?.onSpotifyImportProgress) {
-        musicViewApi().onSpotifyImportProgress((payload) => {
-            if (payload && payload.message) setSpotifyImportStatus(payload.message, '');
-        });
     }
     $('music-btn-play').addEventListener('click', () => {
         if (showDriving) emitMusicEvent('showAction', { action: 'togglePlay' });
@@ -2430,7 +2353,6 @@ async function init() {
         await refreshLibrary();
         if (load) load.set(60, 'Loading cover art…');
         await preloadCovers();
-        probeSpotifyImportTools();
         // Clip-arm clock rides the existing tick via a patched progress publisher
         window.__musicViewTickClipArm = tickClipArm;
     } catch (e) {

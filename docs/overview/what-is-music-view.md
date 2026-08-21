@@ -33,7 +33,6 @@ Main process (`app.js`) creates the workspace, brokers leftover IPC, loads songs
 ### Music & library
 
 - Scans a configured **Songs** directory for common audio formats.
-- **Import from a Spotify track link** (Music → Library) writes audio + optional `.lrc`.
 - Optional sidecar **`.lrc`** lyrics (same basename as the audio file).
 - Cover art from embedded tags when present.
 - Playback, seek, lyric focus (prev / current / next lines). Dual-deck crossfade for shows.

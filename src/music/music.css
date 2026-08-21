@@ -339,32 +339,6 @@ html:not(.workspace) body,
     font-size: 0.75rem;
 }
 
-.spotify-import {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    margin: 0 0 4px;
-    flex-shrink: 0;
-}
-
-.spotify-import .filter {
-    font-size: 0.7rem;
-}
-
-.spotify-import-status {
-    margin: 0 0 4px;
-    flex-shrink: 0;
-    font-size: 0.66rem;
-}
-
-.spotify-import-status.is-error {
-    color: #f0a0a0;
-}
-
-.spotify-import-status.is-ok {
-    color: #9fd4b0;
-}
-
 #panel-lib.tab-panel {
     overflow: hidden;
 }

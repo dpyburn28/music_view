@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "electron .",
-    "test": "node --test test/test-scene-match.js test/test-workspace-bus.js test/test-user-settings.js test/test-tool-wrap.js test/test-workspace-hotkeys.js test/test-layout-space.js test/test-show-fx.js test/test-audio-input.js test/test-spotify-import.js"
+    "test": "node --test test/test-scene-match.js test/test-workspace-bus.js test/test-user-settings.js test/test-tool-wrap.js test/test-workspace-hotkeys.js test/test-layout-space.js test/test-show-fx.js test/test-audio-input.js"
   },
   "keywords": [
     "electron",

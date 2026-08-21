@@ -97,19 +97,6 @@ contextBridge.exposeInMainWorld('musicView', {
   loadSong: (songPath) => ipcRenderer.invoke('music-load-song', songPath),
   getCover: (songPath) => ipcRenderer.invoke('music-get-cover', songPath),
   getSongDisplayInfo: (songPath) => ipcRenderer.invoke('music-get-display-info', songPath),
-  probeSpotifyImport: () => ipcRenderer.invoke('music-import-spotify-probe'),
-  importSpotifyTrack: (url) => ipcRenderer.invoke('music-import-spotify', url),
-  onSpotifyImportProgress: (callback) => {
-    const handler = (_event, data) => {
-      try {
-        callback(data);
-      } catch (e) {
-        console.warn('onSpotifyImportProgress callback error', e);
-      }
-    };
-    ipcRenderer.on('spotify-import-progress', handler);
-    return () => ipcRenderer.removeListener('spotify-import-progress', handler);
-  },
 
   /** Music → display: broadcast selected track (title/artist/album/cover). */
   publishNowPlaying: (payload) => {

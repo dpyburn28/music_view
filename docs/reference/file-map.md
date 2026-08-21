@@ -11,7 +11,6 @@ music_view/
 ├── src/
 │   ├── main/                     # Node.js modules (require'd by app.js)
 │   │   ├── music-library.js      # Song scan + LRC + metadata
-│   │   ├── spotify-import.js     # Spotify URL → local audio + .lrc (yt-dlp + LRCLIB)
 │   │   ├── presets.js            # List/load/save/delete preset JSON
 │   │   ├── performances.js       # Validate + Show FX compose
 │   │   └── user-settings.js      # userData/user-settings.json (docks, window, present, render.fps)

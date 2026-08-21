@@ -18,7 +18,7 @@ npm start
 npm test
 ```
 
-Songs are loaded from the directory configured in `music-library.js` (see docs). Optional `.lrc` files share the audio basename. Paste a Spotify track URL in Music → Library to import audio + lyrics (`yt-dlp` + `ffmpeg` required).
+Songs are loaded from the directory configured in `music-library.js` (see docs). Optional `.lrc` files share the audio basename.
 
 ## Documentation
 
