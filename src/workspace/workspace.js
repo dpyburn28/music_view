@@ -219,14 +219,14 @@
         if (panel === 'music') {
           setFocus('music');
           const play = document.getElementById('music-btn-play');
-          if (play) play.focus();
+          if (play) play.focus({ preventScroll: true });
           return;
         }
         if ((panel === 'look' || panel === 'object') && window.__musicViewControls) {
           window.__musicViewControls.setActiveTab(panel);
           setFocus(panel);
           const dock = document.getElementById('dock-controls');
-          if (dock) dock.focus();
+          if (dock) dock.focus({ preventScroll: true });
           return;
         }
         if (panel === 'show') {
@@ -238,7 +238,7 @@
             schedulePersistDocks();
           }
           setFocus('performance');
-          dock.focus();
+          dock.focus({ preventScroll: true });
           fitStage();
         }
       });
@@ -326,12 +326,23 @@
     window.__musicViewFitStage = fitStage;
   }
 
+  /** The page is overflow:hidden and must never scroll. Programmatic scrolls
+   *  (focus, scrollIntoView from embedded panes) can still shift it — undo them. */
+  function guardPageScroll() {
+    const de = document.documentElement;
+    document.addEventListener('scroll', () => {
+      if (de.scrollTop) de.scrollTop = 0;
+      if (document.body && document.body.scrollTop) document.body.scrollTop = 0;
+    }, true);
+  }
+
   async function boot() {
     if (window.__musicViewLoad) window.__musicViewLoad.set(8, 'Workspace…');
     exposeApi();
     wireFocus();
     wireModeButtons();
     wireSplitters();
+    guardPageScroll();
     applyDockVars();
     if (typeof window.installWorkspaceHotkeys === 'function') {
       window.installWorkspaceHotkeys();

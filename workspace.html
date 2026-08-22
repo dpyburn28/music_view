@@ -973,7 +973,9 @@
                     <section class="panel cue-panel" aria-label="Cue list">
                         <div class="section-head">
                             <h2>Cues</h2>
+                            <select id="add-song" class="add-song-select" title="Song to add"></select>
                             <button type="button" id="btn-add-clip" class="btn" title="Add clip">+</button>
+                            <button type="button" id="btn-browse-songs" class="btn" title="Search all songs">Browse…</button>
                         </div>
                         <ul id="cue-list" class="cue-list"></ul>
                         <p id="cue-empty" class="hint">Add a clip to start a show.</p>
@@ -993,6 +995,10 @@
                                 <label>Out
                                     <input type="number" id="insp-out" min="0" step="0.01" />
                                 </label>
+                            </div>
+                            <div class="doc-row">
+                                <button type="button" id="btn-set-in" class="btn" title="Set In to the deck playhead position">Set In @ playhead</button>
+                                <button type="button" id="btn-set-out" class="btn" title="Set Out to the deck playhead position">Set Out @ playhead</button>
                             </div>
                             <div class="pair">
                                 <label>Volume
@@ -1083,9 +1089,40 @@
                     <form method="dialog" class="dialog-form">
                         <h2>Open performance</h2>
                         <select id="open-list" size="8"></select>
+                        <p id="open-empty" class="hint hidden">No saved performances yet.</p>
                         <div class="doc-row">
                             <button type="submit" value="cancel" class="btn">Cancel</button>
                             <button type="submit" value="open" class="btn primary">Open</button>
+                        </div>
+                    </form>
+                </dialog>
+
+                <dialog id="save-dialog">
+                    <form id="save-form" method="dialog" class="dialog-form">
+                        <h2>Save performance</h2>
+                        <label>Name
+                            <input type="text" id="save-name" placeholder="Performance name" />
+                        </label>
+                        <label>File stem
+                            <input type="text" id="save-stem" placeholder="letters-numbers-_" />
+                        </label>
+                        <p id="save-error" class="hint"></p>
+                        <div class="doc-row">
+                            <button type="button" id="btn-save-cancel" class="btn">Cancel</button>
+                            <button type="submit" class="btn primary">Save</button>
+                        </div>
+                    </form>
+                </dialog>
+
+                <dialog id="song-dialog">
+                    <form id="song-form" method="dialog" class="dialog-form">
+                        <h2>Add song clip</h2>
+                        <input type="text" id="song-search" placeholder="Search title, artist, or file…" autocomplete="off" />
+                        <select id="song-list" size="10"></select>
+                        <p id="song-empty" class="hint hidden">No matching songs.</p>
+                        <div class="doc-row">
+                            <button type="button" id="btn-song-cancel" class="btn">Cancel</button>
+                            <button type="submit" id="btn-song-add" class="btn primary" disabled>Add clip</button>
                         </div>
                     </form>
                 </dialog>

@@ -614,8 +614,20 @@ function renderLyrics(activeIndex) {
 
     const active = view.querySelector('.line.active');
     if (active) {
-        active.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        scrollLyricLineIntoView(active);
     }
+}
+
+/** Center a lyric line inside #lyrics-view only — never ancestor containers
+ *  (scrollIntoView walks up into the overflow:hidden page and shifts the app). */
+function scrollLyricLineIntoView(line) {
+    const view = $('lyrics-view');
+    if (!view || !view.contains(line)) return;
+    const vr = view.getBoundingClientRect();
+    const lr = line.getBoundingClientRect();
+    if (!vr.height || !lr.height) return;
+    const offset = view.scrollTop + (lr.top - vr.top) - ((vr.height - lr.height) / 2);
+    view.scrollTo({ top: Math.max(0, offset), behavior: 'smooth' });
 }
 
 function activeLyricIndex(time) {
@@ -659,7 +671,7 @@ function updateUiFromAudio() {
             if (prev) prev.classList.remove('active');
             if (next) {
                 next.classList.add('active');
-                next.scrollIntoView({ block: 'center', behavior: 'smooth' });
+                scrollLyricLineIntoView(next);
             }
         }
     }

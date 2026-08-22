@@ -207,6 +207,22 @@ h3 { margin: 10px 0 4px; font-size: 0.68rem; color: var(--muted); text-transform
 }
 .cue-list li:hover { background: #1d2230; }
 .cue-list li.selected { background: #2a3f73; }
+.cue-list .cue-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.cue-list .cue-title {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.cue-list .btn-tiny {
+    padding: 1px 5px;
+    font-size: 0.65rem;
+}
 .cue-list .err { color: #ff9b9b; }
 .cue-list .stale { color: #f0c14b; }
 .cue-list .look-sub {
@@ -253,3 +269,37 @@ dialog {
 }
 dialog select { width: 100%; background: #10131a; color: var(--text); }
 .dialog-form { display: flex; flex-direction: column; gap: 8px; }
+.dialog-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.7rem;
+}
+.dialog-form input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    background: #10131a;
+    color: var(--text);
+    border: 1px solid var(--panel-border);
+    border-radius: 4px;
+    padding: 4px 6px;
+}
+#save-error {
+    margin: 0;
+    min-height: 1em;
+    color: #ff7b72;
+}
+
+.cue-panel .section-head { gap: 6px; }
+.add-song-select {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 220px;
+    background: #10131a;
+    color: var(--text);
+    border: 1px solid var(--panel-border);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    padding: 2px 4px;
+    text-overflow: ellipsis;
+}

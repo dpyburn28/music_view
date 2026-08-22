@@ -438,18 +438,56 @@ async function refreshSongs() {
     renderCueList();
 }
 
+function songLabel(s) {
+    const title = s.title || s.name || s.id || 'Untitled';
+    if (s.artist) return `${title} — ${s.artist}`;
+    return title;
+}
+
+function songValue(s) {
+    return s.name || s.id;
+}
+
 function fillSongSelect() {
     const sel = $('insp-song');
-    if (!sel) return;
-    const cur = sel.value;
-    sel.innerHTML = '';
-    for (const s of songs) {
-        const opt = document.createElement('option');
-        opt.value = s.name || s.id;
-        opt.textContent = s.title || s.name;
-        sel.appendChild(opt);
+    if (sel) {
+        const cur = sel.value;
+        sel.innerHTML = '';
+        for (const s of songs) {
+            const opt = document.createElement('option');
+            opt.value = songValue(s);
+            opt.textContent = s.title || s.name;
+            sel.appendChild(opt);
+        }
+        if (cur) sel.value = cur;
     }
-    if (cur) sel.value = cur;
+    const addSel = $('add-song');
+    if (addSel) {
+        const prev = addSel.value || addSel.dataset.lastPick || '';
+        addSel.innerHTML = '';
+        for (const s of songs) {
+            const opt = document.createElement('option');
+            opt.value = songValue(s);
+            opt.textContent = songLabel(s);
+            addSel.appendChild(opt);
+        }
+        if (prev && songs.some((s) => songValue(s) === prev)) addSel.value = prev;
+    }
+}
+
+/** Reorder clips, keeping transport position and selection on the same clips. */
+function moveClip(index, delta) {
+    const clips = doc.clips;
+    const to = index + delta;
+    if (!Array.isArray(clips) || index < 0 || index >= clips.length) return;
+    if (to < 0 || to >= clips.length) return;
+    const currentId = currentClip() ? currentClip().id : null;
+    const [moved] = clips.splice(index, 1);
+    clips.splice(to, 0, moved);
+    const at = currentId ? clips.findIndex((c) => c.id === currentId) : -1;
+    if (at >= 0) clipIndex = at;
+    markDirty();
+    renderCueList();
 }
 
 function renderCueList() {
@@ -461,9 +499,35 @@ function renderCueList() {
         const li = document.createElement('li');
         li.dataset.id = clip.id;
         if (clip.id === selectedClipId) li.classList.add('selected');
+        const row = document.createElement('div');
+        row.className = 'cue-row';
         const title = document.createElement('span');
+        title.className = 'cue-title';
         title.textContent = `${i + 1}. ${clip.song.title || clip.song.relPath}`;
-        li.appendChild(title);
+        row.appendChild(title);
+        const up = document.createElement('button');
+        up.type = 'button';
+        up.className = 'btn btn-tiny';
+        up.textContent = '↑';
+        up.title = 'Move clip earlier';
+        up.disabled = i === 0;
+        up.addEventListener('click', (e) => {
+            e.stopPropagation();
+            moveClip(i, -1);
+        });
+        row.appendChild(up);
+        const down = document.createElement('button');
+        down.type = 'button';
+        down.className = 'btn btn-tiny';
+        down.textContent = '↓';
+        down.title = 'Move clip later';
+        down.disabled = i === clips.length - 1;
+        down.addEventListener('click', (e) => {
+            e.stopPropagation();
+            moveClip(i, 1);
+        });
+        row.appendChild(down);
+        li.appendChild(row);
         const meta = document.createElement('span');
         meta.className = 'hint';
         meta.textContent = `${formatTime(clip.in)}–${formatTime(clip.out)} · ${clip.audioTransition.type}`;
@@ -1110,68 +1174,141 @@ function onSceneUserEdit() {
     }
 }
 
-async function saveDoc(asNew) {
-    let stem = fileStem;
-    if (asNew || !stem) {
-        const suggested = (doc.name || 'untitled').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'untitled';
-        const typed = window.prompt('File stem (letters, numbers, - _)', suggested);
-        if (!typed) return;
-        stem = typed;
-    }
-    if (!doc.name || doc.name === 'Untitled') {
-        const n = window.prompt('Performance name', doc.name || stem);
-        if (n) doc.name = n;
+function slugStem(name) {
+    return String(name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+/** Modal save-details prompt (window.prompt is unsupported in Electron). */
+function askSaveDetails() {
+    return new Promise((resolve) => {
+        const dlg = $('save-dialog');
+        const nameEl = $('save-name');
+        const stemEl = $('save-stem');
+        const errEl = $('save-error');
+        const form = $('save-form');
+        const cancel = $('btn-save-cancel');
+        nameEl.value = doc.name && doc.name !== 'Untitled' ? doc.name : '';
+        stemEl.value = fileStem || slugStem(doc.name);
+        errEl.textContent = '';
+        function cleanup() {
+            dlg.removeEventListener('close', onClose);
+            form.removeEventListener('submit', onSubmit);
+            cancel.removeEventListener('click', onCancel);
+        }
+        function onClose() {
+            const accepted = dlg.returnValue === 'save';
+            const details = accepted ? { name: nameEl.value.trim(), stem: stemEl.value.trim() } : null;
+            cleanup();
+            resolve(details);
+        }
+        function onSubmit(e) {
+            e.preventDefault();
+            const stem = stemEl.value.trim();
+            if (!/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$/.test(stem)) {
+                errEl.textContent = 'File stem: letters, numbers, - or _ (max 64)';
+                return;
+            }
+            if (!nameEl.value.trim()) nameEl.value = stem;
+            errEl.textContent = '';
+            dlg.close('save');
+        }
+        function onCancel() {
+            dlg.close('cancel');
+        }
+        dlg.addEventListener('close', onClose);
+        form.addEventListener('submit', onSubmit);
+        cancel.addEventListener('click', onCancel);
+        dlg.showModal();
+        (stemEl.value ? nameEl : stemEl).focus();
+    });
+}
+
+async function writeDoc(stem) {
+    if (!window.musicView?.savePerformanceFile) {
+        setStatusLine('Performance API missing');
+        return false;
     }
     const result = await window.musicView.savePerformanceFile(stem, doc);
     if (!result?.ok) {
         setStatusLine(result?.error || 'Save failed');
-        return;
+        return false;
     }
     fileStem = result.name;
     doc = result.performance || doc;
     markDirty(false);
     setDocTitle();
     setStatusLine(`Saved ${fileStem}`);
+    return true;
+}
+
+async function saveDoc(asNew) {
+    try {
+        const needsDetails = asNew || !fileStem || !doc.name || doc.name === 'Untitled';
+        let stem = fileStem;
+        if (needsDetails) {
+            const details = await askSaveDetails();
+            if (!details) {
+                setStatusLine('Save cancelled');
+                return;
+            }
+            if (details.name && details.name !== doc.name) {
+                doc.name = details.name;
+                setDocTitle();
+            }
+            stem = details.stem;
+        }
+        await writeDoc(stem);
+    } catch (err) {
+        setStatusLine(`Save failed: ${err && err.message ? err.message : err}`);
+    }
 }
 
 async function openDoc() {
-    const list = await window.musicView.listPerformances();
-    const sel = $('open-list');
-    sel.innerHTML = '';
-    for (const p of (list.performances || [])) {
-        const opt = document.createElement('option');
-        opt.value = p.name;
-        opt.textContent = `${p.displayName} (${p.clipCount} clips)`;
-        sel.appendChild(opt);
-    }
-    const dlg = $('open-dialog');
-    dlg.showModal();
-    dlg.addEventListener('close', async function onClose() {
-        dlg.removeEventListener('close', onClose);
-        if (dlg.returnValue !== 'open') return;
-        const name = sel.value;
-        if (!name) return;
-        const loaded = await window.musicView.loadPerformanceFile(name);
-        if (!loaded?.ok) {
-            setStatusLine(loaded?.error || 'Open failed');
-            return;
+    try {
+        const list = await window.musicView.listPerformances();
+        const sel = $('open-list');
+        const empty = $('open-empty');
+        const items = (list && list.performances) || [];
+        sel.innerHTML = '';
+        empty.classList.toggle('hidden', items.length > 0);
+        for (const p of items) {
+            const opt = document.createElement('option');
+            opt.value = p.name;
+            opt.textContent = `${p.displayName} (${p.clipCount} clips)`;
+            sel.appendChild(opt);
         }
-        doc = loaded.performance;
-        fileStem = loaded.name;
-        selectedClipId = doc.clips[0] ? doc.clips[0].id : null;
-        selectedLookId = selectedClipId && doc.clips[0].lookCues[0] ? doc.clips[0].lookCues[0].id : null;
-        staleLookIds = new Set();
-        markDirty(false);
-        setDocTitle();
-        await refreshSongs();
-        renderShowFx();
-        fillInspector();
-        setStatusLine(`Opened ${fileStem} — warming…`);
-        musicCmd('prepareShow', { clips: clipPrepareList(0) }).then((prep) => {
-            if (prep?.ok) setStatusLine(`Opened ${fileStem} — assets ready`);
-            else if (prep?.error) setStatusLine(prep.error);
-        });
-    }, { once: true });
+        if (!items.length) setStatusLine('No saved performances yet');
+        const dlg = $('open-dialog');
+        dlg.showModal();
+        dlg.addEventListener('close', async function onClose() {
+            dlg.removeEventListener('close', onClose);
+            if (dlg.returnValue !== 'open') return;
+            const name = sel.value;
+            if (!name) return;
+            const loaded = await window.musicView.loadPerformanceFile(name);
+            if (!loaded?.ok) {
+                setStatusLine(loaded?.error || 'Open failed');
+                return;
+            }
+            doc = loaded.performance;
+            fileStem = loaded.name;
+            selectedClipId = doc.clips[0] ? doc.clips[0].id : null;
+            selectedLookId = selectedClipId && doc.clips[0].lookCues[0] ? doc.clips[0].lookCues[0].id : null;
+            staleLookIds = new Set();
+            markDirty(false);
+            setDocTitle();
+            await refreshSongs();
+            renderShowFx();
+            fillInspector();
+            setStatusLine(`Opened ${fileStem} — warming…`);
+            musicCmd('prepareShow', { clips: clipPrepareList(0) }).then((prep) => {
+                if (prep?.ok) setStatusLine(`Opened ${fileStem} — assets ready`);
+                else if (prep?.error) setStatusLine(prep.error);
+            });
+        }, { once: true });
+    } catch (err) {
+        setStatusLine(`Open failed: ${err && err.message ? err.message : err}`);
+    }
 }
 
 function newDoc() {
@@ -1189,19 +1326,134 @@ function newDoc() {
     setStatusLine('New performance');
 }
 
+/** Snap the selected clip's In or Out to the lead deck's current playhead. */
+async function setClipBoundAtPlayhead(bound) {
+    const clip = selectedClip();
+    if (!clip) {
+        setStatusLine('Select a clip first');
+        return;
+    }
+    const t = await musicCmd('getTransportState');
+    const deck = (t && t.lead) || 'A';
+    const time = t && t.decks && t.decks[deck] ? Number(t.decks[deck].t) : NaN;
+    if (!Number.isFinite(time) || !(t && t.decks && t.decks[deck] && t.decks[deck].src)) {
+        setStatusLine('No playhead — load the clip on a deck first (Preview)');
+        return;
+    }
+    const inn = Math.max(0, Number(clip.in) || 0);
+    const out = Math.max(inn + 0.05, Number(clip.out) || 0);
+    if (bound === 'in') clip.in = Math.max(0, Math.min(time, out - 0.05));
+    else clip.out = Math.max(inn + 0.05, time);
+    markDirty();
+    fillInspector();
+    renderCueList();
+    setStatusLine(`Clip ${bound} set to ${time.toFixed(2)}s`);
+}
+
+function addClipFromSong(song) {
+    const clip = newClipFromSong(song || null);
+    doc.clips.push(clip);
+    selectedClipId = clip.id;
+    selectedLookId = clip.lookCues[0].id;
+    markDirty();
+    renderCueList();
+    fillInspector();
+    const addSel = $('add-song');
+    if (addSel && song) addSel.dataset.lastPick = songValue(song);
+    return clip;
+}
+
+/** Searchable song picker dialog (Browse…). Resolves with the chosen song or null. */
+function askSongPicker() {
+    return new Promise((resolve) => {
+        const dlg = $('song-dialog');
+        const searchEl = $('song-search');
+        const listEl = $('song-list');
+        const emptyEl = $('song-empty');
+        const form = $('song-form');
+        const cancelBtn = $('btn-song-cancel');
+        const addBtn = $('btn-song-add');
+        searchEl.value = '';
+        listEl.innerHTML = '';
+        addBtn.disabled = true;
+        function renderList(filter) {
+            const q = String(filter || '').trim().toLowerCase();
+            listEl.innerHTML = '';
+            let count = 0;
+            for (const s of songs) {
+                if (q) {
+                    const hay = `${s.title || ''} ${s.artist || ''} ${s.name || ''}`.toLowerCase();
+                    if (!hay.includes(q)) continue;
+                }
+                count++;
+                const opt = document.createElement('option');
+                opt.value = songValue(s);
+                opt.textContent = songLabel(s);
+                listEl.appendChild(opt);
+            }
+            emptyEl.classList.toggle('hidden', count > 0);
+            listEl.classList.toggle('hidden', count === 0);
+            addBtn.disabled = listEl.selectedIndex < 0;
+        }
+        function cleanup() {
+            dlg.removeEventListener('close', onClose);
+            form.removeEventListener('submit', onSubmit);
+            cancelBtn.removeEventListener('click', onCancel);
+            searchEl.removeEventListener('input', onSearch);
+            listEl.removeEventListener('change', onSelect);
+            listEl.removeEventListener('dblclick', onDblClick);
+        }
+        function onClose() {
+            const rel = dlg.returnValue === 'add' ? listEl.value : '';
+            const picked = rel ? songs.find((s) => songValue(s) === rel) || null : null;
+            cleanup();
+            resolve(picked);
+        }
+        function onSubmit(e) {
+            e.preventDefault();
+            if (!listEl.options.length) return;
+            if (listEl.selectedIndex < 0) listEl.selectedIndex = 0;
+            dlg.close('add');
+        }
+        function onCancel() { dlg.close('cancel'); }
+        function onSearch() { renderList(searchEl.value); }
+        function onSelect() { addBtn.disabled = listEl.selectedIndex < 0; }
+        function onDblClick() { if (listEl.selectedIndex >= 0) dlg.close('add'); }
+        dlg.addEventListener('close', onClose);
+        form.addEventListener('submit', onSubmit);
+        cancelBtn.addEventListener('click', onCancel);
+        searchEl.addEventListener('input', onSearch);
+        listEl.addEventListener('change', onSelect);
+        listEl.addEventListener('dblclick', onDblClick);
+        renderList('');
+        if (!songs.length) setStatusLine('No songs in library');
+        dlg.showModal();
+        if (listEl.options.length) {
+            listEl.selectedIndex = 0;
+            addBtn.disabled = false;
+        }
+        searchEl.focus();
+    });
+}
+
+
 async function deleteDoc() {
-    if (!fileStem) {
-        setStatusLine('Nothing saved to delete');
-        return;
+    try {
+        if (!fileStem) {
+            setStatusLine('Nothing saved to delete');
+            return;
+        }
+        if (!window.confirm(`Delete ${fileStem}?`)) return;
+        const result = await window.musicView.deletePerformanceFile(fileStem);
+        if (!result?.ok) {
+            setStatusLine(result?.error || 'Delete failed');
+            return;
+        }
+        newDoc();
+        setStatusLine('Deleted');
+    } catch (err) {
+        setStatusLine(`Delete failed: ${err && err.message ? err.message : err}`);
     }
-    if (!window.confirm(`Delete ${fileStem}?`)) return;
-    const result = await window.musicView.deletePerformanceFile(fileStem);
-    if (!result?.ok) {
-        setStatusLine(result?.error || 'Delete failed');
-        return;
-    }
-    newDoc();
-    setStatusLine('Deleted');
 }
 
 function wireInspector() {
@@ -1238,14 +1490,23 @@ function wireButtons() {
         markDirty();
     });
     $('btn-add-clip').addEventListener('click', () => {
-        const clip = newClipFromSong(songs[0] || null);
-        doc.clips.push(clip);
-        selectedClipId = clip.id;
-        selectedLookId = clip.lookCues[0].id;
-        markDirty();
-        renderCueList();
-        fillInspector();
+        if (!songs.length) {
+            setStatusLine('No songs in library');
+            return;
+        }
+        const rel = $('add-song') ? $('add-song').value : '';
+        const pick = songs.find((s) => songValue(s) === rel) || songs[0] || null;
+        addClipFromSong(pick);
+        setStatusLine(`Added ${pick ? (pick.title || pick.name) : 'clip'}`);
     });
+    $('btn-browse-songs').addEventListener('click', async () => {
+        const picked = await askSongPicker();
+        if (!picked) return;
+        addClipFromSong(picked);
+        setStatusLine(`Added ${picked.title || picked.name}`);
+    });
+    $('btn-set-in').addEventListener('click', () => setClipBoundAtPlayhead('in'));
+    $('btn-set-out').addEventListener('click', () => setClipBoundAtPlayhead('out'));
     $('btn-capture').addEventListener('click', () => {
         const look = selectedLook();
         if (look) captureLookInto(look);
